@@ -1,0 +1,9 @@
+[ignore]
+
+[include]
+src/**/*.js
+
+[libs]
+
+[options]
+suppress_comment= \\(.\\|\n\\)*\\@flow-ignore

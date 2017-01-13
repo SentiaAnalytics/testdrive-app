@@ -1,0 +1,13 @@
+.tabs {
+  display: flex;
+}
+
+.tab {
+  text-align: center;
+  flex-grow: 1;
+  padding: $padding-base / 2;
+  border-bottom: 4px solid transparent;
+}
+.tab-selected {
+  border-bottom: 4px solid $brand-secondary;
+}

@@ -1,0 +1,15 @@
+.header {
+  padding: $padding-base;
+}
+.header-left { float:left; }
+.header-right { float:right; }
+.header-title {
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: $font-size-lg;
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}

@@ -1,0 +1,85 @@
+@import "bootstrap/variables";
+@import "bootstrap/bootstrap-flex";
+@import "layout";
+@import "fancy-form";
+@import "text";
+@import "header";
+@import "tabs";
+@import "util";
+@import "slider";
+
+body, html, #root, .app {
+  height: 100%;
+}
+
+.timeline  {
+  border-top: 1px solid $gray-lighter;
+}
+
+.create-lead-success {
+  background-size: 100% 100%;
+  background-image: url('/img/createLeadSuccess.jpg');
+
+}
+
+.check-unchecked {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 999px;
+  border: 1px solid $gray;
+}
+.check-checked {
+  position: relative;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 999px;
+  &::after {
+    width: 20px;
+    position: absolute;
+    content: '';
+    left: 5px;
+    top: 11px;
+    transform: rotate(-45deg);
+    border-bottom: 1px solid $brand-success;
+  }
+  &::before {
+    transform: rotate(45deg);
+    top: 14px;
+    position: absolute;
+    width: 10px;
+    content: '';
+    border-bottom: 1px solid $brand-success;
+  }
+}
+
+.round {
+  border-radius: 999px;
+}
+
+.dashboard {
+  background-size: 100% 100%;
+}
+
+.dashboard-today { background-image: url('/img/DashboardViewToday.png'); }
+.dashboard-week { background-image: url('/img/DashboardViewWeek.png'); }
+.dashboard-month { background-image: url('/img/DashboardViewMonth.png'); }
+
+
+.bg-img-break-crowd {
+  background-image: url('/img/break-crowd.png');
+  background-size:cover;
+  background-attachment: center center;
+}
+
+.icon {
+  display:inline-block;
+  background: none;
+  border: none;
+  padding: none;
+  margin: none;
+  &:focus {
+    outline:none;
+  }
+}

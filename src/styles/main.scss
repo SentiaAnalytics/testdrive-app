@@ -83,3 +83,7 @@ body, html, #root, .app {
     outline:none;
   }
 }
+
+.modal.show {
+  display:block;
+}

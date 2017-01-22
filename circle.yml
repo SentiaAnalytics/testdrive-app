@@ -28,4 +28,4 @@ deployment:
     commands:
       - docker tag sentia/testdrive-app:latest sentia/testdrive-app:$CIRCLE_BUILD_NUM
       - docker push sentia/testdrive-app:latest
-      - docker push sentia/testdrive-app:$CIRCLE_BUILD_NUM-
+      - docker push sentia/testdrive-app:$CIRCLE_BUILD_NUM

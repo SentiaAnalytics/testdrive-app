@@ -1,4 +1,4 @@
-//@flow
+  //@flow
 
 export type Dict = { [string]: any }
 export type Dispatch = (a:Action) => void

@@ -26,6 +26,6 @@ deployment:
  docker:
     branch: master
     commands:
-      - docker tag sentia/testdrive-app:latest sentia/testdrive-app:$CIRCLE_BUILD_NUM
+      - docker tag sentia/testdrive-app:latest sentia/testdrive-app:rc-$CIRCLE_BUILD_NUM
       - docker push sentia/testdrive-app:latest
-      - docker push sentia/testdrive-app:$CIRCLE_BUILD_NUM
+      - docker push sentia/testdrive-app:rc-$CIRCLE_BUILD_NUM

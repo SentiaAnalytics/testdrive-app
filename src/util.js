@@ -1,7 +1,7 @@
 //@flow
-import type {Dict, Functor} from './model'
+import type {Dict} from './model'
 
-export const map = (f:Function) => (x:Functor) => x.map(f)
+export const map = (f:Function) => (x:any) => x.map(f)
 export const filter = (f:Function) => (x:{filter:Function}) => x.filter(f)
 export const reduce = (f:Function) => (init: any) => (x:{reduce:Function}) => x.reduce(f, init)
 export const head = ([x]: any[]) => x
@@ -28,3 +28,17 @@ export const preventDefault = (e:{preventDefault:Function}) => {
   e.preventDefault()
   return e
 }
+
+export const evolve = (t:Dict) => (input:Dict) =>
+  Object.keys(input).reduce((o, k) =>{
+    switch(typeof t[k]) {
+      case 'function':
+        return {...o, [k]: t[k](input[k])}
+      case 'object':
+        return {...o, [k]: evolve(t[k])(input[k])}
+      case 'undefined':
+        return {...o, [k]: input[k]}
+      default:
+        return o
+    }
+  }, {})

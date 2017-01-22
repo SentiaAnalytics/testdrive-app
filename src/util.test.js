@@ -1,6 +1,6 @@
 //@flow
 import test from 'tape'
-import {apply, assocPath, compose} from './util'
+import {evolve, apply, assocPath, compose} from './util'
 
 test('compose should call function i right order', t => {
   t.plan(1)
@@ -32,4 +32,28 @@ test('apply should apply all arguments', t => {
   const f = a => b => c => a + b + c
   const actual = apply(f, 'a', 'b', 'c')
   t.equal(actual, 'abc')
+})
+
+test('evolve should apply transformations to original object', t => {
+  t.plan(1)
+  const transform = {
+    a: {
+      ab: x => x + 1
+    }
+  }
+  const input = {
+    a: {
+      ab: 1
+    },
+    b: 2
+  }
+  const actual = evolve(transform)(input)
+  const expected ={
+    a: {
+      ab: 2
+    },
+    b: 2
+  }
+
+  t.deepEqual(actual, expected)
 })

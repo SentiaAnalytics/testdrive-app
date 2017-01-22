@@ -1,0 +1,31 @@
+machine:
+  services:
+    - docker
+  node:
+    version: 7.4
+
+dependencies:
+  cache_directories:
+    - "~/docker"
+  pre:
+    - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  override:
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - npm i -g yarn
+    - yarn
+
+test:
+  override:
+    - yarn run test
+    - yarn run flow
+    - yarn run build
+    - docker build -t sentia/testdrive-app:latest .
+    - mkdir -p ~/docker; docker save sentia/testdrive-app:latest > ~/docker/image.tar
+
+deployment:
+ docker:
+    branch: master
+    commands:
+      - docker tag sentia/testdrive-app:latest sentia/testdrive-app:rc-$CIRCLE_BUILD_NUM
+      - docker push sentia/testdrive-app:latest
+      - docker push sentia/testdrive-app:rc-$CIRCLE_BUILD_NUM-

@@ -23,6 +23,11 @@ export default ({dispatch, driverForm}:Props) => {
       <div className="flex-grow-1 padding-base scroll-y">
         <h1>New Driver</h1>
         <TextInput
+          type="cpr"
+          label="CPR nummer"
+          value={driverForm.cpr}
+          onChange={setField('cpr')} />
+        <TextInput
           label="Firstname"
           value={driverForm.firstname}
           onChange={setField('firstname')} />
@@ -39,26 +44,6 @@ export default ({dispatch, driverForm}:Props) => {
           label="phone"
           value={driverForm.phone}
           onChange={setField('phone')} />
-        <TextInput
-          label="Address Line 1"
-          value={driverForm.addressLine1}
-          onChange={setField('addressLine1')} />
-        <TextInput
-          label="Address Line 2"
-          value={driverForm.addressLine2}
-          onChange={setField('addressLine2')} />
-        <TextInput
-          label="Postcode"
-          value={driverForm.postcode}
-          onChange={setField('postcode')} />
-        <TextInput
-          label="city"
-          value={driverForm.city}
-          onChange={setField('city')} />
-        <TextInput
-          label="country"
-          value={driverForm.country}
-          onChange={setField('country')} />
       </div>
 
       <div className="flex-grow-0">

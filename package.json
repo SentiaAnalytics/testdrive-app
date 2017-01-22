@@ -56,18 +56,24 @@
     "data.either": "^1.5.0",
     "data.maybe": "^1.2.2",
     "data.task": "^3.1.1",
+    "fetch": "^1.1.0",
     "history": "^4.5.1",
+    "ramda": "^0.23.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-router": "next",
     "redux": "^3.6.0",
-    "signature_pad": "^1.5.3"
+    "serve": "^2.4.3",
+    "signature_pad": "^1.5.3",
+    "uuid": "^3.0.1"
   },
   "scripts": {
     "start": "node scripts/start.js",
+    "flow": "flow",
     "build": "node scripts/build.js",
     "test": "NODE_ENV=test tape -r babel-register 'src/**/*.test.js' | tap-spec",
-    "test:watch": "NODE_ENV=test tape-watch -r babel-register 'src/**/*.test.js' | tap-spec"
+    "test:watch": "NODE_ENV=test tape-watch -r babel-register 'src/**/*.test.js' | tap-spec",
+    "serve": "serve -p 8080 build"
   },
   "jest": {
     "collectCoverageFrom": [

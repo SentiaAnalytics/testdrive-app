@@ -1,5 +1,6 @@
 import React from 'react'
 import SignaturePad from 'signature_pad'
+import Modal from './modal'
 
 export default class Signature extends React.Component {
 
@@ -9,25 +10,37 @@ export default class Signature extends React.Component {
 
   componentDidMount () {
     var canvas = document.getElementById("signature_pad");
-    canvas.width = window.innerWidth - 30
+    canvas.width = window.innerWidth - 60
     this.signaturePad = new SignaturePad(canvas);
   }
 
-  clear () {
+  clear (e) {
+    e.preventDefault()
     this.signaturePad.clear()
   }
 
-  submit () {
-    this.props.onSubmit(this.signaturePad.toDataURL("image/jpeg"))
+  submit (e) {
+    e.preventDefault()
+    this.props.onChange(this.signaturePad.toDataURL())
   }
 
   render () {
     return (
       <div>
-        <h5> Sign here</h5>
-        <div className="card">
-          <canvas id="signature_pad" height="300px"/>
-        </div>
+          <Modal isVisible={true}>
+            <div className="card">
+              <div className="card-block">
+                <h4 className="card-title"> Sign here</h4>
+              </div>
+              <div className="card-block">
+                <canvas id="signature_pad" height="250px" className="card"/>
+              </div>
+              <div className="card-block">
+                <button className="card-link" onClick={e => this.clear(e)}>clear</button>
+                <button className="card-link" onClick={e => this.submit(e) }>save</button>
+                </div>
+            </div>
+          </Modal>
       </div>
     )
   }

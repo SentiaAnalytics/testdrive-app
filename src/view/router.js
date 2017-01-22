@@ -8,9 +8,10 @@ import {historyPush, historyReplace} from '../actions'
 import Car from './car'
 import Driver from './driver'
 import Confirm from './confirm'
+import Home from './home'
 
 export default (dispatch:Dispatch, state:Model) => {
-  const {driverForm, carForm} = state
+  const {driverForm, carForm, concentForm, modals, testdriveList} = state
   return (
     <StaticRouter
       action={history.action}
@@ -20,6 +21,9 @@ export default (dispatch:Dispatch, state:Model) => {
       blockTransitions={history.block}
       >
       <div className="full-height">
+        <Match exactly pattern="/" render={params =>
+          <Home {...{dispatch, testdriveList} } />
+        }/>
         <Match exactly pattern="/driver" render={params =>
           <Driver {...{dispatch, driverForm} } />
         }/>
@@ -27,10 +31,7 @@ export default (dispatch:Dispatch, state:Model) => {
           <Car {...{dispatch, carForm}} />
         }/>
         <Match exactly pattern="/confirm" render={params =>
-          <Confirm {...{dispatch}} />
-        }/>
-        <Match exactly pattern="/" render={params =>
-          <Redirect to="/driver"/>
+          <Confirm {...{dispatch, concentForm, signatureModal: modals.signature}} />
         }/>
       </div>
 

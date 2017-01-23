@@ -11,7 +11,7 @@ const testdriveListItem = (testdrive:Testdrive) =>
       <h5>
         {testdrive.driver.firstname}{testdrive.driver.lastname}
       </h5>
-        <span> {testdrive.car.make} {testdrive.car.model}</span>
+        <span> {testdrive.car.brand} {testdrive.car.model}</span>
       </div>
     </Link>
   </li>
@@ -27,6 +27,6 @@ export default ({dispatch, testdriveList}:Props) =>
       {map(testdriveListItem)(testdriveList)}
     </div>
     <div className="flex-grow-0">
-      <Link to='/driver' className="btn btn-success btn-block btn-lg">New Testdrive</Link>
+      <Link to='/new/driver' className="btn btn-success btn-block btn-lg">New Testdrive</Link>
     </div>
   </div>

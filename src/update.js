@@ -28,20 +28,34 @@ const reducers:ReducerMap = {
     return cmd(
       {...state, testdrive},
       saveTestDrive(testdrive),
-      historyPush('/car')
+      historyPush('/new/brand')
     )
   },
 
-  SUBMIT_CAR_FORM: (state, car) => {
-    const testdrive = {...state.testdrive, car}
+  SUBMIT_CAR_BRAND: (state, brand) => {
+    const testdrive = assocPath(['car', 'brand'])(brand)(state.testdrive)
     return cmd(
       {...state, testdrive},
       saveTestDrive(testdrive),
-      historyPush('/confirm')
+      historyPush('/new/model')
     )
   },
-
-  SUBMIT_CAR_FORM_SUCCESS: (state) => cmd(state, historyPush('/confirm')),
+  SUBMIT_CAR_MODEL: (state, model) => {
+    const testdrive = assocPath(['car', 'model'])(model)(state.testdrive)
+    return cmd(
+      {...state, testdrive},
+      saveTestDrive(testdrive),
+      historyPush('/new/licenseplate')
+    )
+  },
+  SUBMIT_CAR_LICENSEPLATE: (state, licenseplate) => {
+    const testdrive = assocPath(['car', 'licenseplate'])(licenseplate)(state.testdrive)
+    return cmd(
+      {...state, testdrive},
+      saveTestDrive(testdrive),
+      historyPush('/new/confirm')
+    )
+  },
 
   SET_SIGNATURE: (state, base64Signature) =>
     evolve({

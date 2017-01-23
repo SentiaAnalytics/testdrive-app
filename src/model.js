@@ -12,8 +12,9 @@ export type ActionType = 'NO_OP'
   | 'SET_FORM_FIELD'
   | 'SUBMIT_DRIVER_FORM'
   | 'SUBMIT_DRIVER_FORM_SUCCESS'
-  | 'SUBMIT_CAR_FORM'
-  | 'SUBMIT_CAR_FORM_SUCCESS'
+  | 'SUBMIT_CAR_BRAND'
+  | 'SUBMIT_CAR_MODEL'
+  | 'SUBMIT_CAR_LICENSEPLATE'
   | 'CONFIRM_TEST_DRIVE'
   | 'CONFIRM_TEST_DRIVE_SUCCESS'
   | 'CONFIRM_TEST_DRIVE_FAIL'
@@ -51,20 +52,18 @@ export const emptyDriver:Driver = {
 }
 
 export type Car = {
-  make: string,
+  brand: string,
   model: string,
   licenseplate: string
 }
 
 export const emptyCar:Car = {
-  make: '',
+  brand: '',
   model: '',
-  year: '',
   licenseplate: ''
 }
 
-export type Concent = {
-  base64Signature:string
+export type Concent = { base64Signature:string
 }
 
 export const emptyConcent:Concent = {

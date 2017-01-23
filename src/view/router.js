@@ -5,10 +5,12 @@ import type {Dispatch, Model} from '../model'
 import {compose} from '../util'
 import {Redirect, StaticRouter, Match} from 'react-router'
 import {historyPush, historyReplace} from '../actions'
-import Car from './car'
-import Driver from './driver'
+import NewDriver from './driver'
 import Confirm from './confirm'
 import Home from './home'
+import NewBrand from './brand'
+import NewModel from './model'
+import NewLicenseplate from './licenseplate'
 
 export default (dispatch:Dispatch, state:Model) => {
   const {driverForm, carForm, concentForm, modals, testdriveList} = state
@@ -24,13 +26,19 @@ export default (dispatch:Dispatch, state:Model) => {
         <Match exactly pattern="/" render={params =>
           <Home {...{dispatch, testdriveList} } />
         }/>
-        <Match exactly pattern="/driver" render={params =>
-          <Driver {...{dispatch, driverForm} } />
+        <Match exactly pattern="/new/driver" render={params =>
+          <NewDriver {...{dispatch, driverForm} } />
         }/>
-        <Match exactly pattern="/car" render={params =>
-          <Car {...{dispatch, carForm}} />
+        <Match exactly pattern="/new/brand" render={params =>
+          <NewBrand {...{dispatch, carForm}} />
         }/>
-        <Match exactly pattern="/confirm" render={params =>
+        <Match exactly pattern="/new/model" render={params =>
+          <NewModel {...{dispatch, carForm}} />
+        }/>
+        <Match exactly pattern="/new/licenseplate" render={params =>
+          <NewLicenseplate {...{dispatch, carForm}} />
+        }/>
+        <Match exactly pattern="/new/confirm" render={params =>
           <Confirm {...{dispatch, concentForm, signatureModal: modals.signature}} />
         }/>
       </div>

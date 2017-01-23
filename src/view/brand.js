@@ -4,7 +4,7 @@ import {Link} from 'react-router'
 import type {Dispatch, Car} from '../model'
 import TextInput  from './text-input.js'
 import {compose, targetValue, preventDefault} from '../util'
-import {setFormField, submitCarForm} from '../actions'
+import {setFormField, submitCarBrand} from '../actions'
 
 type Props = {
   dispatch: Dispatch,
@@ -17,21 +17,13 @@ export default ({dispatch, carForm}:Props) => {
   return (
     <form
       className="full-height flex-column"
-      onSubmit={compose(dispatch, _ => submitCarForm(carForm), preventDefault)}
+      onSubmit={compose(dispatch, _ => submitCarBrand(carForm.brand), preventDefault)}
       >
       <div className="flex-grow-1 padding-base">
       <TextInput
-        label="Make"
-        value={carForm.make}
-        onChange={setField('make')} />
-      <TextInput
-        label="Model"
-        value={carForm.model}
-        onChange={setField('model')} />
-      <TextInput
-        label="Licenseplate"
-        value={carForm.licenseplate}
-        onChange={setField('licenseplate')} />
+        label="Brand"
+        value={carForm.brand}
+        onChange={setField('brand')} />
       </div>
 
       <div className="flex-grow-0 flex">

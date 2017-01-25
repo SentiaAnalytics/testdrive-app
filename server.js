@@ -3,7 +3,8 @@ const express = require('express')
 const proxy = require('express-http-proxy')
 const path = require('path')
 const app = express()
-const {API_SERVER, PORT} = process.env
+const API_SERVER = process.env.API_SERVER
+const  PORT= process.env.PORT || 3000
 
 app.use(express.static('build'))
 app.use('/api', proxy(API_SERVER))

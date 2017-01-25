@@ -4,20 +4,39 @@ import view from './view'
 import update from './update'
 import {emptyModel} from './model'
 import Either from 'data.either'
+import Maybe from 'data.maybe'
+import {historyReplace, historyPop, noop} from './actions'
+import history from './history'
+import {compose, getFromLocalStorage, getCookie, evolve, getJWTBody} from './util'
 
+const cachedData = {
+  testdrive: def => getFromLocalStorage('testdrive').getOrElse(def),
+  carForm: def => getFromLocalStorage('testdrive')
+    .map(x => x.car)
+    .getOrElse(def),
+  driverForm: def => getFromLocalStorage('testdrive')
+    .map(x => x.driver)
+    .getOrElse(def),
+  concetForm: def => getFromLocalStorage('testdrive')
+    .map(x => x.concent)
+    .getOrElse(def),
+  user: def => getCookie('jwt')
+    .chain(compose(Maybe.fromEither, getJWTBody))
+    .getOrElse(def)
+}
 
-const getInitialModel = Either.try(key => {
-  const testdrive = JSON.parse(localStorage.getItem(key) || '')
-  return testdrive ? {...emptyModel, testdrive, carForm: testdrive.car, driverForm: testdrive.driver} : emptyModel
-})
+const initialModel = evolve(cachedData)(emptyModel)
 
-
-getInitialModel('testdrive').fold(console.error, console.log)
-
-const initialModel = getInitialModel('testdrive').fold(() => emptyModel, x => x)
-
-startApp({
+const store = startApp({
   view,
   model: initialModel,
   update,
+})
+
+store.dispatch(historyReplace(history.location))
+
+history.listen((location, type) => {
+  if (type === 'POP') {
+    store.dispatch(historyPop(location))
+  }
 })

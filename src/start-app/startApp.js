@@ -18,5 +18,6 @@ export default ({view, update, model}:Props) => {
   const store = createStore(cmdHandler(dispatch, update), model, reduxExtension)
   store.subscribe(() => view(dispatch, store.getState()))
   view(dispatch, store.getState())
+
   return store
 }

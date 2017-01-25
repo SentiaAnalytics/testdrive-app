@@ -11,9 +11,13 @@ import Home from './home'
 import NewBrand from './brand'
 import NewModel from './model'
 import NewLicenseplate from './licenseplate'
+import Login from './login'
+import Toast from './toast'
 
 export default (dispatch:Dispatch, state:Model) => {
-  const {driverForm, carForm, concentForm, modals, testdriveList} = state
+  const {driverForm, carForm,
+    concentForm, modals, user,
+    testdriveList, loginForm, toast} = state
   return (
     <StaticRouter
       action={history.action}
@@ -23,8 +27,12 @@ export default (dispatch:Dispatch, state:Model) => {
       blockTransitions={history.block}
       >
       <div className="full-height">
+        <Toast {...{dispatch, toast}} />
         <Match exactly pattern="/" render={params =>
           <Home {...{dispatch, testdriveList} } />
+        }/>
+        <Match exactly pattern="/login" render={params =>
+          <Login {...{dispatch, loginForm} } />
         }/>
         <Match exactly pattern="/new/driver" render={params =>
           <NewDriver {...{dispatch, driverForm} } />

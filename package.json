@@ -73,8 +73,8 @@
     "start": "node scripts/start.js",
     "flow": "flow",
     "build": "node scripts/build.js",
-    "test": "NODE_ENV=test tape -r babel-register 'src/**/*.test.js' | tap-spec",
-    "test:watch": "NODE_ENV=test tape-watch -r babel-register 'src/**/*.test.js' | tap-spec",
+    "test": "NODE_ENV=test tape -r ./src/test-setup.js 'src/**/*.test.js' | tap-spec",
+    "test:watch": "NODE_ENV=test tape-watch -r ./src/test-setup.js  'src/**/*.test.js' | tap-spec",
     "serve": "serve -p 8080 -C build"
   },
   "jest": {

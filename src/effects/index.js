@@ -8,7 +8,6 @@ export * from './local-storage'
 export * from './navigation';
 export * from './testdrive';
 
-
 export const toastError = (msg: string) =>
   Task.of(showToast({type:'error', msg}))
 

@@ -8,9 +8,13 @@
 @import "util";
 @import "slider";
 @import "modal";
+@import "toast";
 
 body, html, #root, .app {
   height: 100%;
+}
+body {
+  background: $gray-lighter;
 }
 
 .timeline  {

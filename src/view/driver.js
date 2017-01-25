@@ -23,7 +23,6 @@ export default ({dispatch, driverForm}:Props) => {
       <div className="flex-grow-1 padding-base scroll-y">
         <h1>New Driver</h1>
         <TextInput
-          type="cpr"
           label="CPR nummer"
           value={driverForm.cpr}
           onChange={setField('cpr')} />

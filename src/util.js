@@ -1,5 +1,8 @@
 //@flow
 import type {Dict} from './model'
+import Maybe from 'data.maybe'
+import Either from 'data.either'
+import cookie from 'cookie'
 
 export const map = (f:Function) => (x:any) => x.map(f)
 export const filter = (f:Function) => (x:{filter:Function}) => x.filter(f)
@@ -42,3 +45,18 @@ export const evolve = (t:Dict) => (input:Dict) =>
         return o
     }
   }, {})
+
+export const getFromLocalStorage = (key:string) => {
+  try {
+    return Maybe.Just(JSON.parse(localStorage.getItem(key) || ''))
+  } catch (e) {
+    return Maybe.Nothing()
+  }
+}
+
+export const getCookie = (name: string) =>
+  Maybe.fromNullable(cookie.parse(document.cookie)[name])
+
+export const getJWTBody = Either.try(
+    compose(JSON.parse, atob, x => x.split('.')[1])
+  )

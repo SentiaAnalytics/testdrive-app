@@ -1,0 +1,28 @@
+//@flow
+
+export type ActionType = 'NO_OP'
+  | 'SHOW_TOAST'
+  | 'HIDE_TOAST'
+  | 'SET_TITLE'
+  | 'LOGIN'
+  | 'LOGIN_SUCCESS'
+  | 'LOGIN_FAIL'
+  | 'SET_TITLE_ASYNC'
+  | 'OPEN_MODAL'
+  | 'HISTORY_PUSH'
+  | 'HISTORY_REPLACE'
+  | 'SET_FORM_FIELD'
+  | 'SUBMIT_DRIVER_FORM'
+  | 'SUBMIT_DRIVER_FORM_SUCCESS'
+  | 'SUBMIT_CAR_BRAND'
+  | 'SUBMIT_CAR_MODEL'
+  | 'SUBMIT_CAR_LICENSEPLATE'
+  | 'CONFIRM_TEST_DRIVE'
+  | 'CONFIRM_TEST_DRIVE_SUCCESS'
+  | 'CONFIRM_TEST_DRIVE_FAIL'
+  | 'SET_SIGNATURE'
+
+export type Action = {
+  type: ActionType,
+  payload?: any
+}

@@ -1,0 +1,22 @@
+.toast {
+  position: fixed;
+  top: 20px;
+  left: 10%;
+  width: 80%;
+  padding: $padding-base;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.toast-error {
+  background: $brand-danger;
+  color:white;
+}
+.toast-warning {
+  background: $brand-warning;
+  color:white;
+}
+.toast-success {
+  background: $brand-success;
+  color:white;
+}

@@ -6,15 +6,19 @@ import {emptyModel} from './model'
 import Either from 'data.either'
 
 
-const getInitialModel = Either.try(key => {
-  const testdrive = JSON.parse(localStorage.getItem(key) || '')
-  return testdrive ? {...emptyModel, testdrive, carForm: testdrive.car, driverForm: testdrive.driver} : emptyModel
+const getInitialModel = Either.try(keys => {
+  const model = keys.reduce((acc, key) => {
+    acc[key] = JSON.parse(localStorage.getItem(key) || '[]')
+    return acc
+  }, {})
+  const { testdrive, brands, models } = model
+  return testdrive ? {...emptyModel, testdrive, carForm: testdrive.car, driverForm: testdrive.driver, brands, models} : emptyModel
 })
 
 
-getInitialModel('testdrive').fold(console.error, console.log)
+getInitialModel(['testdrive', 'brands', 'models']).fold(console.error, console.log)
 
-const initialModel = getInitialModel('testdrive').fold(() => emptyModel, x => x)
+const initialModel = getInitialModel(['testdrive', 'brands', 'models']).fold(() => emptyModel, x => x)
 
 startApp({
   view,

@@ -13,7 +13,7 @@ import NewModel from './model'
 import NewLicenseplate from './licenseplate'
 
 export default (dispatch:Dispatch, state:Model) => {
-  const {driverForm, carForm, concentForm, modals, testdriveList} = state
+  const {driverForm, carForm, concentForm, modals, testdriveList, brands, models} = state
   return (
     <StaticRouter
       action={history.action}
@@ -30,10 +30,10 @@ export default (dispatch:Dispatch, state:Model) => {
           <NewDriver {...{dispatch, driverForm} } />
         }/>
         <Match exactly pattern="/new/brand" render={params =>
-          <NewBrand {...{dispatch, carForm}} />
+          <NewBrand {...{dispatch, carForm, brands}} />
         }/>
         <Match exactly pattern="/new/model" render={params =>
-          <NewModel {...{dispatch, carForm}} />
+          <NewModel {...{dispatch, carForm, models}} />
         }/>
         <Match exactly pattern="/new/licenseplate" render={params =>
           <NewLicenseplate {...{dispatch, carForm}} />

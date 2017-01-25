@@ -5,9 +5,12 @@ WORKDIR /app
 
 ADD build build
 COPY server.js server.js
-COPY package.json server.json
+COPY package.json package.json
 
 RUN yarn
+
+ENV PORT 80
+ENV API_SERVER = http://api-server
 
 EXPOSE 80
 

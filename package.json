@@ -59,6 +59,8 @@
     "data.either": "^1.5.0",
     "data.maybe": "^1.2.2",
     "data.task": "^3.1.1",
+    "express": "^4.14.0",
+    "express-http-proxy": "^0.11.0",
     "history": "^4.5.1",
     "ramda": "^0.23.0",
     "react": "^15.4.2",
@@ -75,7 +77,7 @@
     "build": "node scripts/build.js",
     "test": "NODE_ENV=test tape -r ./src/test-setup.js 'src/**/*.test.js' | tap-spec",
     "test:watch": "NODE_ENV=test tape-watch -r ./src/test-setup.js  'src/**/*.test.js' | tap-spec",
-    "serve": "serve -p 8080 -C build"
+    "serve": "node server.js"
   },
   "jest": {
     "collectCoverageFrom": [

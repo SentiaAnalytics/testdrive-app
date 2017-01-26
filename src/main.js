@@ -20,6 +20,10 @@ const cachedData = {
   concetForm: def => getFromLocalStorage('testdrive')
     .map(x => x.concent)
     .getOrElse(def),
+  brands: def => getFromLocalStorage('brands')
+    .getOrElse(def),
+  models: def => getFromLocalStorage('models')
+    .getOrElse(def),
   user: def => getCookie('jwt')
     .chain(compose(Maybe.fromEither, getJWTBody))
     .getOrElse(def)

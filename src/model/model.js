@@ -34,5 +34,7 @@ export const emptyModel:Model = {
   licenseplateForm: {
     licenseplate: ''
   },
+  brands: [],
+  models: [],
   location: '/'
 }

@@ -1,0 +1,50 @@
+@import "../../scss/variables";
+.button {
+  background: white;
+  border: none;
+  border-radius: 1px;
+  color: $gray-dark;
+  text-align: center;
+  letter-spacing: .5;
+  cursor: pointer;
+  display: inline-block;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 2rem;
+  text-transform: uppercase;
+  vertical-align: middle;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+}
+
+.button-primary {
+  background-color: $brand-primary ;
+  color: white;
+}
+.button-secodary {
+  background-color: $brand-secondary ;
+  color: white;
+}
+.button-tertiary {
+  background-color: $brand-tertiary ;
+  color: white;
+}
+.button-success {
+  background-color: $brand-success ;
+  color: white;
+}
+.button-info {
+  background-color: $brand-info ;
+  color: white;
+}
+.button-warning {
+  background-color: $brand-warning ;
+  color: white;
+}
+.button-danger {
+  background-color: $brand-danger ;
+  color: white;
+}
+.button-block {
+  display:block;
+  width: 100%;
+}

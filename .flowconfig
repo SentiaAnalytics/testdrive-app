@@ -6,4 +6,5 @@ src/**/*.js
 [libs]
 
 [options]
+module.name_mapper='.*\(.css\)' -> 'empty/object'
 suppress_comment= \\(.\\|\n\\)*\\@flow-ignore

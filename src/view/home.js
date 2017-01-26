@@ -3,6 +3,8 @@ import React from 'react'
 import type {Testdrive} from '../model'
 import {map} from '../util'
 import {Link} from 'react-router'
+import {Layout, Col} from './layout'
+import Button from './button'
 
 const testdriveListItem = (testdrive:Testdrive) =>
   <li className="list-group-item" key={testdrive.id}>
@@ -22,11 +24,13 @@ type Props = {
 }
 
 export default ({dispatch, testdriveList}:Props) =>
-  <div className="flex-column">
-    <div className="flex-grow-1 list-group scroll-y">
-      {map(testdriveListItem)(testdriveList)}
-    </div>
-    <div className="flex-grow-0">
-      <Link to='/new/driver' className="btn btn-success btn-block btn-lg">New Testdrive</Link>
-    </div>
-  </div>
+  <Layout column>
+    <Col grow={1} shrink={1}>
+      <ul>
+        {map(testdriveListItem)(testdriveList)}
+      </ul>
+    </Col>
+    <Col>
+      <Button href='/new/driver' large block primary>New Testdrive</Button>
+    </Col>
+  </Layout>

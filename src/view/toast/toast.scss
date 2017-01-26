@@ -1,0 +1,38 @@
+@import "../../scss/variables";
+.toast {
+  position: fixed;
+  width: 80%;
+  left:10%;
+  top:10%;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+  background: white;
+  color:$gray;
+}
+.toast-primary {
+  background-color: $brand-primary;
+  color:white;
+}
+.toast-secondary {
+  background-color: $brand-secondary;
+  color:white;
+}
+.toast-tertiary {
+  background-color: $brand-tertiary;
+  color:white;
+}
+.toast-success {
+  background-color: $brand-success;
+  color:white;
+}
+.toast-info {
+  background-color: $brand-info;
+  color:white;
+}
+.toast-warning {
+  background-color: $brand-warning;
+  color:white;
+}
+.toast-danger {
+  background-color: $brand-danger;
+  color:white;
+}

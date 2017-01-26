@@ -10,6 +10,10 @@ export const reduce = (f:Function) => (init: any) => (x:{reduce:Function}) => x.
 export const head = ([x]: any[]) => x
 export const tail = ([x, ...xs]: any[]) => xs
 
+
+export const toPairs = (d:Dict) =>
+  Object.keys(d).map(k => [k, d[k]])
+
 export const compose = (...fs: Function[]) =>
   fs.reduce((g, f) => x => g(f(x)), x => x)
 
@@ -60,3 +64,16 @@ export const getCookie = (name: string) =>
 export const getJWTBody = Either.try(
     compose(JSON.parse, atob, x => x.split('.')[1])
   )
+
+export const createClassName = (prefix:string) =>
+  (keys:string[]) =>
+    (props:Dict) =>
+      `${prefix} ` + keys
+        .filter(x => props[x] !== undefined)
+        .map(x => {
+          if (typeof props[x] === 'boolean') {
+            return `${prefix}-${x}`
+          }
+          return `${prefix}-${x}-${props[x]}`
+        })
+        .join(' ')

@@ -2,7 +2,7 @@
 import React from 'react'
 import {Link} from 'react-router'
 import type {Dispatch, Concent} from '../model'
-import TextInput  from './text-input.js'
+import TextInput  from './text-input'
 import {compose, targetValue, preventDefault} from '../util'
 import {setSignature, openModal, confirmTestdrive} from '../actions'
 import Signature from './signature'

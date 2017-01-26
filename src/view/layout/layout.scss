@@ -1,0 +1,17 @@
+.layout {display: flex;}
+
+.layout-row { flex-direction: row;}
+.layout-column {
+  flex-direction: column;
+  height: 100%;
+}
+
+.layout-top { align-items: flex-start;}
+.layout-middle { align-items: center;}
+.layout-bottom { align-items: flex-end;}
+
+.layout-left { justify-content: flex-start;}
+.layout-center { justify-content: center;}
+.layout-space-beteween { justify-content: space-between;}
+.layout-space-around { justify-content: space-around;}
+.layout-right { justify-content: flex-end;}

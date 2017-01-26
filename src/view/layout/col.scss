@@ -1,0 +1,17 @@
+.col {
+  flex-grow:0;
+  flex-shrink:0;
+  overflow-y: scroll;
+}
+
+.col-grow-1 {flex-grow: 1;}
+.col-grow-2 {flex-grow: 2;}
+.col-grow-3 {flex-grow: 3;}
+.col-grow-4 {flex-grow: 4;}
+.col-grow-5 {flex-grow: 5;}
+
+.col-shrink-1 {flex-shrink: 1;}
+.col-shrink-2 {flex-shrink: 2;}
+.col-shrink-3 {flex-shrink: 3;}
+.col-shrink-4 {flex-shrink: 4;}
+.col-shrink-5 {flex-shrink: 5;}

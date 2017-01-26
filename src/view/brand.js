@@ -2,9 +2,11 @@
 import React from 'react'
 import {Link} from 'react-router'
 import type {Dispatch, Car} from '../model'
-import TextInput  from './text-input.js'
+import TextInput  from './text-input'
 import {compose, targetValue, preventDefault} from '../util'
 import {setFormField, submitCarBrand} from '../actions'
+import {Layout, Col, Padding} from './layout'
+import Button from './button'
 
 type Props = {
   dispatch: Dispatch,
@@ -16,19 +18,22 @@ export default ({dispatch, carForm}:Props) => {
     compose(dispatch, setFormField('carForm')(field), targetValue)
   return (
     <form
-      className="full-height flex-column"
+      style={{height:'100%'}}
       onSubmit={compose(dispatch, _ => submitCarBrand(carForm.brand), preventDefault)}
       >
-      <div className="flex-grow-1 padding-base">
-      <TextInput
-        label="Brand"
-        value={carForm.brand}
-        onChange={setField('brand')} />
-      </div>
-
-      <div className="flex-grow-0 flex">
-        <button className="btn btn-block btn-lg btn-primary">Next</button>
-      </div>
+      <Layout column style={{background: 'white'}}>
+        <Col grow={1} shrink={1}>
+          <Padding>
+            <TextInput
+              label="Brand"
+              value={carForm.brand}
+              onChange={setField('brand')} />
+          </Padding>
+        </Col>
+      <Col>
+        <Button type="submit" block primary large>Next</Button>
+      </Col>
+      </Layout>
     </form>
     )
 }

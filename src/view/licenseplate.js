@@ -2,7 +2,7 @@
 import React from 'react'
 import {Link} from 'react-router'
 import type {Dispatch, Car} from '../model'
-import TextInput  from './text-input.js'
+import TextInput  from './text-input'
 import {compose, targetValue, preventDefault} from '../util'
 import {setFormField, submitCarLicenseplate} from '../actions'
 

@@ -1,6 +1,7 @@
 //@flow
 import React from 'react'
 import type {Dict} from '../../model'
+import './card.scss'
 
 type Props = {
   children?: any[],

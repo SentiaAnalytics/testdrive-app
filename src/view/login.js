@@ -6,7 +6,7 @@ import {preventDefault, compose, targetValue} from '../util'
 import TextInput from './text-input'
 import {Layout, Col, Padding} from './layout'
 import Button from './button'
-import {Card} from './card'
+import Card from './card'
 
 type Props = {
   dispatch: Function,
@@ -22,7 +22,6 @@ export default ({dispatch, loginForm}:Props) => {
         <Card>
           <Padding>
             <form
-              className="card"
               onSubmit={compose(dispatch, () => login(loginForm), preventDefault)}
               >
               <div className="card-block">

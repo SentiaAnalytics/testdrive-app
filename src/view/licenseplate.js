@@ -5,6 +5,8 @@ import type {Dispatch, Car} from '../model'
 import TextInput  from './text-input'
 import {compose, targetValue, preventDefault} from '../util'
 import {setFormField, submitCarLicenseplate} from '../actions'
+import {Layout, Col, Padding} from './layout'
+import Button from './button'
 
 type Props = {
   dispatch: Dispatch,
@@ -16,19 +18,21 @@ export default ({dispatch, carForm}:Props) => {
     compose(dispatch, setFormField('carForm')(field), targetValue)
   return (
     <form
-      className="full-height flex-column"
       onSubmit={compose(dispatch, _ => submitCarLicenseplate(carForm.licenseplate), preventDefault)}
       >
-      <div className="flex-grow-1 padding-base">
-      <TextInput
-        label="Licenseplate"
-        value={carForm.licenseplate}
-        onChange={setField('licenseplate')} />
-      </div>
-
-      <div className="flex-grow-0 flex">
-        <button className="btn btn-block btn-lg btn-primary">Next</button>
-      </div>
+      <Layout column>
+        <Col grow="1" shrink="1">
+          <Padding>
+            <TextInput
+              label="Licenseplate"
+              value={carForm.licenseplate}
+              onChange={setField('licenseplate')} />
+          </Padding>
+        </Col>
+        <Col>
+          <Button type="submit" large primary block>Next</Button>
+        </Col>
+      </Layout>
     </form>
     )
 }

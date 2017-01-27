@@ -60,3 +60,6 @@ body, html, #root {
 body {
   font-family: sans-serif;
 }
+form {
+  height: 100%;
+}

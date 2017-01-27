@@ -1,47 +1,52 @@
+//@flow
 import React from 'react'
 import SignaturePad from 'signature_pad'
 import Modal from './modal'
+import Card from './card'
+import Button from './button'
+import {Layout, Padding} from './layout'
 
 export default class Signature extends React.Component {
-
+  signaturePad: any;
   shouldComponentUpdate() {
     return false
   }
 
   componentDidMount () {
     var canvas = document.getElementById("signature_pad");
-    canvas.width = window.innerWidth - 60
     this.signaturePad = new SignaturePad(canvas);
   }
 
-  clear (e) {
+  clear (e:Event) {
     e.preventDefault()
     this.signaturePad.clear()
   }
 
-  submit (e) {
+  submit (e:Event) {
     e.preventDefault()
     this.props.onChange(this.signaturePad.toDataURL())
   }
 
   render () {
     return (
-      <div>
-          <Modal isVisible={true}>
-            <div className="card">
-              <div className="card-block">
-                <h4 className="card-title"> Sign here</h4>
-              </div>
-              <div className="card-block">
-                <canvas id="signature_pad" height="250px" className="card"/>
-              </div>
-              <div className="card-block">
-                <button className="card-link" onClick={e => this.clear(e)}>clear</button>
-                <button className="card-link" onClick={e => this.submit(e) }>save</button>
-                </div>
-            </div>
-          </Modal>
-      </div>
+      <Modal isVisible={true}>
+        <Card>
+          <Padding>
+            <h4> Sign here</h4>
+          </Padding>
+          <Padding>
+            <canvas style={{width:'100%'}} id="signature_pad" ref={(e) => e ? (e.width = e.offsetWidth) : null}/>
+          </Padding>
+          <Padding>
+            <Layout>
+              <Button block link onClick={e => this.clear(e)}>Clear</Button>
+              <Button block link onClick={e => this.submit(e) }>
+              save
+              </Button>
+            </Layout>
+          </Padding>
+        </Card>
+      </Modal>
     )
   }
 }

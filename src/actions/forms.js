@@ -18,11 +18,6 @@ export const submitCarModel = (payload: string):Action =>
 export const submitCarLicenseplate = (payload: string):Action =>
   ({type: 'SUBMIT_CAR_LICENSEPLATE', payload})
 
-export const confirmTestdrive = {type: 'CONFIRM_TEST_DRIVE'}
-
-export const confirmTestdriveSuccess = (payload:Testdrive):Action => ({type: 'CONFIRM_TEST_DRIVE_SUCCESS', payload})
-
-export const confirmTestdriveFail = ():Action => ({type: 'CONFIRM_TEST_DRIVE_FAIL'})
 
 export const submitCarFormSuccess = {type: 'SUBMIT_CAR_FORM_SUCCESS'}
 

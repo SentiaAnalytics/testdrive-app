@@ -5,6 +5,7 @@ import {map} from '../util'
 import {Link} from 'react-router'
 import {Layout, Col} from './layout'
 import Button from './button'
+import {newTestdrive} from '../actions'
 
 const testdriveListItem = (testdrive:Testdrive) =>
   <li className="list-group-item" key={testdrive.id}>
@@ -31,6 +32,6 @@ export default ({dispatch, testdriveList}:Props) =>
       </ul>
     </Col>
     <Col>
-      <Button href='/new/driver' large block primary>New Testdrive</Button>
+      <Button onClick={() => dispatch(newTestdrive)} large block primary>New Testdrive</Button>
     </Col>
   </Layout>

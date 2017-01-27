@@ -19,7 +19,6 @@ export default ({dispatch, carForm, brands}:Props) => {
     compose(dispatch, setFormField('carForm')(field), targetValue)
   return (
     <form
-      style={{height:'100%'}}
       onSubmit={compose(dispatch, _ => submitCarBrand(carForm.brand), preventDefault)}
       >
       <Layout column style={{background: 'white'}}>

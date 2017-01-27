@@ -19,7 +19,6 @@ export default ({dispatch, driverForm}:Props) => {
 
   return (
     <form
-      style={{height:'100%'}}
       onSubmit={compose(dispatch, _ => submitDriverForm(driverForm), preventDefault)}
       >
       <Layout column>

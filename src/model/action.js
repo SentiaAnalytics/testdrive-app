@@ -21,6 +21,7 @@ export type ActionType = 'NO_OP'
   | 'CONFIRM_TEST_DRIVE_SUCCESS'
   | 'CONFIRM_TEST_DRIVE_FAIL'
   | 'SET_SIGNATURE'
+  | 'NEW_TESTDRIVE'
 
 export type Action = {
   type: ActionType,

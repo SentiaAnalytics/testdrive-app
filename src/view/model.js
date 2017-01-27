@@ -28,15 +28,17 @@ export default ({dispatch, carForm, models}:Props) => {
             <TextInput
               label="Model"
               value={carForm.model}
-          <select
-          onChange={setField('model')}
-          defaultValue={carForm.model}
-        >
-          {
-            models.map((model, ix) =>
-              <option value={model} key={ix}>{model}</option>)
-          }
-             onChange={setField('model')} />
+              onChange={setField('model')}
+            />
+            <select
+              onChange={setField('model')}
+              defaultValue={carForm.model}
+            >
+            {
+              models.map((model, ix) =>
+                <option value={model} key={ix}>{model}</option>)
+            }
+            </select>
           </Padding>
         </Col>
 

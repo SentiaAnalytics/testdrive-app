@@ -17,6 +17,8 @@ type Props = {
   block?: bool,
   warning?: bool,
   danger?: bool,
+  large?: bool,
+  link?: bool,
   onClick?:Function,
   type?: string,
   href?: string
@@ -30,7 +32,9 @@ const CLASS_PROPS = [
   'info',
   'block',
   'warning',
-  'danger'
+  'danger',
+  'large',
+  'link'
 ]
 const className = createClassName('button')(CLASS_PROPS)
 

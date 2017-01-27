@@ -6,6 +6,8 @@ import TextInput  from './text-input'
 import {compose, targetValue, preventDefault} from '../util'
 import {setSignature, openModal, confirmTestdrive} from '../actions'
 import Signature from './signature'
+import {Layout, Col, Padding} from './layout'
+import Button from './button'
 
 type Props = {
   dispatch: Dispatch,
@@ -16,28 +18,34 @@ type Props = {
 export default ({dispatch, concentForm, signatureModal}:Props) => {
   return (
     <form
-      className="full-height flex-column"
       onSubmit={compose(dispatch, () => confirmTestdrive, preventDefault) }
       >
-      <div className="flex-grow-1 padding-base">
-        { signatureModal ?
-          <Signature
-            showModal={signatureModal}
-            onChange={compose(dispatch, setSignature)}
-          /> : null }
-        { concentForm.base64Signature ? <img src={concentForm.base64Signature}/> : null}
-      </div>
-      <div className="flex-grow-0 padding-base">
-        <button
-          onClick={compose(dispatch, () => openModal('signature'), preventDefault)}
-          className="btn btn-lg btn-block"
-        >
-        Sign
-        </button>
-      </div>
-      <div className="flex-grow-0">
-        <input type="submit" className="btn btn-block btn-lg btn-success" value="Done"/>
-      </div>
+      <Layout column>
+        <Col grow="1" shrink="1">
+          <Padding>
+            { signatureModal ?
+              <Signature
+                showModal={signatureModal}
+                onChange={compose(dispatch, setSignature)}
+              /> : null }
+            { concentForm.base64Signature ? <img src={concentForm.base64Signature}/> : null}
+          </Padding>
+        </Col>
+        <Col>
+          <Padding>
+            <Button
+              onClick={compose(dispatch, () => openModal('signature'), preventDefault)}
+              large
+              block
+            >
+            Sign
+            </Button>
+          </Padding>
+        </Col>
+        <Col>
+          <Button type="submit" block success large> Submit</Button>
+        </Col>
+      </Layout>
     </form>
     )
 }

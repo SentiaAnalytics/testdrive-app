@@ -10,10 +10,11 @@ import Button from './button'
 
 type Props = {
   dispatch: Dispatch,
-  carForm: Car
+  carForm: Car,
+  models: string[]
 }
 
-export default ({dispatch, carForm}:Props) => {
+export default ({dispatch, carForm, models}:Props) => {
   const setField = field =>
     compose(dispatch, setFormField('carForm')(field), targetValue)
   return (
@@ -27,7 +28,15 @@ export default ({dispatch, carForm}:Props) => {
             <TextInput
               label="Model"
               value={carForm.model}
-              onChange={setField('model')} />
+          <select
+          onChange={setField('model')}
+          defaultValue={carForm.model}
+        >
+          {
+            models.map((model, ix) =>
+              <option value={model} key={ix}>{model}</option>)
+          }
+             onChange={setField('model')} />
           </Padding>
         </Col>
 

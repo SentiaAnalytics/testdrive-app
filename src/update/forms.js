@@ -21,17 +21,21 @@ const handler:ActionHandler = {
 
       SUBMIT_CAR_BRAND: (state:Model, brand:string) => {
         const testdrive = assocPath(['car', 'brand'])(brand)(state.testdrive)
+        const brands = state.brands.indexOf(brand) < 0 ? [...state.brands, brand] : state.brands
         return cmd(
-          {...state, testdrive},
+          {...state, testdrive, brands},
           saveTestDrive(testdrive),
+          setLocalStorage('brands')(brands),
           historyPush('/new/model')
         )
       },
       SUBMIT_CAR_MODEL: (state:Model, model:string) => {
         const testdrive = assocPath(['car', 'model'])(model)(state.testdrive)
+        const models = state.models.indexOf(model) < 0 ? [...state.models, model] : state.models
         return cmd(
-          {...state, testdrive},
+          {...state, testdrive, models},
           saveTestDrive(testdrive),
+          setLocalStorage('models')(models),
           historyPush('/new/licenseplate')
         )
       },

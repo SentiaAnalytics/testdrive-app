@@ -46,7 +46,7 @@ export default ({dispatch, concentForm, signatureModal}:Props) => {
           </Padding>
         </Col>
         <Col>
-          <Button type="submit" block success large disabled={!concentForm.base64Signature || null}> Submit</Button>
+          <Button type="submit" block success large disabled={!concentForm.base64Signature || undefined}> Submit</Button>
         </Col>
       </Layout>
     </form>

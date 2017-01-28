@@ -56,10 +56,28 @@ body, html, #root {
   padding:0;
   margin:0;
 }
-
-body {
-  font-family: sans-serif;
-}
 form {
   height: 100%;
+}
+
+/* This file should be included in your app to support vars + split */
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 3px;  
+  color: #245677;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin: 0 0 2.2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin: 0 0 1.8rem;
 }

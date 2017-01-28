@@ -14,9 +14,12 @@
   margin: 0 0 20px 0;
   padding: 0;
   line-height: normal;
+  color: #666;
 }
 
-.input-text label {
+.text-input label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

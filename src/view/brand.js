@@ -24,6 +24,7 @@ export default ({dispatch, carForm, brands}:Props) => {
       <Layout column style={{background: 'white'}}>
         <Col grow={1} shrink={1}>
           <Padding>
+            <h2>Add brand</h2>
             <TextInput
               label="Brand"
               value={carForm.brand}

@@ -24,7 +24,7 @@ export default ({dispatch, driverForm}:Props) => {
       <Layout column>
         <Col grow={1} shrink={1} style={{background: 'white'}}>
           <Padding>
-            <h1>New Driver</h1>
+            <h1>New driver details</h1>
             <TextInput
               label="CPR nummer"
               value={driverForm.cpr}

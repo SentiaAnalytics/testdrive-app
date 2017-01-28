@@ -20,11 +20,12 @@ export default ({dispatch, carForm}:Props) => {
     <form
       onSubmit={compose(dispatch, _ => submitCarLicenseplate(carForm.licenseplate), preventDefault)}
       >
-      <Layout column>
+      <Layout column style={{background: 'white'}}>
         <Col grow="1" shrink="1">
           <Padding>
+            <h2>Add license plate</h2>
             <TextInput
-              label="Licenseplate"
+              label="License plate"
               value={carForm.licenseplate}
               onChange={setField('licenseplate')} />
           </Padding>

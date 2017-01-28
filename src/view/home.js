@@ -1,16 +1,18 @@
 //@flow
 import React from 'react'
+import {Link} from 'react-router'
 import type {Testdrive} from '../model'
 import {map} from '../util'
-import {Link} from 'react-router'
 import {Layout, Col} from './layout'
 import Button from './button'
+import Padding from './layout/padding'
 import {newTestdrive} from '../actions'
+import List from './list'
 
 const testdriveListItem = (testdrive:Testdrive) =>
   <li className="list-group-item" key={testdrive.id}>
     <Link to={`/testdriives/${testdrive.id}`}>
-      <div className="media-body padding-base">
+      <div>
       <h5>
         {testdrive.driver.firstname}{testdrive.driver.lastname}
       </h5>
@@ -27,9 +29,10 @@ type Props = {
 export default ({dispatch, testdriveList}:Props) =>
   <Layout column>
     <Col grow={1} shrink={1}>
-      <ul>
+      <Padding><h1>{testdriveList.length ? 'Drive list' : 'No drives to display'}</h1></Padding>
+      <List>
         {map(testdriveListItem)(testdriveList)}
-      </ul>
+      </List>
     </Col>
     <Col>
       <Button onClick={() => dispatch(newTestdrive)} large block primary>New Testdrive</Button>

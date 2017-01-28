@@ -1,0 +1,30 @@
+.list {
+}
+
+.list > li > a {
+  text-decoration: none;
+  width:100%;
+  color: #245677;
+}
+.list > li > a > div {
+  display: flex;
+  width:100%;
+  padding: 20px 10px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #245677;
+  margin-top: 5px;
+}
+.list > li > a > div > h5 {
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+}
+.list > li > a > div > span {
+  color: white;
+  font-size: 0.8rem;
+  background: #245677;
+  border-radius: 5px;
+  padding: 5px 10px;
+}

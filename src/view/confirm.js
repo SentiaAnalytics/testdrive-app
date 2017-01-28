@@ -20,8 +20,11 @@ export default ({dispatch, concentForm, signatureModal}:Props) => {
     <form
       onSubmit={compose(dispatch, () => confirmTestdrive, preventDefault) }
       >
-      <Layout column>
+      <Layout column style={{background: 'white'}}>
         <Col grow="1" shrink="1">
+          <Padding>
+            <h2>Confirm test drive</h2>
+          </Padding>
           <Padding>
             { signatureModal ?
               <Signature
@@ -35,15 +38,15 @@ export default ({dispatch, concentForm, signatureModal}:Props) => {
           <Padding>
             <Button
               onClick={compose(dispatch, () => openModal('signature'), preventDefault)}
-              large
               block
+              primary
             >
-            Sign
+            { concentForm.base64Signature ? 'Change signature' : 'Place signature' }
             </Button>
           </Padding>
         </Col>
         <Col>
-          <Button type="submit" block success large> Submit</Button>
+          <Button type="submit" block success large disabled={!concentForm.base64Signature || undefined}> Submit</Button>
         </Col>
       </Layout>
     </form>

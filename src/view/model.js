@@ -22,9 +22,10 @@ export default ({dispatch, carForm, models}:Props) => {
       style={{height:'100%'}}
       onSubmit={compose(dispatch, _ => submitCarModel(carForm.model), preventDefault)}
     >
-      <Layout column>
+      <Layout column style={{background: 'white'}}>
         <Col grow="1" shrink="1">
           <Padding>
+            <h2>Add model</h2>
             <TextInput
               label="Model"
               value={carForm.model}

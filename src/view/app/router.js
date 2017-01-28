@@ -29,28 +29,30 @@ export default (dispatch:Dispatch, state:Model) => {
       blockTransitions={history.block}
       >
       <div className="app">
-        <Toast {...{dispatch, toast}} />
-        <Match exactly pattern="/" render={params =>
-          <Home {...{dispatch, testdriveList} } />
-        }/>
-        <Match exactly pattern="/login" render={params =>
-          <Login {...{dispatch, loginForm} } />
-        }/>
-        <Match exactly pattern="/new/driver" render={params =>
-          <NewDriver {...{dispatch, driverForm} } />
-        }/>
-        <Match exactly pattern="/new/brand" render={params =>
-          <NewBrand {...{dispatch, carForm, brands}} />
-        }/>
-        <Match exactly pattern="/new/model" render={params =>
-          <NewModel {...{dispatch, carForm, models}} />
-        }/>
-        <Match exactly pattern="/new/licenseplate" render={params =>
-          <NewLicenseplate {...{dispatch, carForm}} />
-        }/>
-        <Match exactly pattern="/new/confirm" render={params =>
-          <Confirm {...{dispatch, concentForm, signatureModal: modals.signature}} />
-        }/>
+        <div className="app-inner">
+          <Toast {...{dispatch, toast}} />
+          <Match exactly pattern="/" render={params =>
+            <Home {...{dispatch, testdriveList} } />
+          }/>
+          <Match exactly pattern="/login" render={params =>
+            <Login {...{dispatch, loginForm} } />
+          }/>
+          <Match exactly pattern="/new/driver" render={params =>
+            <NewDriver {...{dispatch, driverForm} } />
+          }/>
+          <Match exactly pattern="/new/brand" render={params =>
+            <NewBrand {...{dispatch, carForm, brands}} />
+          }/>
+          <Match exactly pattern="/new/model" render={params =>
+            <NewModel {...{dispatch, carForm, models}} />
+          }/>
+          <Match exactly pattern="/new/licenseplate" render={params =>
+            <NewLicenseplate {...{dispatch, carForm}} />
+          }/>
+          <Match exactly pattern="/new/confirm" render={params =>
+            <Confirm {...{dispatch, concentForm, signatureModal: modals.signature}} />
+          }/>
+        </div>
       </div>
     </StaticRouter>
   )

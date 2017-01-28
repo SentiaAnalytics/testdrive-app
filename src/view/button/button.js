@@ -17,6 +17,7 @@ type Props = {
   block?: bool,
   warning?: bool,
   danger?: bool,
+  disabled?: bool,
   large?: bool,
   link?: bool,
   onClick?:Function,
@@ -26,7 +27,7 @@ type Props = {
 
 const CLASS_PROPS = [
   'primary',
-  'secodary',
+  'secondary',
   'tertiary',
   'success',
   'info',
@@ -34,13 +35,14 @@ const CLASS_PROPS = [
   'warning',
   'danger',
   'large',
-  'link'
+  'link',
+  'disabled'
 ]
 const className = createClassName('button')(CLASS_PROPS)
 
 export default (props:Props) => {
-  const {style = {}, children, onClick= x => x, type = 'button', href} = props
-  const buttonProps = { style, type, onClick, className: className(props) }
+  const {style = {}, children, onClick= x => x, type = 'button', href, disabled} = props
+  const buttonProps = { style, type, onClick, className: className(props), disabled }
 
   if (href) {
     return <Link {...{...buttonProps, to:href}}>{children}</Link>

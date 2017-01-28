@@ -2,8 +2,8 @@
 import React from 'react'
 import {Link} from 'react-router'
 import type {Driver, Dispatch} from '../model'
-import {compose, targetValue, preventDefault} from '../util'
-import {setFormField, submitDriverForm} from '../actions'
+import {compose, targetValue, targetFiles,preventDefault} from '../util'
+import {setFormField, submitDriverForm, driversLicenseCaptured} from '../actions'
 import TextInput from './text-input'
 import {Layout, Col, Padding} from './layout'
 import Button from './button'
@@ -25,6 +25,7 @@ export default ({dispatch, driverForm}:Props) => {
         <Col grow={1} shrink={1} style={{background: 'white'}}>
           <Padding>
             <h1>New Driver</h1>
+            <input type="file" accept="image/*;capture=camera" capture="camera" ref={e => e ? e.click(): null} style={{visibility:'hidden'}} onChange={compose(dispatch, driversLicenseCaptured, targetFiles)}/>
             <TextInput
               label="CPR nummer"
               value={driverForm.cpr}

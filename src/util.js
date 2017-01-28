@@ -30,6 +30,7 @@ export const assocPath = ([x, ...xs]:string[]) => (val:any) => (dict:Dict) =>
   x === undefined ? val : {...dict, [x]: assocPath(xs)(val)(dict[x]) }
 
 export const targetValue = path(['target', 'value'])
+export const targetFiles = path(['target', 'files'])
 
 export const preventDefault = (e:{preventDefault:Function}) => {
   e.preventDefault()

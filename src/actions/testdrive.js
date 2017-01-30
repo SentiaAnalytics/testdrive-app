@@ -3,8 +3,8 @@ import type {Action, Testdrive} from '../model'
 export const driversLicenseCaptured = (payload: any[]) =>
 ({type: 'DRIVERS_LICENSE_CAPTURED', payload})
 
-export const driversLicenseUploadSuccess = (payload: any) =>
-({type: 'DRIVERS_LICENSE_UPLOAD_SUCCESS', payload})
+export const driversLicenseUploadSuccess = ({url}: any) =>
+({type: 'DRIVERS_LICENSE_UPLOAD_SUCCESS', payload: url})
 
 export const driversLicenseUploadFail = (payload: any) =>
 ({type: 'DRIVERS_LICENSE_UPLOAD_FAIL', payload})

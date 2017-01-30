@@ -156,7 +156,7 @@ function addMiddleware(devServer) {
 
   // `proxy` lets you to specify a fallback server during development.
   // Every unrecognized request will be forwarded to it.
-  var proxy = require(paths.appPackageJson).proxy;
+  var proxy =  process.env.API_SERVER || require(paths.appPackageJson).proxy;
   devServer.use(historyApiFallback({
     // Paths with dots should still use the history fallback.
     // See https://github.com/facebookincubator/create-react-app/issues/387.
@@ -193,6 +193,7 @@ function addMiddleware(devServer) {
     var hpm = httpProxyMiddleware(pathname => mayProxy.test(pathname), {
       target: proxy,
       logLevel: 'silent',
+      pathRewrite: {'^/api' : ''},
       onProxyReq: function(proxyReq, req, res) {
         // Browers may send Origin headers even with same-origin
         // requests. To prevent CORS issues, we have to change

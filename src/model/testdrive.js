@@ -15,11 +15,7 @@ export type Driver = {
   lastname: string,
   email: string,
   phone: string,
-  addressLine1: string,
-  addressLine2: string,
-  postcode: string,
-  city: string,
-  country: string
+  licenseURL: string,
 }
 
 export const emptyDriver:Driver = {
@@ -28,11 +24,7 @@ export const emptyDriver:Driver = {
   lastname: '',
   email: '',
   phone: '',
-  addressLine1: '',
-  addressLine2: '',
-  postcode: '',
-  city: '',
-  country:''
+  licenseURL: ''
 }
 
 export type Car = {
@@ -51,6 +43,9 @@ export const emptyCar:Car = {
 
 export type Testdrive = {
   id: string,
+  user: string,
+  date: string,
+  dealership: string,
   driver: Driver,
   car: Car,
   concent: Concent
@@ -58,6 +53,9 @@ export type Testdrive = {
 
 export const emptyTestdrive:Testdrive = {
   id: '',
+  user: '',
+  dealership: '',
+  date: '',
   driver: emptyDriver,
   car: emptyCar,
   concent: emptyConcent

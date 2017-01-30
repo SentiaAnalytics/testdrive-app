@@ -7,6 +7,7 @@ import {setFormField, submitDriverForm, driversLicenseCaptured} from '../actions
 import TextInput from './text-input'
 import {Layout, Col, Padding} from './layout'
 import Button from './button'
+import Camera from './camera'
 
 type Props = {
   driverForm: Driver,
@@ -24,8 +25,11 @@ export default ({dispatch, driverForm}:Props) => {
       <Layout column>
         <Col grow={1} shrink={1} style={{background: 'white'}}>
           <Padding>
-            <h1>New Driver Details</h1>
-            <input type="file" accept="image/*;capture=camera" capture="camera" ref={e => e ? e.click(): null} style={{visibility:'hidden'}} onChange={compose(dispatch, driversLicenseCaptured, targetFiles)}/>
+            <h1>New Driver</h1>
+            <Camera
+              openOnLoad={true}
+              onChange={compose(dispatch, driversLicenseCaptured, targetFiles)}
+            />
             <TextInput
               label="CPR nummer"
               value={driverForm.cpr}

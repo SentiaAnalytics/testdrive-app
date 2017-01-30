@@ -4,4 +4,4 @@ import type {Credentials} from '../model'
 import {loginFail, loginSuccess} from '../actions'
 
 export const authenticate = (credentials:Credentials) =>
-  http.post('/auth', credentials).fold(loginFail, loginSuccess)
+  http.post('/api/auth', credentials).fold(loginFail, loginSuccess)

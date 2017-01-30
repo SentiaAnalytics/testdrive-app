@@ -1650,6 +1650,12 @@ data.task@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/data.task/-/data.task-3.1.1.tgz#e985f5bedadd926b2d63c1a5d2076cff917a52ad"
 
+date-fp@^4.4.8:
+  version "4.4.8"
+  resolved "https://registry.yarnpkg.com/date-fp/-/date-fp-4.4.8.tgz#da48c5ff460f37dd7e7bc33f32cd63e4dde41c02"
+  dependencies:
+    lodash.curry "4.1.1"
+
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
@@ -3324,6 +3330,10 @@ lodash.clonedeep@^4.3.2:
 lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.cond/-/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
+
+lodash.curry@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.curry/-/lodash.curry-4.1.1.tgz#248e36072ede906501d75966200a86dab8b23170"
 
 lodash.defaults@^4.0.1:
   version "4.2.0"

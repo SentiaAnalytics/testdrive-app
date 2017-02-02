@@ -4,7 +4,7 @@ import sinon from 'sinon'
 import startApp from './startApp.js'
 import {cmd} from './cmd.js'
 import Task from 'data.task'
-import {map} from '../util.js'
+import {map} from '../util'
 
 const delayedTask = t => val => new Task((reject, resolve) => setTimeout(() => resolve(val), t))
 

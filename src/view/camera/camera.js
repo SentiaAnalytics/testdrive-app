@@ -16,7 +16,7 @@ export default class Camera extends React.Component {
   }
   render () {
     return (
-      <input type="file" className="camera" accept="image/*;capture=camera" capture="camera" ref="camera" onChange={this.props.onChange}/>
+      <input type="file" className="camera" accept="image/*" capture="camera" ref="camera" onChange={this.props.onChange}/>
     )
   }
 }

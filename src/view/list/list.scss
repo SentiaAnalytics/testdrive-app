@@ -1,12 +1,17 @@
-.list {
+@import "../../scss/variables";
+.list-item-title {
+  flex: 1;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
 }
 
-.list > li > a {
+.list-item-link {
   text-decoration: none;
   width:100%;
   color: #245677;
 }
-.list > li > a > div {
+.list-item-body {
   display: flex;
   width:100%;
   padding: 20px 10px;
@@ -15,16 +20,14 @@
   border-bottom: 1px solid #245677;
   margin-top: 5px;
 }
-.list > li > a > div > h5 {
-  flex: 1;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 1.1rem;
-}
-.list > li > a > div > span {
+.list-item-pill {
   color: white;
   font-size: 0.8rem;
   background: #245677;
   border-radius: 5px;
   padding: 5px 10px;
+}
+
+.selectlist-item-selected .selectlist-item-title{
+  color: $brand-secondary !important;
 }

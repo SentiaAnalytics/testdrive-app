@@ -3,19 +3,21 @@ import React from 'react'
 import {Link} from 'react-router'
 import type {Dispatch, Car} from '../model'
 import TextInput  from './text-input'
-import {compose, targetValue, preventDefault} from '../util'
+import {toUpper, map, compose, targetValue, preventDefault} from '../util'
 import {setFormField, submitCarLicenseplate} from '../actions'
 import {Layout, Col, Padding} from './layout'
 import Button from './button'
+import {List, SelectListItem} from './list'
 
 type Props = {
   dispatch: Dispatch,
-  carForm: Car
+  carForm: Car,
+  licenseplates: string[]
 }
 
-export default ({dispatch, carForm}:Props) => {
+export default ({dispatch, carForm, licenseplates}:Props) => {
   const setField = field =>
-    compose(dispatch, setFormField('carForm')(field), targetValue)
+    compose(dispatch, setFormField('carForm')(field), toUpper, targetValue)
   return (
     <form
       onSubmit={compose(dispatch, _ => submitCarLicenseplate(carForm.licenseplate), preventDefault)}
@@ -25,9 +27,21 @@ export default ({dispatch, carForm}:Props) => {
           <Padding>
             <h2>Add license plate</h2>
             <TextInput
+              focusOnLoad
               label="License plate"
               value={carForm.licenseplate}
               onChange={setField('licenseplate')} />
+            <List>
+              {
+                map(licenseplate =>
+                  <SelectListItem
+                    title={licenseplate}
+                    selected={carForm.licenseplate === licenseplate}
+                    onSelect={() => dispatch(setFormField('carForm')('licenseplate')(licenseplate))}
+                  />
+                )(licenseplates)
+            }
+            </List>
           </Padding>
         </Col>
         <Col>

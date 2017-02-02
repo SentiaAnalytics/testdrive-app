@@ -15,11 +15,23 @@ import Login from '../login'
 import Toast from '../toast'
 import {Layout} from '../layout'
 import './app.scss'
+import Test from '../test'
 
 export default (dispatch:Dispatch, state:Model) => {
-  const {driverForm, carForm,
-    concentForm, modals, user,
-    testdriveList, loginForm, toast, brands, models} = state
+  const {
+    driverForm,
+    carForm,
+    concentForm,
+    modals,
+    user,
+    testdrive,
+    testdriveList,
+    loginForm,
+    toast,
+    brands,
+    models,
+    licenseplates
+  } = state
   return (
     <StaticRouter
       action={history.action}
@@ -35,10 +47,13 @@ export default (dispatch:Dispatch, state:Model) => {
             <Home {...{dispatch, testdriveList} } />
           }/>
           <Match exactly pattern="/login" render={params =>
-            <Login {...{dispatch, loginForm} } />
+            <Login {...{dispatch, loginForm, user} } />
+          }/>
+          <Match exactly pattern="/test" render={params =>
+            <Test />
           }/>
           <Match exactly pattern="/new/driver" render={params =>
-            <NewDriver {...{dispatch, driverForm} } />
+            <NewDriver {...{dispatch, driverForm, driver: testdrive.driver} } />
           }/>
           <Match exactly pattern="/new/brand" render={params =>
             <NewBrand {...{dispatch, carForm, brands}} />
@@ -47,7 +62,7 @@ export default (dispatch:Dispatch, state:Model) => {
             <NewModel {...{dispatch, carForm, models}} />
           }/>
           <Match exactly pattern="/new/licenseplate" render={params =>
-            <NewLicenseplate {...{dispatch, carForm}} />
+            <NewLicenseplate {...{dispatch, carForm, licenseplates}} />
           }/>
           <Match exactly pattern="/new/confirm" render={params =>
             <Confirm {...{dispatch, concentForm, signatureModal: modals.signature}} />

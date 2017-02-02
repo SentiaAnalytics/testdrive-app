@@ -1,4 +1,5 @@
 //@flow
+import type {Async} from './generic'
 
 export type Concent = {
   base64Signature:string
@@ -15,7 +16,7 @@ export type Driver = {
   lastname: string,
   email: string,
   phone: string,
-  licenseURL: string,
+  licenseURL: Async<string>,
 }
 
 export const emptyDriver:Driver = {
@@ -24,7 +25,7 @@ export const emptyDriver:Driver = {
   lastname: '',
   email: '',
   phone: '',
-  licenseURL: ''
+  licenseURL: { status: 'NONE' }
 }
 
 export type Car = {
@@ -39,23 +40,13 @@ export const emptyCar:Car = {
   licenseplate: ''
 }
 
-
-
 export type Testdrive = {
-  id: string,
-  user: string,
-  date: string,
-  dealership: string,
   driver: Driver,
   car: Car,
   concent: Concent
 }
 
 export const emptyTestdrive:Testdrive = {
-  id: '',
-  user: '',
-  dealership: '',
-  date: '',
   driver: emptyDriver,
   car: emptyCar,
   concent: emptyConcent

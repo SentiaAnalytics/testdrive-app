@@ -3,10 +3,11 @@ import React from 'react'
 import {Link} from 'react-router'
 import type {Dispatch, Car} from '../model'
 import TextInput  from './text-input'
-import {compose, targetValue, preventDefault} from '../util'
+import {map, compose, targetValue, preventDefault} from '../util'
 import {setFormField, submitCarModel} from '../actions'
 import {Layout, Col, Padding} from './layout'
 import Button from './button'
+import {List, SelectListItem} from './list'
 
 type Props = {
   dispatch: Dispatch,
@@ -27,19 +28,22 @@ export default ({dispatch, carForm, models}:Props) => {
           <Padding>
             <h2>Add model</h2>
             <TextInput
+              focusOnLoad
               label="Model"
               value={carForm.model}
               onChange={setField('model')}
             />
-            <select
-              onChange={setField('model')}
-              defaultValue={carForm.model}
-            >
-            {
-              models.map((model, ix) =>
-                <option value={model} key={ix}>{model}</option>)
+            <List>
+              {
+                map(model =>
+                  <SelectListItem
+                    title={model}
+                    selected={carForm.model === model}
+                    onSelect={() => dispatch(setFormField('carForm')('model')(model))}
+                  />
+                )(models)
             }
-            </select>
+            </List>
           </Padding>
         </Col>
 

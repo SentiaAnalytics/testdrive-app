@@ -8,5 +8,21 @@ type Props = {
   dispatch: Dispatch
 }
 
-export default ({dispatch, state}:Props) =>
-  router(dispatch, state)
+export default class App extends React.Component {
+  state:{ height: number }
+  constructor (props:Props) {
+    super(props)
+    this.state = {height:window.innerHeight}
+
+  }
+  componentDidMount() {
+    this.setState({height: window.innerHeight})
+  }
+  render () {
+    return (
+      <div style={{height:this.state.height}}>
+        {router(this.props.dispatch, this.props.state)}
+      </div>
+    )
+  }
+}

@@ -2,3 +2,10 @@
 .padding {
   padding: $padding-base;
 }
+
+.padding-small {
+  padding: $padding-base / 2
+}
+.padding-large {
+  padding: $padding-base * 2
+}

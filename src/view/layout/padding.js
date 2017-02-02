@@ -2,13 +2,21 @@
 import React from 'react'
 import type {Dict} from '../../model'
 import './padding.scss'
+import {createClassName} from '../../util'
 
 type Props = {
   children?: any[],
-  style?: Dict
+  style?: Dict,
+  small?: bool,
+  large?: bool,
 }
+const CLASS_PROPS = [
+  'large',
+  'small'
+]
+const className = createClassName('padding')(CLASS_PROPS)
 
-export default ({style = {}, children}:Props) =>
-  <div className="padding" style={style}>
-    {children}
+export default (props:Props) =>
+  <div className={className(props)} style={props.style}>
+    {props.children}
   </div>

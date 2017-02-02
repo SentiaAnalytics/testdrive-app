@@ -22,7 +22,8 @@ type Props = {
   link?: bool,
   onClick?:Function,
   type?: string,
-  href?: string
+  href?: string,
+  disable?: bool
 }
 
 const CLASS_PROPS = [
@@ -47,5 +48,5 @@ export default (props:Props) => {
   if (href) {
     return <Link {...{...buttonProps, to:href}}>{children}</Link>
   }
-  return <button {...buttonProps}>{children}</button>
+  return <button disabled={disabled} {...buttonProps}>{children}</button>
 }

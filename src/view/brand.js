@@ -3,10 +3,12 @@ import React from 'react'
 import {Link} from 'react-router'
 import type {Dispatch, Car} from '../model'
 import TextInput  from './text-input'
-import {compose, targetValue, preventDefault} from '../util'
+import {map, compose, targetValue, preventDefault} from '../util'
 import {setFormField, submitCarBrand} from '../actions'
 import {Layout, Col, Padding} from './layout'
 import Button from './button'
+import {List, SelectListItem} from './list'
+import Icon from './icon'
 
 type Props = {
   dispatch: Dispatch,
@@ -17,6 +19,14 @@ type Props = {
 export default ({dispatch, carForm, brands}:Props) => {
   const setField = field =>
     compose(dispatch, setFormField('carForm')(field), targetValue)
+
+  const selectBrand = brand =>
+    brand === carForm.brand ?
+    dispatch(setFormField('carForm')('brand')(""))
+    : dispatch(setFormField('carForm')('brand')(brand))
+
+  const filteredBrands = brands.filter(x => x.toLowerCase().indexOf(carForm.brand.toLowerCase()) !== -1)
+
   return (
     <form
       onSubmit={compose(dispatch, _ => submitCarBrand(carForm.brand), preventDefault)}
@@ -29,15 +39,17 @@ export default ({dispatch, carForm, brands}:Props) => {
               label="Brand"
               value={carForm.brand}
               onChange={setField('brand')} />
-            <select
-              onChange={setField('brand')}
-              defaultValue={carForm.brand}
-            >
+            <List>
               {
-                brands.map((brand, ix) =>
-                  <option value={brand} key={ix}>{brand}</option>)
-              }
-            </select>
+                map(brand =>
+                  <SelectListItem
+                    title={brand}
+                    selected={carForm.brand === brand}
+                    onSelect={() =>selectBrand(brand)}
+                  />
+                )(filteredBrands)
+            }
+            </List>
           </Padding>
         </Col>
       <Col>

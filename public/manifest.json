@@ -2,20 +2,20 @@
   "name": "Testdrive",
   "icons": [
     {
-      "src": "images/gmfy-icon-96.png",
-      "sizes": "96x96",
+      "src": "img/gain_icon_80px.png",
+      "sizes": "80x80",
       "type": "image/png",
       "density": 2.0
     },
     {
-      "src": "images/gmfy-icon-144.png",
-      "sizes": "144x144",
+      "src": "img/gain_icon_152px.png",
+      "sizes": "152x152",
       "type": "image/png",
       "density": 3.0
     },
     {
-      "src": "images/gmfy-icon-192.png",
-      "sizes": "192x192",
+      "src": "img/gain_icon_180px.png",
+      "sizes": "180x180",
       "type": "image/png",
       "density": 4.0
     }

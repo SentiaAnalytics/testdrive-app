@@ -1,14 +1,20 @@
 //@flow
-import type {Dict} from './model'
+import type {Dict} from '../model'
 import Maybe from 'data.maybe'
 import Either from 'data.either'
 import cookie from 'cookie'
+
+export const any = (f:Function) => (xs:any[]) => xs.some(f)
+export const contains = (y:any) => any(x => x === y)
 
 export const map = (f:Function) => (x:any) => x.map(f)
 export const filter = (f:Function) => (x:{filter:Function}) => x.filter(f)
 export const reduce = (f:Function) => (init: any) => (x:{reduce:Function}) => x.reduce(f, init)
 export const head = ([x]: any[]) => x
 export const tail = ([x, ...xs]: any[]) => xs
+
+export const chain = (f:Function) => (x:any) => x.chain(f)
+export const merge = (a:Dict)=> (b:Dict) => Object.assign({}, a, b)
 
 
 export const toPairs = (d:Dict) =>
@@ -36,6 +42,9 @@ export const preventDefault = (e:{preventDefault:Function}) => {
   e.preventDefault()
   return e
 }
+
+export const toLower = (x:string) => x.toLowerCase()
+export const toUpper = (x:string) => x.toUpperCase()
 
 export const evolve = (t:Dict) => (input:Dict) =>
   Object.keys(input).reduce((o, k) =>{

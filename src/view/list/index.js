@@ -1,3 +1,5 @@
 //@flow
 import List from './list'
-export default List
+import SelectListItem from './selectlist-item'
+
+export {List, SelectListItem}

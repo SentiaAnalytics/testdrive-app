@@ -24,8 +24,7 @@ const cachedData = {
     .getOrElse(def),
   models: def => getFromLocalStorage('models')
     .getOrElse(def),
-  user: def => getCookie('jwt')
-    .chain(compose(Maybe.fromEither, getJWTBody))
+  licenseplates: def => getFromLocalStorage('licenseplates')
     .getOrElse(def)
 }
 
@@ -36,8 +35,6 @@ const store = startApp({
   model: initialModel,
   update,
 })
-
-store.dispatch(historyReplace(history.location))
 
 history.listen((location, type) => {
   if (type === 'POP') {

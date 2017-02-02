@@ -4,13 +4,18 @@ import type {User, Credentials} from './user'
 import type {Testdrive, Driver, Car, Concent} from './testdrive'
 import {emptyDriver, emptyCar, emptyConcent, emptyTestdrive } from './testdrive'
 import {emptyUser, emptyCredentials  } from './user'
+import type {Async} from './generic'
+
 
 
 export type Model = {
   toast: ?Toast,
   modals: { [string]: bool },
-  user: ?User,
+  user: Async<User>,
   driverForm: Driver,
+  brands: string[],
+  models: string[],
+  licenseplates: string[],
   carForm: Car,
   loginForm: Credentials,
   concentForm: Concent,
@@ -24,7 +29,7 @@ export const emptyModel:Model = {
   modals: {
     signature: false
   },
-  user: null,
+  user: {status: 'NONE'},
   loginForm: emptyCredentials,
   driverForm: emptyDriver,
   carForm: emptyCar,
@@ -36,5 +41,6 @@ export const emptyModel:Model = {
   },
   brands: [],
   models: [],
+  licenseplates: [],
   location: '/'
 }

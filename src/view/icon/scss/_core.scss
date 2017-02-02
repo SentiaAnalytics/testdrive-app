@@ -1,0 +1,24 @@
+// Base Class Definition
+// -------------------------
+@import "../../../scss/_variables";
+
+.#{$fa-css-prefix} {
+  display: inline-block;
+  font: normal normal normal #{$fa-font-size-base}/#{$fa-line-height-base} FontAwesome; // shortening font declaration
+  font-size: inherit; // can't have font-size inherit on line above, so need to override
+  text-rendering: auto; // optimizelegibility throws things off #1094
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+.icon-primary { color: $brand-primary }
+.icon-secondary { color: $brand-secondary }
+.icon-success { color: $brand-success }
+.icon-info { color: $brand-info }
+.icon-warning { color: $brand-warning }
+.icon-danger { color: $brand-danger }
+
+.icon-lg {
+
+}

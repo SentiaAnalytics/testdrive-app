@@ -11,16 +11,20 @@ const getHeaders = () => {
   }
 }
 
-export const post = (url:string, data:Dict) =>
+export const post = (url:string) => (data:Dict) =>
   new Task((reject, resolve) =>
     axios.post(url, data, {withCredentials: true, headers: getHeaders()})
-      .then(x => (console.log(x), x))
       .then(r => resolve(r.data), e => reject(e.response.data))
   )
 
-export const put = (url:string, data:Dict) =>
+export const put = (url:string) => (data:Dict) =>
   new Task((reject, resolve) =>
     axios.put(url, data, {withCredentials: true, headers:getHeaders()})
-      .then(x => (console.log(x), x))
+      .then(r => resolve(r.data), e => reject(e.response.data))
+  )
+
+export const get = (url:string) =>
+  new Task((reject, resolve) =>
+    axios.get(url, {withCredentials: true, headers:getHeaders()})
       .then(r => resolve(r.data), e => reject(e.response.data))
   )

@@ -7,11 +7,7 @@ import {assocPath} from '../util'
 
 const resetTestdrive = (state) => (
   {...state,
-    testdrive: {
-      ...emptyTestdrive,
-      user: state.user.email,
-      dealership: state.user.dealership
-    },
+    testdrive: emptyTestdrive,
     driverForm: emptyTestdrive.driver,
     carForm: emptyTestdrive.car,
     concentForm: emptyTestdrive.concent
@@ -26,16 +22,21 @@ const handler:ActionHandler = {
     ),
 
   DRIVERS_LICENSE_CAPTURED: (state, files) =>
-    cmd(state, eff.uploadDriversLicense(files[0])),
+    cmd(
+      assocPath(['testdrive', 'driver', 'licenseURL', 'status'])('PENDING')(state),
+        eff.uploadDriversLicense(files[0])
+     ),
 
-  DRIVERS_LICENSE_UPLOAD_SUCCESS: (state, licenseURL) =>
-    assocPath(['testdrive', 'driver', 'licenseURL'])(licenseURL)(state),
+  DRIVERS_LICENSE_UPLOAD_SUCCESS: (state, licenseURL) => {
+    const data = {value: licenseURL, state: 'SUCCESS'}
+    return assocPath(['testdrive', 'driver', 'licenseURL'])(data)(state)
+  },
+
 
   CONFIRM_TEST_DRIVE: (state) => {
     const testdrive = {
       ...state.testdrive,
-      concent: state.concentForm,
-      date: new Date().toUTCString()
+      concent: state.concentForm
     }
     return cmd({...state, testdrive}, eff.submitTestdrive(testdrive))
   },

@@ -4,6 +4,8 @@ import {emptyTestdrive} from '../model'
 import {cmd} from '../start-app'
 import * as eff from '../effects'
 import {assocPath} from '../util'
+import {showToast} from '../actions'
+import Task from 'data.task'
 
 const resetTestdrive = (state) => (
   {...state,
@@ -28,10 +30,16 @@ const handler:ActionHandler = {
      ),
 
   DRIVERS_LICENSE_UPLOAD_SUCCESS: (state, licenseURL) => {
-    const data = {value: licenseURL, state: 'SUCCESS'}
+    const data = {value: licenseURL, status: 'SUCCESS'}
     return assocPath(['testdrive', 'driver', 'licenseURL'])(data)(state)
   },
-
+  DRIVERS_LICENSE_UPLOAD_FAIL: (state, err) => {
+    const data = {status: 'FAIL'}
+    return cmd(
+      assocPath(['testdrive', 'driver', 'licenseURL'])(data)(state),
+      Task.of(showToast(err))
+    )
+  },
 
   CONFIRM_TEST_DRIVE: (state) => {
     const testdrive = {
@@ -48,7 +56,10 @@ const handler:ActionHandler = {
     },
     eff.setLocalStorage('testdrive')(emptyTestdrive),
     eff.historyPush('/')
+  ),
+  CONFIRM_TEST_DRIVE_FAIL: (state, err) =>
+    cmd(state,
+    Task.of(showToast(err))
   )
-
 }
 export default handler

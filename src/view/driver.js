@@ -34,7 +34,7 @@ export default ({dispatch, driverForm, driver}:Props) => {
               onChange={compose(dispatch, driversLicenseCaptured, targetFiles)}
             />
             <TextInput
-              label="CPR nummer"
+              label="CPR Number"
               value={driverForm.cpr}
               onChange={setField('cpr')} />
             <TextInput

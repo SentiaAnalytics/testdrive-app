@@ -37,7 +37,7 @@ const handler:ActionHandler = {
     const data = {status: 'FAIL'}
     return cmd(
       assocPath(['testdrive', 'driver', 'licenseURL'])(data)(state),
-      Task.of(showToast(err))
+      eff.toastDanger(err)
     )
   },
 
@@ -59,7 +59,7 @@ const handler:ActionHandler = {
   ),
   CONFIRM_TEST_DRIVE_FAIL: (state, err) =>
     cmd(state,
-    Task.of(showToast(err))
+    eff.toastDanger(err)
   )
 }
 export default handler

@@ -34,17 +34,13 @@ export default class Signature extends React.Component {
           <Padding>
             <h4> Sign here</h4>
           </Padding>
-          <Padding>
-            <canvas style={{width:'100%'}} id="signature_pad" ref={(e) => e ? (e.width = e.offsetWidth) : null}/>
-          </Padding>
-          <Padding>
-            <Layout>
-              <Button block link onClick={e => this.clear(e)}>Clear</Button>
-              <Button block link onClick={e => this.submit(e) }>
-              save
-              </Button>
-            </Layout>
-          </Padding>
+          <canvas style={{width:'100%'}} id="signature_pad" ref={(e) => e ? (e.width = e.offsetWidth) : null}/>
+          <Layout>
+            <Button block link onClick={e => this.clear(e)}>Clear</Button>
+            <Button block link onClick={e => this.submit(e) }>
+            save
+            </Button>
+          </Layout>
         </Card>
       </Modal>
     )

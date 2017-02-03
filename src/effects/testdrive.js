@@ -16,7 +16,7 @@ const testdrivePayload = (testdrive:Testdrive) =>
 
 export const submitTestdrive = (testdrive:Testdrive) =>
   http.put('/api/userid')(testdrivePayload(testdrive))
-    .fold(actions.confirmTestdriveFail, actions.confirmTestdriveSuccess)
+    .bimap(actions.confirmTestdriveFail, actions.confirmTestdriveSuccess)
 
 const createForm = (key:string) => (data:any) => {
   const form = new FormData()
@@ -28,4 +28,4 @@ export const uploadDriversLicense = (file:File) =>
   compressImage(file, {resolution: 1080})
     .map(createForm('license'))
     .chain(http.post('/api/ncg/userid'))
-    .fold(actions.driversLicenseUploadFail, actions.driversLicenseUploadSuccess)
+    .bimap(actions.driversLicenseUploadFail, actions.driversLicenseUploadSuccess)

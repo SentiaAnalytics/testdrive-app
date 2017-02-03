@@ -5,7 +5,7 @@ import './toast.scss'
 
 type Props = {
   dispatch: Dispatch,
-  toast: ?Toast
+  toast: ?Toast,
 }
 
 export default ({dispatch, toast}:Props) => {

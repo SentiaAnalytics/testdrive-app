@@ -1,12 +1,14 @@
 @import "../../scss/variables";
 .toast {
+  z-index: 1000;
   position: fixed;
   width: 80%;
   left:10%;
-  top:10%;
+  top:5%;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
   background: white;
   color:$gray;
+  padding: $padding-base;
 }
 .toast-primary {
   background-color: $brand-primary;

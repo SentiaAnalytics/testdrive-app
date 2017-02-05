@@ -7,8 +7,8 @@ type Props = {
     selected?: bool,
     onSelect: Function
 }
-export default ({key, title, onSelect, selected = false}:Props) =>
-    <li key={title} className={`selectlist-item ${selected ? 'selectlist-item-selected': ''}`} onClick={onSelect}>
+export default ({title, onSelect, selected = false}:Props) =>
+    <li className={`selectlist-item ${selected ? 'selectlist-item-selected': ''}`} onClick={onSelect}>
       <Layout row middle>
         <Col grow="1">
         <Padding small>

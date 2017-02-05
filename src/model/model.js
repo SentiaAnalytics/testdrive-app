@@ -1,11 +1,10 @@
 //@flow
 import type {Toast} from './toast'
 import type {User, Credentials} from './user'
-import type {Testdrive, Driver, Car, Concent} from './testdrive'
-import {emptyDriver, emptyCar, emptyConcent, emptyTestdrive } from './testdrive'
+import type {Testdrive, Driver, Car, Consent} from './testdrive'
+import {emptyDriver, emptyCar, emptyConsent, emptyTestdrive } from './testdrive'
 import {emptyUser, emptyCredentials  } from './user'
 import type {Async} from './generic'
-
 
 
 export type Model = {
@@ -18,7 +17,7 @@ export type Model = {
   licenseplates: string[],
   carForm: Car,
   loginForm: Credentials,
-  concentForm: Concent,
+  consentForm: Consent,
   testdrive: Testdrive,
   testdriveList: Testdrive[],
   location: string
@@ -33,7 +32,7 @@ export const emptyModel:Model = {
   loginForm: emptyCredentials,
   driverForm: emptyDriver,
   carForm: emptyCar,
-  concentForm: emptyConcent,
+  consentForm: emptyConsent,
   testdrive: emptyTestdrive,
   testdriveList: [],
   licenseplateForm: {

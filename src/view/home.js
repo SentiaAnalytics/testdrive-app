@@ -1,12 +1,11 @@
 //@flow
 import React from 'react'
 import {Link} from 'react-router'
-import type {Testdrive} from '../model'
+import type {Testdrive, Msg} from '../model'
 import {map} from '../util'
 import {Layout, Col} from './layout'
 import Button from './button'
 import Padding from './layout/padding'
-import {newTestdrive} from '../actions'
 import {List} from './list'
 import Loader from './loader'
 
@@ -23,11 +22,11 @@ const testdriveListItem = (testdrive:Testdrive) =>
   </li>
 
 type Props = {
-  dispatch: Function,
+  msg: Function,
   testdriveList: Testdrive[]
 }
 
-export default ({dispatch, testdriveList}:Props) =>
+export default ({msg, testdriveList}:Props) =>
   <Layout column>
     <Col grow={1} shrink={1}>
       <Padding><h1>{testdriveList.length ? 'Drive list' : 'No drives to display'}</h1></Padding>
@@ -36,6 +35,6 @@ export default ({dispatch, testdriveList}:Props) =>
       </List>
     </Col>
     <Col>
-      <Button onClick={() => dispatch(newTestdrive)} large block primary>New Testdrive</Button>
+      <Button onClick={() => msg.newTestdrive()} large block primary>New Testdrive</Button>
     </Col>
   </Layout>

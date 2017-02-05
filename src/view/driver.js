@@ -1,9 +1,8 @@
 //@flow
 import React from 'react'
 import {Link} from 'react-router'
-import type {Driver, Dispatch} from '../model'
+import type {Driver, Msg} from '../model'
 import {compose, targetValue, targetFiles,preventDefault, toPairs, any} from '../util'
-import {setFormField, submitDriverForm, driversLicenseCaptured} from '../actions'
 import TextInput from './text-input'
 import {Layout, Col, Padding} from './layout'
 import Button from './button'
@@ -13,16 +12,16 @@ import Loader from './loader'
 type Props = {
   driverForm: Driver,
   driver: Driver,
-  dispatch: Dispatch
+  msg: Msg
 }
 
-export default ({dispatch, driverForm, driver}:Props) => {
+export default ({msg, driverForm, driver}:Props) => {
   const setField = field =>
-    compose(dispatch, setFormField('driverForm')(field), targetValue)
+    compose(x => msg.setFormField('driverForm', field, x), targetValue)
 
   return (
     <form
-      onSubmit={compose(dispatch, _ => submitDriverForm(driverForm), preventDefault)}
+      onSubmit={compose(_ => msg.submitDriverForm(driverForm), preventDefault)}
       >
       <Loader message="Saving Drivers License" show={driver.licenseURL.status === 'PENDING'}/>
       <Layout column>
@@ -31,7 +30,7 @@ export default ({dispatch, driverForm, driver}:Props) => {
             <h1>New Driver</h1>
             <Camera
               openOnLoad={true}
-              onChange={compose(dispatch, driversLicenseCaptured, targetFiles)}
+              onChange={compose(msg.driversLicenseCaptured, targetFiles)}
             />
             <TextInput
               label="CPR Number"

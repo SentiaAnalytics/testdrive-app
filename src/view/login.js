@@ -1,7 +1,6 @@
 //@flow
 import React from 'react'
-import type {Credentials, Async, User} from '../model'
-import {login, setFormField} from '../actions'
+import type {Credentials, Async, User, Msg} from '../model'
 import {preventDefault, compose, targetValue} from '../util'
 import TextInput from './text-input'
 import {Layout, Col, Padding} from './layout'
@@ -10,20 +9,20 @@ import Card from './card'
 import Loader from './loader'
 
 type Props = {
-  dispatch: Function,
+  msg: Msg,
   loginForm: Credentials,
   user: Async<User>
 }
 
-export default ({dispatch, loginForm, user}:Props) => {
+export default ({msg, loginForm, user}:Props) => {
   const setField = field =>
-    compose(dispatch, setFormField('loginForm')(field), targetValue)
+    compose(x =>  msg.setFormField('loginForm', field, x), targetValue)
   return (
     <Layout column center middle>
       <Col style={{width: '80%', maxWidth: '660px'}}>
         <Card>
           <form
-            onSubmit={compose(dispatch, () => login(loginForm), preventDefault)}
+            onSubmit={compose(_ => msg.login(loginForm), preventDefault)}
             >
             <Loader message="Signing In" show={user.status === 'PENDING'}/>
             <Padding style={{padding: '50px 50px 30px'}}>

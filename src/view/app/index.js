@@ -21,7 +21,7 @@ export default class App extends React.Component {
   render () {
     return (
       <div style={{height:this.state.height}}>
-        {router(this.props.dispatch, this.props.state)}
+        {router(this.props.msg, this.props.state)}
       </div>
     )
   }

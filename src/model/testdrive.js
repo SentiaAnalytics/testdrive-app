@@ -1,11 +1,11 @@
 //@flow
 import type {Async} from './generic'
 
-export type Concent = {
+export type Consent = {
   base64Signature:string
 }
 
-export const emptyConcent:Concent = {
+export const emptyConsent:Consent = {
   base64Signature: ''
 }
 
@@ -43,11 +43,11 @@ export const emptyCar:Car = {
 export type Testdrive = {
   driver: Driver,
   car: Car,
-  concent: Concent
+  consent: Consent
 }
 
 export const emptyTestdrive:Testdrive = {
   driver: emptyDriver,
   car: emptyCar,
-  concent: emptyConcent
+  consent: emptyConsent
 }

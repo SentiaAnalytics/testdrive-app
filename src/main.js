@@ -1,11 +1,10 @@
 //@flow
-import {startApp} from  './start-app'
+import app from  'oolon-startapp'
 import view from './view'
 import update from './update'
 import {emptyModel} from './model'
 import Either from 'data.either'
 import Maybe from 'data.maybe'
-import {historyReplace, historyPop, noop} from './actions'
 import history from './history'
 import {compose, getFromLocalStorage, getCookie, evolve, getJWTBody} from './util'
 
@@ -17,8 +16,8 @@ const cachedData = {
   driverForm: def => getFromLocalStorage('testdrive')
     .map(x => x.driver)
     .getOrElse(def),
-  concetForm: def => getFromLocalStorage('testdrive')
-    .map(x => x.concent)
+  consentForm: def => getFromLocalStorage('testdrive')
+    .map(x => x.consent)
     .getOrElse(def),
   brands: def => getFromLocalStorage('brands')
     .getOrElse(def),
@@ -30,14 +29,18 @@ const cachedData = {
 
 const initialModel = evolve(cachedData)(emptyModel)
 
-const store = startApp({
+app({
   view,
   model: initialModel,
   update,
-})
-
-history.listen((location, type) => {
-  if (type === 'POP') {
-    store.dispatch(historyPop(location))
+  subs: [
+    (_, msg) => history.listen((location, type) => type === 'POP' ? msg.historyPop(location) : null),
+    (_, msg) => msg.init()
+  ],
+  hooks: {
+    onAction: (name, ...args) =>
+      console.log("[Action] %c%s", "color: blue", name, ...args),
+    onUpdate: (last, model) =>
+      console.log(model)
   }
 })

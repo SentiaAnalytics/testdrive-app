@@ -1,26 +1,25 @@
 //@flow
 import React from 'react'
 import {Link} from 'react-router'
-import type {Dispatch, Car} from '../model'
+import type {Msg, Car} from '../model'
 import TextInput  from './text-input'
 import {toUpper, map, compose, targetValue, preventDefault} from '../util'
-import {setFormField, submitCarLicenseplate} from '../actions'
 import {Layout, Col, Padding} from './layout'
 import Button from './button'
 import {List, SelectListItem} from './list'
 
 type Props = {
-  dispatch: Dispatch,
+  msg: Msg,
   carForm: Car,
   licenseplates: string[]
 }
 
-export default ({dispatch, carForm, licenseplates}:Props) => {
+export default ({msg, carForm, licenseplates}:Props) => {
   const setField = field =>
-    compose(dispatch, setFormField('carForm')(field), toUpper, targetValue)
+    compose(x => msg.setFormField('carForm', field, x), toUpper, targetValue)
   return (
     <form
-      onSubmit={compose(dispatch, _ => submitCarLicenseplate(carForm.licenseplate), preventDefault)}
+      onSubmit={compose(_ => msg.submitCarLicenseplate(carForm.licenseplate), preventDefault)}
       >
       <Layout column style={{background: 'white'}}>
         <Col grow="1" shrink="1">
@@ -35,9 +34,10 @@ export default ({dispatch, carForm, licenseplates}:Props) => {
               {
                 map(licenseplate =>
                   <SelectListItem
+                    key={licenseplate}
                     title={licenseplate}
                     selected={carForm.licenseplate === licenseplate}
-                    onSelect={() => dispatch(setFormField('carForm')('licenseplate')(licenseplate))}
+                    onSelect={() => msg.setFormField('carForm', 'licenseplate', licenseplate)}
                   />
                 )(licenseplates)
             }

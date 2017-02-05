@@ -64,6 +64,7 @@
     "express": "^4.14.0",
     "express-http-proxy": "^0.11.0",
     "history": "^4.5.1",
+    "oolon-startapp": "^1.1.1",
     "ramda": "^0.23.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

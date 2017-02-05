@@ -1,7 +1,6 @@
 //@flow
 import Task from 'data.task'
 import type {Testdrive} from '../model'
-import * as actions from '../actions'
 import * as http from '../http'
 import {evolve, compressImage} from '../util'
 
@@ -16,7 +15,6 @@ const testdrivePayload = (testdrive:Testdrive) =>
 
 export const submitTestdrive = (testdrive:Testdrive) =>
   http.put('/api/userid')(testdrivePayload(testdrive))
-    .bimap(actions.confirmTestdriveFail, actions.confirmTestdriveSuccess)
 
 const createForm = (key:string) => (data:any) => {
   const form = new FormData()
@@ -28,4 +26,3 @@ export const uploadDriversLicense = (file:File) =>
   compressImage(file, {resolution: 1080})
     .map(createForm('license'))
     .chain(http.post('/api/ncg/userid'))
-    .bimap(actions.driversLicenseUploadFail, actions.driversLicenseUploadSuccess)

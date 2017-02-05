@@ -2,8 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import App from './app'
-import type {Model} from '../model'
+import type {Model, Msg} from '../model'
 
-export default (dispatch:Function, state:Model) => {
-  ReactDOM.render(<App {...{dispatch, state}}/>, document.getElementById('root'));
+export default (state:Model, msg:Msg) => {
+  ReactDOM.render(<App {...{msg, state}}/>, document.getElementById('root'));
 }

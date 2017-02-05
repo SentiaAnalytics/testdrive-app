@@ -4,6 +4,8 @@ import Maybe from 'data.maybe'
 import Either from 'data.either'
 import cookie from 'cookie'
 
+export const append = (x:any) => (xs:any[]) => [...xs, x]
+
 export const any = (f:Function) => (xs:any[]) => xs.some(f)
 export const contains = (y:any) => any(x => x === y)
 

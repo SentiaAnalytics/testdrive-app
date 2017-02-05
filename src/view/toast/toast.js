@@ -1,14 +1,13 @@
 //@flow
 import React from 'react'
-import type {Dispatch, Toast} from '../../model'
+import type {Toast} from '../../model'
 import './toast.scss'
 
 type Props = {
-  dispatch: Dispatch,
   toast: ?Toast,
 }
 
-export default ({dispatch, toast}:Props) => {
+export default ({toast}:Props) => {
   if (!toast) return null
   return (
       <div className={`toast toast-${toast.type}`}>

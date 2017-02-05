@@ -1,10 +1,9 @@
 //@flow
 import React from 'react'
 import history from '../../history'
-import type {Dispatch, Model} from '../../model'
+import type {Msg, Model} from '../../model'
 import {compose} from '../../util'
 import {Redirect, StaticRouter, Match} from 'react-router'
-import {historyPush, historyReplace} from '../../actions'
 import NewDriver from '../driver'
 import Confirm from '../confirm'
 import Home from '../home'
@@ -17,11 +16,11 @@ import {Layout} from '../layout'
 import './app.scss'
 import Test from '../test'
 
-export default (dispatch:Dispatch, state:Model) => {
+export default (msg:Msg, state:Model) => {
   const {
     driverForm,
     carForm,
-    concentForm,
+    consentForm,
     modals,
     user,
     testdrive,
@@ -30,42 +29,43 @@ export default (dispatch:Dispatch, state:Model) => {
     toast,
     brands,
     models,
+    location,
     licenseplates
   } = state
   return (
     <StaticRouter
       action={history.action}
       location={location}
-      onPush={ x => dispatch(historyPush(x))}
-      onReplace={ x => dispatch(historyReplace(x))}
+      onPush={msg.historyPush}
+      onReplace={ msg.historyReplace}
       blockTransitions={history.block}
       >
       <div className="app">
         <div className="app-inner">
-          <Toast {...{dispatch, toast}} />
+          <Toast {...{msg, toast}} />
           <Match exactly pattern="/" render={params =>
-            <Home {...{dispatch, testdriveList} } />
+            <Home {...{msg, testdriveList} } />
           }/>
           <Match exactly pattern="/login" render={params =>
-            <Login {...{dispatch, loginForm, user} } />
+            <Login {...{msg, loginForm, user} } />
           }/>
           <Match exactly pattern="/test" render={params =>
             <Test />
           }/>
           <Match exactly pattern="/new/driver" render={params =>
-            <NewDriver {...{dispatch, driverForm, driver: testdrive.driver} } />
+            <NewDriver {...{msg, driverForm, driver: testdrive.driver} } />
           }/>
           <Match exactly pattern="/new/brand" render={params =>
-            <NewBrand {...{dispatch, carForm, brands}} />
+            <NewBrand {...{msg, carForm, brands}} />
           }/>
           <Match exactly pattern="/new/model" render={params =>
-            <NewModel {...{dispatch, carForm, models}} />
+            <NewModel {...{msg, carForm, models}} />
           }/>
           <Match exactly pattern="/new/licenseplate" render={params =>
-            <NewLicenseplate {...{dispatch, carForm, licenseplates}} />
+            <NewLicenseplate {...{msg, carForm, licenseplates}} />
           }/>
           <Match exactly pattern="/new/confirm" render={params =>
-            <Confirm {...{dispatch, concentForm, signatureModal: modals.signature}} />
+            <Confirm {...{msg, consentForm, signatureModal: modals.signature}} />
           }/>
         </div>
       </div>

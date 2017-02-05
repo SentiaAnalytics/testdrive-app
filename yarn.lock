@@ -3861,6 +3861,10 @@ onetime@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
 
+oolon-startapp@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/oolon-startapp/-/oolon-startapp-1.1.1.tgz#7e78a0062a1e62adcb7954dbbf647c24d6c0a49e"
+
 open@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/open/-/open-0.0.5.tgz#42c3e18ec95466b6bf0dc42f3a2945c3f0cad8fc"

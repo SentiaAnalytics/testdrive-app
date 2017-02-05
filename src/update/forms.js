@@ -1,55 +1,60 @@
 //@flow
-import {historyPush, historyReplace, setLocalStorage} from '../effects'
 import {cmd} from '../start-app'
-import type {ActionHandler, Model, Dict, Driver} from '../model'
+import type {Msg, Model, Dict, Driver, Testdrive} from '../model'
 import {contains, assocPath} from '../util'
+import * as task from '../tasks'
 
-const saveTestDrive = setLocalStorage('testdrive')
+const saveTestDrive = (testdrive:Testdrive) => task.setLocalStorage('testdrive')(testdrive)
 
-const handler:ActionHandler = {
-  SET_FORM_FIELD: (state:Model, {form, field, value}:Dict) =>
-      assocPath([form, field])(value)(state),
+export default {
+  setFormField: (state:Model, form:string, field:string, value:any) =>
+      [assocPath([form, field])(value)(state)],
 
-      SUBMIT_DRIVER_FORM: (state:Model, driver:Driver) => {
-        const testdrive = {...state.testdrive, driver}
-        return cmd(
-          {...state, testdrive},
-          saveTestDrive(testdrive),
-          historyPush('/new/brand')
-        )
-      },
+  submitDriverForm: (state:Model, driver:Driver, msg:Msg) => {
+    const testdrive = {...state.testdrive, driver}
+    return [
+      {...state, testdrive},
+      task.all([
+        saveTestDrive(testdrive),
+        task.call(msg.historyPush, '/new/brand')
+      ])
+    ]
+  },
 
-      SUBMIT_CAR_BRAND: (state:Model, brand:string) => {
-        const testdrive = assocPath(['car', 'brand'])(brand)(state.testdrive)
-        const brands = contains(brand)(state.brands) ? state.brands : [...state.brands, brand]
-        return cmd(
-          {...state, testdrive, brands},
-          saveTestDrive(testdrive),
-          setLocalStorage('brands')(brands),
-          historyPush('/new/model')
-        )
-      },
-      SUBMIT_CAR_MODEL: (state:Model, model:string) => {
-        const testdrive = assocPath(['car', 'model'])(model)(state.testdrive)
-        const models = contains(model)(state.models) ? state.models :  [...state.models, model]
-        return cmd(
-          {...state, testdrive, models},
-          saveTestDrive(testdrive),
-          setLocalStorage('models')(models),
-          historyPush('/new/licenseplate')
-        )
-      },
-      SUBMIT_CAR_LICENSEPLATE: (state:Model, licenseplate:string) => {
-        const testdrive = assocPath(['car', 'licenseplate'])(licenseplate)(state.testdrive)
-        const licenseplates = contains(licenseplate)(state.licenseplates) ? state.licenseplates : [...state.licenseplates, licenseplate]
-        return cmd(
-          {...state, testdrive, licenseplates},
-          saveTestDrive(testdrive),
-          setLocalStorage('licenseplates')(licenseplates),
-          historyPush('/new/confirm')
-        )
-      },
-
+  submitCarBrand: (state:Model, brand:string, msg:Msg) => {
+    const testdrive = assocPath(['car', 'brand'])(brand)(state.testdrive)
+    const brands = contains(brand)(state.brands) ? state.brands : [...state.brands, brand]
+    return [
+      {...state, testdrive, brands},
+      task.all([
+        saveTestDrive(testdrive),
+        task.setLocalStorage('brands')(brands),
+        task.call(msg.historyPush, '/new/model')
+      ])
+    ]
+  },
+  submitCarModel: (state:Model, model:string, msg:Msg) => {
+    const testdrive = assocPath(['car', 'model'])(model)(state.testdrive)
+    const models = contains(model)(state.models) ? state.models :  [...state.models, model]
+    return [
+      {...state, testdrive, models},
+      task.all([
+        saveTestDrive(testdrive),
+        task.setLocalStorage('models')(models),
+        task.call(msg.historyPush, '/new/licenseplate')
+      ])
+    ]
+  },
+  submitCarLicenseplate: (state:Model, licenseplate:string, msg:Msg) => {
+    const testdrive = assocPath(['car', 'licenseplate'])(licenseplate)(state.testdrive)
+    const licenseplates = contains(licenseplate)(state.licenseplates) ? state.licenseplates : [...state.licenseplates, licenseplate]
+    return [
+      {...state, testdrive, licenseplates},
+      task.all([
+        saveTestDrive(testdrive),
+        task.setLocalStorage('licenseplates')(licenseplates),
+        task.call(msg.historyPush, '/new/confirm')
+      ])
+    ]
+  }
 }
-
-export default handler

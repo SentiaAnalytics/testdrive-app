@@ -19,6 +19,7 @@ export const emptyLoc = {
 }
 
 export type Model = {
+  testdriveStatus: string,
   toast: ?Toast,
   modals: { [string]: bool },
   user: Async<User>,
@@ -30,11 +31,12 @@ export type Model = {
   loginForm: Credentials,
   consentForm: Consent,
   testdrive: Testdrive,
-  testdriveList: Async<Testdrive[]>,
+  testdriveList: Async<{[string] : Testdrive}>,
   location: Loc
 }
 
 export const emptyModel:Model = {
+  testdriveStatus: 'NONE',
   toast: null,
   modals: {
     signature: false

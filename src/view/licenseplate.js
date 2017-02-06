@@ -25,7 +25,6 @@ export default ({msg, carForm, licenseplates}:Props) => {
           <Padding>
             <h2>Add license plate</h2>
             <TextInput
-              focusOnLoad
               label="License plate"
               value={carForm.licenseplate}
               onChange={setField('licenseplate')} />

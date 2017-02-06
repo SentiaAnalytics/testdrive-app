@@ -9,6 +9,7 @@ import Home from '../home'
 import NewBrand from '../brand'
 import NewModel from '../model'
 import NewLicenseplate from '../licenseplate'
+import Testdrive from '../testdrive'
 import Login from '../login'
 import Toast from '../toast'
 import {Layout} from '../layout'
@@ -25,6 +26,7 @@ export default (msg:Msg, state:Model) => {
     user,
     testdrive,
     testdriveList,
+    testdriveStatus,
     loginForm,
     toast,
     brands,
@@ -45,6 +47,9 @@ export default (msg:Msg, state:Model) => {
         <Route pattern="/test" location={location} render={() =>
           <Test />
         }/>
+        <Route pattern="/testdrives/:testdriveId" location={location} render={() =>
+          <Testdrive {...{testdriveList, location}} />
+        }/>
         <Route pattern="/new/driver" location={location} render={() =>
           <NewDriver {...{msg, driverForm, driver: testdrive.driver} } />
         }/>
@@ -58,7 +63,7 @@ export default (msg:Msg, state:Model) => {
           <NewLicenseplate {...{msg, carForm, licenseplates}} />
         }/>
         <Route pattern="/new/confirm" location={location} render={() =>
-          <Confirm {...{msg, consentForm, signatureModal: modals.signature}} />
+          <Confirm {...{msg, consentForm, testdriveStatus, signatureModal: modals.signature}} />
         }/>
       </div>
     </div>

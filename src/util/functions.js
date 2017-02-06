@@ -25,12 +25,14 @@ export const chain = (f:Function) => (x:any) => x.chain(f)
 export const merge = (a:Dict)=> (b:Dict) => Object.assign({}, a, b)
 
 
+export const indexBy = (f:Function) => (xs:any[]) =>
+  xs.reduce((o, x) => ({...o, [f(x)]: x}), {})
+
 export const zip = (as:any[]) => (bs:any[]) => {
   const go = (result, [a, ...as], [b, ...bs]) =>
     a === undefined || b === undefined ? result : go([...result, [a, b]], as, bs)
   return go([], as, bs)
 }
-
 
 export const toPairs = (d:Dict) =>
   Object.keys(d).map(k => [k, d[k]])

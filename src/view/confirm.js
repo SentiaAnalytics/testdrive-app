@@ -6,18 +6,21 @@ import {compose, targetValue, preventDefault} from '../util'
 import Signature from './signature'
 import {Layout, Col, Padding} from './layout'
 import Button from './button'
+import Loader from './loader'
 
 type Props = {
   msg: Msg,
+  testdriveStatus:string,
   signatureModal: bool,
   consentForm: Consent
 }
 
-export default ({msg, consentForm, signatureModal}:Props) => {
+export default ({msg, consentForm, signatureModal, testdriveStatus}:Props) => {
   return (
     <form
       onSubmit={compose(_ => msg.confirmTestdrive(), preventDefault) }
       >
+      <Loader message="Submitting Testdrive" show={testdriveStatus === 'PENDING'}/>
       <Layout column style={{background: 'white'}}>
         <Col grow="1" shrink="1">
           <Padding>

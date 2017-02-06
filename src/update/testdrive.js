@@ -2,7 +2,7 @@
 import type {Testdrive,  Model, Msg} from '../model'
 import {emptyTestdrive} from '../model'
 import {cmd} from '../start-app'
-import {assocPath} from '../util'
+import {assocPath, indexBy} from '../util'
 import * as task from '../tasks'
 
 
@@ -11,7 +11,8 @@ const resetTestdrive = (state) => (
     testdrive: emptyTestdrive,
     driverForm: emptyTestdrive.driver,
     carForm: emptyTestdrive.car,
-    consentForm: emptyTestdrive.consent
+    consentForm: emptyTestdrive.consent,
+    testdriveStatus: 'NONE'
   })
 
 export default {
@@ -21,7 +22,7 @@ export default {
       task.call(msg.toastDanger, err)
     ],
   getTestdriveListSuccess: (state:Model, testdrives:Testdrive[], msg:Msg) =>
-    [ {...state, testdriveList: {status:'SUCCESS', value:testdrives}} ],
+    [ {...state, testdriveList: {status:'SUCCESS', value:indexBy(x => x.id)(testdrives)}} ],
   newTestdrive: (state:Model, msg:Msg) =>
     [
       resetTestdrive(state),
@@ -57,7 +58,7 @@ export default {
       consent: state.consentForm
     }
     return [
-      {...state, testdrive},
+      {...state, testdrive, testdriveStatus: 'PENDING'},
       task.submitTestdrive(testdrive)
         .fold(msg.confirmTestdriveFail, msg.confirmTestdriveSuccess)
     ]
@@ -67,7 +68,8 @@ export default {
     [
       {
         ...resetTestdrive(state),
-        testdriveList: [...state.testdriveList, testdrive]
+        testdriveStatus: 'SUCCESS',
+        testDriveList : assocPath(['value', testdrive.id])(testdrive)(state.testdriveList)
       },
       task.all([
         task.setLocalStorage('testdrive')(emptyTestdrive),
@@ -76,7 +78,10 @@ export default {
     ],
   confirmTestdriveFail: (state:Model, err:any, msg:Msg) =>
     [
-      state,
-      task.call(msg.toastDanger, err)
+      {
+        ...state,
+        testdriveStatus: 'FAIL'
+      },
+      task.call(msg.httpError, err)
     ]
 }

@@ -31,9 +31,9 @@ export default ({msg, testdriveList}:Props) =>
   <Layout column>
     <Col grow={1} shrink={1}>
       <Loader message="Loading Testdrives" show={testdriveList.status === 'PENDING'}/>
-      <Padding><h1>{testdriveList.length ? 'Drive list' : 'No drives to display'}</h1></Padding>
+      <Padding><h1>{testdriveList.value ? 'Drive list' : 'No drives to display'}</h1></Padding>
       <List>
-        {map(testdriveListItem)(testdriveList.value || [])}
+        {map(testdriveListItem)(Object.values(testdriveList.value || {}))}
       </List>
     </Col>
     <Col>

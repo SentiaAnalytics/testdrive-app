@@ -26,7 +26,6 @@ export default ({msg, carForm, models}:Props) => {
           <Padding>
             <h2>Add model</h2>
             <TextInput
-              focusOnLoad
               label="Model"
               value={carForm.model}
               onChange={setField('model')}

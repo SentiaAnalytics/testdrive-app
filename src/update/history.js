@@ -36,9 +36,20 @@ export default {
     const routehandler = router({
       '/': (state, location, msg) =>
         [
-          {...state, location},
+          {...state, location, testdriveList:{status: 'PENDING'}},
           task.getTestdriveList.fold(msg.getTestdriveListFail, msg.getTestdriveListSuccess)
         ],
+      '/testdrives/:testdriveId' : (state, location) => {
+        const newState =  {...state, location}
+        if (state.testdriveList.status === 'SUCCESS') {
+          return [newState]
+        }
+        return [
+          newState,
+          task.getTestdriveList
+            .fold(msg.httpError, msg.getTestdriveListSuccess)
+        ]
+      },
       'default': (state, location, msg) =>
         [{...state, location}]
     })

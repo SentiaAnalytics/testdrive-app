@@ -24,5 +24,17 @@ export default {
   openModal: (state:Model, modal:Dict) =>
     [evolve({modals: {[modal]: () => true}})(state)],
 
+  httpError: (state:Model, err:any, msg) => {
+    if (err.response.status === 401) {
+      return [
+        state,
+        task.historyReplace('/login')
+      ]
+    }
+    return [
+      state,
+      task.call(msg.toastDanger, err.response.body)
+    ]
+  }
 
 }

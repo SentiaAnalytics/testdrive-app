@@ -6,6 +6,8 @@ import {evolve, compressImage} from '../util'
 
 const log = key => value => (console.log(key, value), value)
 
+export const getTestdriveList = http.get('/api/testdrives')
+
 const testdrivePayload = (testdrive:Testdrive) =>
   log('testdrive')(
     evolve({
@@ -14,7 +16,7 @@ const testdrivePayload = (testdrive:Testdrive) =>
   )
 
 export const submitTestdrive = (testdrive:Testdrive) =>
-  http.put('/api/userid')(testdrivePayload(testdrive))
+  http.post('/api/testdrives')(testdrivePayload(testdrive))
 
 const createForm = (key:string) => (data:any) => {
   const form = new FormData()

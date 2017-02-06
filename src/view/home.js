@@ -1,7 +1,7 @@
 //@flow
 import React from 'react'
 import {Link} from 'react-router'
-import type {Testdrive, Msg} from '../model'
+import type {Testdrive, Msg, Async} from '../model'
 import {map} from '../util'
 import {Layout, Col} from './layout'
 import Button from './button'
@@ -23,15 +23,17 @@ const testdriveListItem = (testdrive:Testdrive) =>
 
 type Props = {
   msg: Function,
-  testdriveList: Testdrive[]
+  testdriveList: Async<Testdrive[]>
 }
 
 export default ({msg, testdriveList}:Props) =>
+
   <Layout column>
     <Col grow={1} shrink={1}>
+      <Loader message="Loading Testdrives" show={testdriveList.status === 'PENDING'}/>
       <Padding><h1>{testdriveList.length ? 'Drive list' : 'No drives to display'}</h1></Padding>
       <List>
-        {map(testdriveListItem)(testdriveList)}
+        {map(testdriveListItem)(testdriveList.value || [])}
       </List>
     </Col>
     <Col>

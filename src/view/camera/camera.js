@@ -11,12 +11,13 @@ type Props = {
 export default class Camera extends React.Component {
   componentDidMount() {
     if (this.props.openOnLoad) {
-      this.refs.camera.click()
+      console.log(this.refs.camera)
+      setTimeout(() => this.refs.camera.click(), 200)
     }
   }
   render () {
     return (
-      <input type="file" className="camera" accept="image/*" capture="camera" ref="camera" onChange={this.props.onChange}/>
+      <input id="camera" type="file" className="camera" accept="image/*" capture="camera" ref="camera" onChange={this.props.onChange}/>
     )
   }
 }

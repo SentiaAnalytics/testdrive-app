@@ -7,7 +7,13 @@ import cookie from 'cookie'
 export const append = (x:any) => (xs:any[]) => [...xs, x]
 
 export const any = (f:Function) => (xs:any[]) => xs.some(f)
+export const all = (f:Function) => (xs:any[]) => xs.every(f)
+
+export const find = (f:Function) => (xs:any[]) => xs.find(f)
+
 export const contains = (y:any) => any(x => x === y)
+
+export const split = (separator:any) => (s:string) => s.split(separator)
 
 export const map = (f:Function) => (x:any) => x.map(f)
 export const filter = (f:Function) => (x:{filter:Function}) => x.filter(f)
@@ -19,11 +25,27 @@ export const chain = (f:Function) => (x:any) => x.chain(f)
 export const merge = (a:Dict)=> (b:Dict) => Object.assign({}, a, b)
 
 
+export const zip = (as:any[]) => (bs:any[]) => {
+  const go = (result, [a, ...as], [b, ...bs]) =>
+    a === undefined || b === undefined ? result : go([...result, [a, b]], as, bs)
+  return go([], as, bs)
+}
+
+
 export const toPairs = (d:Dict) =>
   Object.keys(d).map(k => [k, d[k]])
 
+export const fromPairs = (pairs:any[]) =>
+  pairs.reduce((o, [k, v]) => ({...o, [k]:v}), {})
+
+export const mapObj = (f:Function) => (dict:Dict) =>
+  Object.keys(dict).reduce((o, k) => ({...o, [k]: f(dict[k])}), {})
+
 export const compose = (...fs: Function[]) =>
   fs.reduce((g, f) => x => g(f(x)), x => x)
+
+export const composeK = (...fs: Function[]) =>
+  compose(...fs.map(map))
 
 export const path = (ps:string[]) => (x:{[string]:any}) =>
   ps.reduce((obj, s) => obj && obj[s], x)

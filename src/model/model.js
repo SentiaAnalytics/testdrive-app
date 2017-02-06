@@ -4,8 +4,19 @@ import type {User, Credentials} from './user'
 import type {Testdrive, Driver, Car, Consent} from './testdrive'
 import {emptyDriver, emptyCar, emptyConsent, emptyTestdrive } from './testdrive'
 import {emptyUser, emptyCredentials  } from './user'
-import type {Async} from './generic'
+import type {Async, Dict} from './generic'
 
+export type Loc = {
+  pathname: string,
+  params: Dict,
+  query: Dict
+}
+
+export const emptyLoc = {
+  pathname: '/',
+  params: {},
+  query: {}
+}
 
 export type Model = {
   toast: ?Toast,
@@ -19,8 +30,8 @@ export type Model = {
   loginForm: Credentials,
   consentForm: Consent,
   testdrive: Testdrive,
-  testdriveList: Testdrive[],
-  location: string
+  testdriveList: Async<Testdrive[]>,
+  location: Loc
 }
 
 export const emptyModel:Model = {
@@ -34,12 +45,12 @@ export const emptyModel:Model = {
   carForm: emptyCar,
   consentForm: emptyConsent,
   testdrive: emptyTestdrive,
-  testdriveList: [],
+  testdriveList: { status: 'NONE' },
   licenseplateForm: {
     licenseplate: ''
   },
   brands: [],
   models: [],
   licenseplates: [],
-  location: '/'
+  location: emptyLoc
 }

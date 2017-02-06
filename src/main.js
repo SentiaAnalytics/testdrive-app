@@ -34,8 +34,9 @@ app({
   model: initialModel,
   update,
   subs: [
-    (_, msg) => history.listen((location, type) => type === 'POP' ? msg.historyPop(location) : null),
-    (_, msg) => msg.init()
+    (_, msg) => msg.init(),
+    (_, msg) => history.listen((location => msg.locationUpdate(location))
+    )
   ],
   hooks: {
     onAction: (name, ...args) =>

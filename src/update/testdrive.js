@@ -20,7 +20,7 @@ export default {
       resetTestdrive(state),
       task.all([
         task.setLocalStorage('testdrive')(emptyTestdrive),
-        task.call(msg.historyPush, '/new/driver')
+        task.historyPush('/new/driver')
       ])
     ],
 
@@ -64,7 +64,7 @@ export default {
       },
       task.all([
         task.setLocalStorage('testdrive')(emptyTestdrive),
-        task.call(msg.historyPush, '/')
+        task.historyPush('/')
       ])
     ],
   confirmTestdriveFail: (state:Model, err:any, msg:Msg) =>

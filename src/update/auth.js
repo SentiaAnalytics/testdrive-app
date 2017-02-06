@@ -22,7 +22,7 @@ export default {
     [{...state, user: {status:'SUCCESS', value: user}},
       task.all([
         task.setCookie('jwt')(token),
-        task.call(msg.historyPush, '/')
+        task.historyPush('/')
       ])
     ],
 
@@ -34,12 +34,12 @@ export default {
   validateSessionSuccess: (state:Model, user:User, msg:Msg) =>
     [
       {...state, user: {status:'SUCCESS', value: user}},
-      task.call(msg.historyReplace, history.location)
+      task.historyReplace(history.location)
     ],
 
   validateSessionFail: (state:Model, user:User, msg:Msg) =>
     [{...state, user: {status:'FAIL'}},
-      task.call(msg.historyReplace, '/login')
+      task.historyReplace('/login')
     ]
 
 }

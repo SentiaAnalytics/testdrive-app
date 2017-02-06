@@ -8,12 +8,12 @@ import testdrive from './testdrive'
 import navigation from './navigation'
 import toasts from './toasts'
 import auth from './auth'
-import history from '../history'
+import history from './history'
 import * as task from '../tasks'
 
 export default {
   ...forms,
-  ...navigation,
+  ...history,
   ...signature,
   ...testdrive,
   ...auth,

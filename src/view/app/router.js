@@ -15,6 +15,7 @@ import Toast from '../toast'
 import {Layout} from '../layout'
 import './app.scss'
 import Test from '../test'
+import Route from './route'
 
 export default (msg:Msg, state:Model) => {
   const {

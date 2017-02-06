@@ -42,6 +42,6 @@ app({
     onAction: (name, ...args) =>
       console.log("[Action] %c%s", "color: blue", name, ...args),
     onUpdate: (last, model) =>
-      console.log(model)
+      console.log("[Model]",  model)
   }
 })

@@ -26,7 +26,9 @@ export const put = (url:string) => (data:Dict) =>
   )
 
 export const get = (url:string) =>
-  new Task((reject, resolve) =>
+  new Task((reject, resolve) => {
+    console.log('get', url)
     axios.get(url, {withCredentials: true, headers:getHeaders()})
       .then(r => resolve(r.data), reject)
+    }
   )

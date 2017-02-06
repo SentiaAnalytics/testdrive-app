@@ -1,6 +1,5 @@
 //@flow
 import React from 'react'
-import {Link} from 'react-router'
 import type {Testdrive, Msg, Async} from '../model'
 import {map} from '../util'
 import {Layout, Col} from './layout'
@@ -8,6 +7,7 @@ import Button from './button'
 import Padding from './layout/padding'
 import {List} from './list'
 import Loader from './loader'
+import Link from './link'
 
 const testdriveListItem = (testdrive:Testdrive) =>
   <li className="list-item" key={testdrive.id}>

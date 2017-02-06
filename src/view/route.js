@@ -3,11 +3,11 @@ import type {Loc} from '../model'
 
 import React from 'react'
 type Props = {
-  match:string,
+  pattern:string,
   location: Loc,
-  children?:any[]
+  render: Function
 }
-export default ({path, location,  children}:Props) => {
-  if (location.pathname !== path) return null
-  return children[0]
+export default ({pattern, location, render}:Props) => {
+  if (location.pathname !== pattern) return null
+  return render()
 }

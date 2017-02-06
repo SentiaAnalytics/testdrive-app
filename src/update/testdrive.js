@@ -15,6 +15,13 @@ const resetTestdrive = (state) => (
   })
 
 export default {
+  getTestdriveListFail: (state:Model, err:string, msg:Msg) =>
+    [
+      {...state, testdrivesList: {status:'FAIL'}},
+      task.call(msg.toastDanger, err)
+    ],
+  getTestdriveListSuccess: (state:Model, testdrives:Testdrive[], msg:Msg) =>
+    [ {...state, testdriveList: {status:'SUCCESS', value:testdrives}} ],
   newTestdrive: (state:Model, msg:Msg) =>
     [
       resetTestdrive(state),

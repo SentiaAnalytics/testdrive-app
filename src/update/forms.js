@@ -16,7 +16,7 @@ export default {
       {...state, testdrive},
       task.all([
         saveTestDrive(testdrive),
-        task.call(msg.historyPush, '/new/brand')
+        task.historyPush('/new/brand')
       ])
     ]
   },
@@ -29,7 +29,7 @@ export default {
       task.all([
         saveTestDrive(testdrive),
         task.setLocalStorage('brands')(brands),
-        task.call(msg.historyPush, '/new/model')
+        task.historyPush('/new/model')
       ])
     ]
   },
@@ -41,7 +41,7 @@ export default {
       task.all([
         saveTestDrive(testdrive),
         task.setLocalStorage('models')(models),
-        task.call(msg.historyPush, '/new/licenseplate')
+        task.historyPush('/new/licenseplate')
       ])
     ]
   },
@@ -53,7 +53,7 @@ export default {
       task.all([
         saveTestDrive(testdrive),
         task.setLocalStorage('licenseplates')(licenseplates),
-        task.call(msg.historyPush, '/new/confirm')
+        task.historyPush('/new/confirm')
       ])
     ]
   }

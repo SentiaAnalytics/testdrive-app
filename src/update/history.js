@@ -28,27 +28,20 @@ const router = (routes:Dict) => (state:Model, location:Location, msg:Msg) => {
     return routes[route](state, {pathname:route, query, params}, msg)
 }
 
-const routes = {
-  '/': (state, location, msg) => {
-    console.log('loc', location.pathname)
-    return [
-      {...state, location},
-      task.getTestdriveList
-    ]
-  },
-  '/new/:driver': (state, location, msg) =>{
-    console.log('new driver!')
-    return [{...state, location}]
-  },
-  'default': (state, location, msg) =>
-    [{...state, location}]
-}
-
 export default {
   locationUpdate : (state:Model, location:Location, msg:Msg) => {
-    if (location !== '/login' && state.user.status !== 'SUCCESS') {
+    if (location.pathname !== '/login' && state.user.status !== 'SUCCESS') {
       return [state, task.historyReplace('/login')]
     }
-    return router(routes)(state, location, msg)
+    const routehandler = router({
+      '/': (state, location, msg) =>
+        [
+          {...state, location},
+          task.getTestdriveList.fold(msg.getTestdriveListFail, msg.getTestdriveListSuccess)
+        ],
+      'default': (state, location, msg) =>
+        [{...state, location}]
+    })
+    return routehandler(state, location, msg)
   }
 }

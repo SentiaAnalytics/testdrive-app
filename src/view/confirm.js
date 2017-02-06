@@ -1,6 +1,5 @@
 //@flow
 import React from 'react'
-import {Link} from 'react-router'
 import type {Msg, Consent} from '../model'
 import TextInput  from './text-input'
 import {compose, targetValue, preventDefault} from '../util'

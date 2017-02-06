@@ -2,7 +2,7 @@
 
 import React from 'react'
 import type {Dict} from '../../model'
-import {Link} from 'react-router'
+import Link from '../link'
 import './button.scss'
 import {createClassName} from '../../util'
 

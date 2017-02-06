@@ -1,6 +1,5 @@
 //@flow
 import React from 'react'
-import {Link} from 'react-router'
 import type {Msg, Car} from '../model'
 import TextInput  from './text-input'
 import {toUpper, map, compose, targetValue, preventDefault} from '../util'

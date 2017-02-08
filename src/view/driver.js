@@ -4,60 +4,78 @@ import type {Driver, Msg} from '../model'
 import {compose, targetValue, targetFiles,preventDefault, toPairs, any} from '../util'
 import TextInput from './text-input'
 import {Layout, Col, Padding} from './layout'
-import Button from './button'
-import Camera from './camera'
+import {RoundButton} from './button'
+import Icon from './icon'
 import Loader from './loader'
+import Title from './title'
 
 type Props = {
   driverForm: Driver,
-  driver: Driver,
   msg: Msg
 }
 
-export default ({msg, driverForm, driver}:Props) => {
+export default ({msg, driverForm}:Props) => {
   const setField = field =>
     compose(x => msg.setFormField('driverForm', field, x), targetValue)
 
   return (
     <form
-      onSubmit={compose(_ => msg.submitDriverForm(driverForm), preventDefault)}
+      onSubmit = {compose(x => msg.submitDriverForm(driverForm), preventDefault)}
       >
-      <Loader message="Saving Drivers License" show={driver.licenseURL.status === 'PENDING'}/>
-      <Layout column>
-        <Col grow={1} shrink={1} style={{background: 'white'}}>
-          <Padding>
-            <h1>New Driver</h1>
-            <Camera
-              openOnLoad={true}
-              onChange={compose(msg.driversLicenseCaptured, targetFiles)}
-            />
-            <TextInput
-              label="CPR Number"
-              value={driverForm.cpr}
-              onChange={setField('cpr')} />
-            <TextInput
-              label="Firstname"
-              value={driverForm.firstname}
-              onChange={setField('firstname')} />
-            <TextInput
-              label="Lastname"
-              value={driverForm.lastname}
-              onChange={setField('lastname')} />
-            <TextInput
-              type="email"
-              label="email"
-              value={driverForm.email}
-              onChange={setField('email')} />
-            <TextInput
-              label="phone"
-              value={driverForm.phone}
-              onChange={setField('phone')} />
-          </Padding>
-        </Col>
+      <Layout primary>
+        <Padding>
+          <Col>
+            <Padding>
+              <Title white> New Driver </Title>
+              <TextInput
+                white
+                required
+                label="Firstname"
+                value={driverForm.firstname}
+                onChange={setField('firstname')} />
+              <TextInput
+                white
+                required
+                label="Lastname"
+                value={driverForm.lastname}
+                onChange={setField('lastname')} />
 
-        <Col>
-          <Button type="submit" block primary large>Next</Button>
-        </Col>
+              <TextInput
+                white
+                label="Address Line 1"
+                value={driverForm.addressLine1}
+                onChange={setField('addressLine1')} />
+
+              <TextInput
+                white
+                label="Adress line 2"
+                value={driverForm.addressLine2}
+                onChange={setField('addressLine2')} />
+
+              <TextInput
+                white
+                label="Postcode"
+                value={driverForm.postcode}
+                onChange={setField('postcode')} />
+
+              <TextInput
+                white
+                label="City"
+                value={driverForm.city}
+                onChange={setField('city')} />
+
+              <TextInput
+                white
+                label="Country"
+                value={driverForm.country}
+                onChange={setField('country')} />
+            </Padding>
+
+            <Layout center>
+              <RoundButton outline type="submit"><Icon white type="arrow_forward"/></RoundButton>
+            </Layout>
+          </Col>
+        </Padding>
       </Layout>
     </form>
   )

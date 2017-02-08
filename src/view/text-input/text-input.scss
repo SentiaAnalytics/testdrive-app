@@ -14,14 +14,15 @@
   margin: 0 0 20px 0;
   padding: 0;
   line-height: normal;
-  color: $gray;
   &:focus {
-    border-bottom: 1px solid $brand-primary;
+    border-bottom: 1px solid $gray-lighter;
   }
 }
 
+.text-input-white { color: white; }
+
 .text-input label {
-  color: $brand-primary;
+  color: $brand-secondary;
   display: block;
   font-size: 0.875rem;
   text-transform: uppercase;

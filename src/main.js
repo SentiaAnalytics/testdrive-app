@@ -9,17 +9,7 @@ import history from './history'
 import {compose, getFromLocalStorage, getCookie, evolve, getJWTBody} from './util'
 
 const cachedData = {
-  testdrive: def => getFromLocalStorage('testdrive').getOrElse(def),
-  carForm: def => getFromLocalStorage('testdrive')
-    .map(x => x.car)
-    .getOrElse(def),
-  driverForm: def => getFromLocalStorage('testdrive')
-    .map(x => x.driver)
-    .getOrElse(def),
-  consentForm: def => getFromLocalStorage('testdrive')
-    .map(x => x.consent)
-    .getOrElse(def),
-  brands: def => getFromLocalStorage('brands')
+  testdriveRequest: def => getFromLocalStorage('testdrive').getOrElse(def), brands: def => getFromLocalStorage('brands')
     .getOrElse(def),
   models: def => getFromLocalStorage('models')
     .getOrElse(def),

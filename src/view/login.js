@@ -4,7 +4,7 @@ import type {Credentials, Async, User, Msg} from '../model'
 import {preventDefault, compose, targetValue} from '../util'
 import TextInput from './text-input'
 import {Layout, Col, Padding} from './layout'
-import Button from './button'
+import {Button} from './button'
 import Card from './card'
 import Loader from './loader'
 

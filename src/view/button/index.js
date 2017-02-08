@@ -1,3 +1,5 @@
 //@flow
-import button from './button'
-export default button
+import Button from './button'
+import RoundButton from './round-button'
+
+export { Button, RoundButton}

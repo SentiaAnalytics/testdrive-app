@@ -10,48 +10,63 @@ export default {
   setFormField: (state:Model, form:string, field:string, value:any) =>
       [assocPath([form, field])(value)(state)],
 
+  submitCprForm: (state:Model, cpr:number, msg:Msg) =>
+    [
+      assocPath(['testdriveRequest','cpr'])(cpr)(state),
+      task.historyPush('/new/driver')
+    ],
+
   submitDriverForm: (state:Model, driver:Driver, msg:Msg) => {
-    const testdrive = {...state.testdrive, driver}
+    const testdriveRequest = {...state.testdriveRequest, ...driver}
     return [
-      {...state, testdrive},
+      {...state, testdriveRequest},
       task.all([
-        saveTestDrive(testdrive),
+        saveTestDrive(testdriveRequest),
         task.historyPush('/new/brand')
       ])
     ]
   },
 
-  submitCarBrand: (state:Model, brand:string, msg:Msg) => {
-    const testdrive = assocPath(['car', 'brand'])(brand)(state.testdrive)
-    const brands = contains(brand)(state.brands) ? state.brands : [...state.brands, brand]
+  submitCarBrand: (state:Model, carBrand:string, msg:Msg) => {
+    const testdriveRequest = {
+      ...state.testdriveRequest,
+      carBrand
+    }
+    const brands = contains(carBrand)(state.brands) ? state.brands : [...state.brands, carBrand]
     return [
-      {...state, testdrive, brands},
+      {...state, testdriveRequest, brands},
       task.all([
-        saveTestDrive(testdrive),
+        saveTestDrive(testdriveRequest),
         task.setLocalStorage('brands')(brands),
         task.historyPush('/new/model')
       ])
     ]
   },
-  submitCarModel: (state:Model, model:string, msg:Msg) => {
-    const testdrive = assocPath(['car', 'model'])(model)(state.testdrive)
-    const models = contains(model)(state.models) ? state.models :  [...state.models, model]
+  submitCarModel: (state:Model, carModel:string, msg:Msg) => {
+    const testdriveRequest = {
+      ...state.testdriveRequest,
+      carModel
+    }
+    const models = contains(carModel)(state.models) ? state.models :  [...state.models, carModel]
     return [
-      {...state, testdrive, models},
+      {...state, testdriveRequest, models},
       task.all([
-        saveTestDrive(testdrive),
+        saveTestDrive(testdriveRequest),
         task.setLocalStorage('models')(models),
         task.historyPush('/new/licenseplate')
       ])
     ]
   },
   submitCarLicenseplate: (state:Model, licenseplate:string, msg:Msg) => {
-    const testdrive = assocPath(['car', 'licenseplate'])(licenseplate)(state.testdrive)
+    const testdriveRequest = {
+      ...state.testdriveRequest,
+      licenseplate
+    }
     const licenseplates = contains(licenseplate)(state.licenseplates) ? state.licenseplates : [...state.licenseplates, licenseplate]
     return [
-      {...state, testdrive, licenseplates},
+      {...state, testdriveRequest, licenseplates},
       task.all([
-        saveTestDrive(testdrive),
+        saveTestDrive(testdriveRequest),
         task.setLocalStorage('licenseplates')(licenseplates),
         task.historyPush('/new/confirm')
       ])

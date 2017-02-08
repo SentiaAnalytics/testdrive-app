@@ -5,7 +5,7 @@ import TextInput  from './text-input'
 import {compose, targetValue, preventDefault} from '../util'
 import Signature from './signature'
 import {Layout, Col, Padding} from './layout'
-import Button from './button'
+import {Button} from './button'
 import Loader from './loader'
 
 type Props = {

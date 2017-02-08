@@ -16,7 +16,8 @@ type Props = {
   center?: bool,
   "space-around"?:bool,
   "space-between"?:bool,
-  right?: bool
+  right?: bool,
+  primary?: bool
 }
 const CLASS_PROPS = [
   'row',
@@ -28,7 +29,8 @@ const CLASS_PROPS = [
   'center',
   'space-around',
   'space-between',
-  'right'
+  'right',
+  'primary'
 ]
 const className = createClassName('layout')(CLASS_PROPS)
 

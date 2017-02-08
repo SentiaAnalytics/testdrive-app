@@ -3,7 +3,7 @@ import React from 'react'
 import SignaturePad from 'signature_pad'
 import Modal from './modal'
 import Card from './card'
-import Button from './button'
+import {Button} from './button'
 import {Layout, Padding} from './layout'
 
 export default class Signature extends React.Component {

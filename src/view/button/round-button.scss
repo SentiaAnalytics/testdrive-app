@@ -1,0 +1,68 @@
+@import "../../scss/variables";
+
+.round-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  border:none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.round-button-lg {
+  width: 75px;
+  height: 75px;
+}
+
+.round-button-xl {
+  width: 90px;
+  height: 90px;
+}
+
+.round-button-outline { background: transparent; color: white; border: 1px solid white;}
+
+.round-button-primary { background: $brand-primary; color: white; }
+.round-button-secondary { background: $brand-secondary; color: white; }
+.round-button-info { background: $brand-info; color: white; }
+.round-button-success { background: $brand-success; color: white; }
+.round-button-warning { background: $brand-warning; color: white; }
+.round-button-danger { background: $brand-danger; color: white; }
+
+.round-button-primary.round-button-outline {
+   background: transparent;
+  color: $brand-primary;
+  border: 1px solid $brand-primary;
+}
+.round-button-secondary.round-button-outline {
+   background: transparent;
+  color: $brand-secondary;
+  border: 1px solid $brand-secondary;
+}
+.round-button-info.round-button-outline {
+   background: transparent;
+  color: $brand-info;
+  border: 1px solid $brand-info;
+}
+.round-button-success.round-button-outline {
+   background: transparent;
+  color: $brand-success;
+  border: 1px solid $brand-success;
+}
+.round-button-warning.round-button-outline {
+   background: transparent;
+  color: $brand-warning;
+  border: 1px solid $brand-warning;
+}
+.round-button-danger.round-button-outline {
+   background: transparent;
+  color: $brand-danger;
+  border: 1px solid $brand-danger;
+}
+
+.round-button-bottom {position: fixed; bottom: 45px;}
+.round-button-right {position: fixed; right: 45px;}

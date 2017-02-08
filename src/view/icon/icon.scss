@@ -1,0 +1,12 @@
+@import "../../scss/variables";
+
+.material-icons-white { color: white; }
+.material-icons-primary { color: $brand-primary; }
+.material-icons-secondary { color: $brand-secondary; }
+.material-icons-info { color: $brand-info; }
+.material-icons-success { color: $brand-success; }
+.material-icons-warning { color: $brand-warning; }
+.material-icons-danger { color: $brand-danger; }
+
+.material-icons-lg { font-size: 2rem; }
+.material-icons-xl { font-size: 3rem; }

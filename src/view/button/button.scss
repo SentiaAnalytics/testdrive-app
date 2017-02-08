@@ -18,31 +18,12 @@
   font-size: 1.1rem;
 }
 
-.button-link {
-  background: none;
-  border:none;
-  color: $gray;
-  box-shadow: none;
-
-}
-.button-link.button-primary { color: $brand-primary; }
-.button-link.button-secondary { color: $brand-secondary; }
-.button-link.button-tertiary { color: $brand-tertiary; }
-.button-link.button-success { color: $brand-success; }
-.button-link.button-info { color: $brand-info; }
-.button-link.button-warning { color: $brand-warning; }
-.button-link.button-danger { color: $brand-danger }
-
 .button-primary {
   background-color: $brand-primary ;
   color: white;
 }
 .button-secondary {
   background-color: $brand-secondary ;
-  color: white;
-}
-.button-tertiary {
-  background-color: $brand-tertiary ;
   color: white;
 }
 .button-success {

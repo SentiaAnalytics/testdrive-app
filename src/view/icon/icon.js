@@ -1,12 +1,13 @@
 //@flow
 import React from 'react'
 import type {Dict} from '../../model'
-import './scss/font-awesome.scss'
+import './icon.scss'
 import {createClassName} from '../../util'
 
 type Props = {
   type: string,
-  primary?:bool,
+  white?: bool,
+  primary?: bool,
   secondary?: bool,
   success?: bool,
   info?: bool,
@@ -18,6 +19,7 @@ type Props = {
 }
 
 const CLASS_PROPS = [
+  'white',
   'primary',
   'secondary',
   'tertiary',
@@ -25,11 +27,10 @@ const CLASS_PROPS = [
   'info',
   'warning',
   'danger',
-  'type',
   'lg',
   'xl'
 ]
-const className = createClassName('icon')(CLASS_PROPS)
+const className = createClassName('material-icons')(CLASS_PROPS)
 
 export default (props:Props) =>
-  <i className={className(props)}/>
+  <i className={className(props)}>{props.type}</i>

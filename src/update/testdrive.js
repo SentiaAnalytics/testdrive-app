@@ -1,6 +1,6 @@
 //@flow
 import type {Testdrive,  Model, Msg} from '../model'
-import {emptyTestdrive} from '../model'
+import {emptyTestdriveRequest, emptyDriverForm, emptyConsentForm, emptyCprForm} from '../model'
 import {cmd} from '../start-app'
 import {assocPath, indexBy} from '../util'
 import * as task from '../tasks'
@@ -8,10 +8,10 @@ import * as task from '../tasks'
 
 const resetTestdrive = (state) => (
   {...state,
-    testdrive: emptyTestdrive,
-    driverForm: emptyTestdrive.driver,
-    carForm: emptyTestdrive.car,
-    consentForm: emptyTestdrive.consent,
+    testdriveRequest: emptyTestdriveRequest,
+    cprForm: emptyCprForm,
+    driverForm: emptyDriverForm,
+    consentForm: emptyConsentForm,
     testdriveStatus: 'NONE'
   })
 
@@ -27,39 +27,42 @@ export default {
     [
       resetTestdrive(state),
       task.all([
-        task.setLocalStorage('testdrive')(emptyTestdrive),
-        task.historyPush('/new/driver')
+        task.setLocalStorage('testdrive')(emptyTestdriveRequest),
+        task.historyPush('/new/driverslicense')
       ])
     ],
 
   driversLicenseCaptured: (state:Model, files:File[], msg:Msg) =>
     [
-      assocPath(['testdrive', 'driver', 'licenseURL', 'status'])('PENDING')(state),
+      assocPath(['testdriveRequest','licenseUrl', 'status'])('PENDING')(state),
       task.uploadDriversLicense(files[0])
         .fold(msg.uploadDriversLicenseFail, msg.uploadDriversLicenseSuccess)
     ],
 
-  uploadDriversLicenseSuccess: (state:Model, licenseURL:string) => {
-    const data = {value: licenseURL, status: 'SUCCESS'}
-    return [assocPath(['testdrive', 'driver', 'licenseURL'])(data)(state)]
+  uploadDriversLicenseSuccess: (state:Model, licenseUrl:string) => {
+    const data = {value: licenseUrl, status: 'SUCCESS'}
+    return [
+      assocPath(['testdriveRequest', 'licenseUrl'])(data)(state),
+      task.historyPush('/new/cpr')
+    ]
   },
 
   uploadDriversLicenseFail: (state:Model, err:any, msg:Msg) => {
     const data = {status: 'FAIL'}
     return [
-      assocPath(['testdrive', 'driver', 'licenseURL'])(data)(state),
+      assocPath(['testdriveRequest', 'licenseUrl'])(data)(state),
       task.call(msg.toastDanger, err)
     ]
   },
 
   confirmTestdrive: (state:Model, msg:Msg) => {
-    const testdrive = {
-      ...state.testdrive,
+    const testdriveRequest = {
+      ...state.testdriveRequest,
       consent: state.consentForm
     }
     return [
-      {...state, testdrive, testdriveStatus: 'PENDING'},
-      task.submitTestdrive(testdrive)
+      {...state, testdriveRequest, testdriveStatus: 'PENDING'},
+      task.submitTestdrive(testdriveRequest)
         .fold(msg.confirmTestdriveFail, msg.confirmTestdriveSuccess)
     ]
   },
@@ -72,7 +75,7 @@ export default {
         testDriveList : assocPath(['value', testdrive.id])(testdrive)(state.testdriveList)
       },
       task.all([
-        task.setLocalStorage('testdrive')(emptyTestdrive),
+        task.setLocalStorage('testdrive')(emptyTestdriveRequest),
         task.historyPush('/')
       ])
     ],

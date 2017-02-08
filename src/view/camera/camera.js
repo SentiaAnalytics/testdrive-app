@@ -1,5 +1,8 @@
 //@flow
 import React from 'react'
+import {Layout} from '../layout'
+import {RoundButton} from '../button'
+import Icon from '../icon'
 import './camera.scss'
 
 type Props = {
@@ -11,13 +14,17 @@ type Props = {
 export default class Camera extends React.Component {
   componentDidMount() {
     if (this.props.openOnLoad) {
-      console.log(this.refs.camera)
       setTimeout(() => this.refs.camera.click(), 200)
     }
   }
   render () {
     return (
-      <input id="camera" type="file" className="camera" accept="image/*" capture="camera" ref="camera" onChange={this.props.onChange}/>
+      <Layout center>
+        <RoundButton warning outline xl onClick={() => this.refs.camera.click()}>
+          <Icon xl type="camera_alt"/>
+        </RoundButton>
+        <input type="file" className="camera-input" accept="image/*" capture="camera" ref="camera" onChange={this.props.onChange}/>
+      </Layout>
     )
   }
 }

@@ -1,0 +1,17 @@
+@import "../../scss/variables";
+.link {
+  color: $gray;
+  text-decoration: none;
+  & ::hover,
+  & ::visited {
+    color:$gray;
+  }
+}
+
+.link-white {
+  color: white;
+  & ::hover,
+  & ::visited {
+    color:white;
+  }
+}

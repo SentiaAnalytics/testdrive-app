@@ -1,3 +1,4 @@
+@import "../../scss/variables";
 .layout {display: flex;}
 
 .layout-row { flex-direction: row;}
@@ -15,3 +16,4 @@
 .layout-space-beteween { justify-content: space-between;}
 .layout-space-around { justify-content: space-around;}
 .layout-right { justify-content: flex-end;}
+.layout-primary {background-color: $brand-primary; }

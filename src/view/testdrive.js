@@ -15,13 +15,13 @@ export default ({location, testdriveList}:Props) => {
   if (testdriveList.status !== 'SUCCESS') {
     return <Loader message="Loading testdrive" show={true}/>
   }
-  const {driver, car} = testdriveList.value[location.params.testdriveId]
+  const testdrive = testdriveList.value[location.params.testdriveId]
   return (
     <Layout column>
       <Col>
         <Padding>
-          <h1>{driver.firstname} {driver.lastname}</h1>
-          <p>{car.brand} {car.model}</p>
+          <h1>{testdrive.firstname} {testdrive.lastname}</h1>
+          <p>{testdrive.carBrand} {testdrive.carModel}</p>
         </Padding>
       </Col>
     </Layout>

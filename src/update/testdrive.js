@@ -71,8 +71,7 @@ export default {
     [
       {
         ...resetTestdrive(state),
-        testdriveStatus: 'SUCCESS',
-        testDriveList : assocPath(['value', testdrive.id])(testdrive)(state.testdriveList)
+        testdriveStatus: 'SUCCESS'
       },
       task.all([
         task.setLocalStorage('testdrive')(emptyTestdriveRequest),

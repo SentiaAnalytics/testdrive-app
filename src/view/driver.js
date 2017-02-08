@@ -22,7 +22,7 @@ export default ({msg, driverForm}:Props) => {
     <form
       onSubmit = {compose(x => msg.submitDriverForm(driverForm), preventDefault)}
       >
-      <Layout primary>
+      <Layout primary center>
         <Padding>
           <Col>
             <Padding>

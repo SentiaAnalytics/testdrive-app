@@ -39,53 +39,51 @@ export default (msg:Msg, state:Model) => {
   } = state
   return (
     <div className="app">
-      <div className="app-inner">
-        <Toast {...{msg, toast}} />
+      <Toast {...{msg, toast}} />
 
-        <Route pattern="/" location={location} render={() =>
-          <Home {...{msg, testdriveList} } />
-        }/>
+      <Route pattern="/" location={location} render={() =>
+        <Home {...{msg, testdriveList} } />
+      }/>
 
-        <Route pattern="/login" location={location} render={() =>
-          <Login {...{msg, loginForm, user} } />
-        }/>
+      <Route pattern="/login" location={location} render={() =>
+        <Login {...{msg, loginForm, user} } />
+      }/>
 
-        <Route pattern="/test" location={location} render={() =>
-          <Test />
-        }/>
+      <Route pattern="/test" location={location} render={() =>
+        <Test />
+      }/>
 
-        <Route pattern="/testdrives/:testdriveId" location={location} render={() =>
-          <Testdrive {...{testdriveList, location}} />
-        }/>
+      <Route pattern="/testdrives/:testdriveId" location={location} render={() =>
+        <Testdrive {...{testdriveList, location}} />
+      }/>
 
-        <Route pattern="/new/driverslicense" location={location} render={() =>
-          <Driverslicense {...{msg, testdriveRequest} } />
-        }/>
+      <Route pattern="/new/driverslicense" location={location} render={() =>
+        <Driverslicense {...{msg, testdriveRequest} } />
+      }/>
 
-        <Route pattern="/new/cpr" location={location} render={() =>
-          <Cpr {...{msg, cprForm} } />
-        }/>
+      <Route pattern="/new/cpr" location={location} render={() =>
+        <Cpr {...{msg, cprForm} } />
+      }/>
 
-        <Route pattern="/new/driver" location={location} render={() =>
-          <NewDriver {...{msg, driverForm} } />
-        }/>
+      <Route pattern="/new/driver" location={location} render={() =>
+        <NewDriver {...{msg, driverForm} } />
+      }/>
 
-        <Route pattern="/new/brand" location={location} render={() =>
-          <NewBrand {...{msg, brands}} />
-        }/>
+      <Route pattern="/new/brand" location={location} render={() =>
+        <NewBrand {...{msg, brands}} />
+      }/>
 
-        <Route pattern="/new/model" location={location} render={() =>
-          <NewModel {...{msg, models}} />
-        }/>
+      <Route pattern="/new/model" location={location} render={() =>
+        <NewModel {...{msg, models}} />
+      }/>
 
-        <Route pattern="/new/licenseplate" location={location} render={() =>
-          <NewLicenseplate {...{msg, licenseplateForm, licenseplates}} />
-        }/>
+      <Route pattern="/new/licenseplate" location={location} render={() =>
+        <NewLicenseplate {...{msg, licenseplateForm, licenseplates}} />
+      }/>
 
-        <Route pattern="/new/confirm" location={location} render={() =>
-          <Confirm {...{msg, consentForm, testdriveStatus, signatureModal: modals.signature}} />
-        }/>
-      </div>
+      <Route pattern="/new/confirm" location={location} render={() =>
+        <Confirm {...{msg, consentForm, testdriveStatus, signatureModal: modals.signature}} />
+      }/>
     </div>
 
   )

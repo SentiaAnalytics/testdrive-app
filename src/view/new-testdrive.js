@@ -16,7 +16,7 @@ import PageIndicator from './page-indicator'
 import {Button} from './button'
 
 
-export default (props) => {
+export default (props:any) => {
   const page = Number(props.location.params.page)
   const pickProps = flip(pick)(props)
   return (

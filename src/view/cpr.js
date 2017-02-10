@@ -19,18 +19,9 @@ export default ({msg, cprForm}:Props) => {
   return (
     <form
       onSubmit={compose(() => msg.submitCprForm(cprForm.cpr), preventDefault)}
-      style={{display: 'flex', flexGrow: 1}}
+      style={{display: 'flex', height:'100%'}}
       >
       <Layout column primary>
-        <Col>
-          <Padding>
-            <Layout space-between>
-              <Icon white type="chevron_left"/>
-                <PageIndicator current={2} of={6}/>
-              <Icon primary type="chevron_right"/>
-            </Layout>
-          </Padding>
-        </Col>
         <Layout grow={1} primary column center middle>
           <Col>
             <Padding>

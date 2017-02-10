@@ -4,6 +4,12 @@ import Maybe from 'data.maybe'
 import Either from 'data.either'
 import cookie from 'cookie'
 
+
+export const pick = (keys: string[]) => (obj:Dict) =>
+  keys.reduce((o, k) => ({...o, [k]: obj[k]}), {})
+
+export const flip =(f:Function) => (a:any) => (b: any) =>f(b)(a)
+
 export const append = (x:any) => (xs:any[]) => [...xs, x]
 
 export const any = (f:Function) => (xs:any[]) => xs.some(f)

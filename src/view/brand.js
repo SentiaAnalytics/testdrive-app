@@ -12,34 +12,27 @@ import PageIndicator from './page-indicator'
 
 type Props = {
   msg: Msg,
-  search: string,
+  search: {brand: string},
   brands: string[]
 }
 
 export default ({msg, search, brands}:Props) => {
   return (
-    <Layout grow={1} column>
+    <Layout grow={1} column style={{height:'100%'}}>
       <Col primary>
-        <Padding>
-          <Layout space-between>
-            <Icon white type="chevron_left"/>
-            <PageIndicator current={4} of={6}/>
-            <Icon type="face" primary/>
-          </Layout>
-        </Padding>
         <Padding>
           <TextInput
             white
             label="brand"
-            value={search}
+            value={search.brand}
             onChange={compose(x => msg.search('brand', x), targetValue)}
           />
         </Padding>
       </Col>
-      <Col grow={1} shrink={1}>
+      <Col grow={1} shrink={1} white>
         <Padding>
           <SelectList
-            searchQuery={search}
+            searchQuery={search.brand}
             items={map(value => ({label: value, value}))(brands)}
             onSelect = {msg.submitCarBrand}
           />

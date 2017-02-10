@@ -1,9 +1,18 @@
 @import "../../scss/variables";
 .col {
+  position:relative;
   flex-grow:0;
   flex-shrink:0;
   overflow-y: scroll;
 }
+
+.col-white {background:white;}
+.col-primary {background:$brand-primary;}
+.col-secondary {background:$brand-secondary;}
+.col-info {background:$brand-info;}
+.col-success {background:$brand-success;}
+.col-warning {background:$brand-warning;}
+.col-danger {background:$brand-danger;}
 
 .col-primary { background: $brand-primary; }
 

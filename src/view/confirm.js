@@ -11,15 +11,16 @@ import Loader from './loader'
 type Props = {
   msg: Msg,
   testdriveStatus:string,
-  signatureModal: bool,
+  modals: {signature: bool},
   consentForm: Consent
 }
 
-export default ({msg, consentForm, signatureModal, testdriveStatus}:Props) => {
+export default ({msg, consentForm, modals, testdriveStatus}:Props) => {
+  console.log(modals)
   return (
     <form
       onSubmit={compose(_ => msg.confirmTestdrive(), preventDefault) }
-      style= {{display: 'flex', flexGrow: 1}}
+      style= {{display: 'flex', height: '100%'}}
       >
       <Loader message="Submitting Testdrive" show={testdriveStatus === 'PENDING'}/>
       <Layout column style={{background: 'white'}}>
@@ -28,9 +29,9 @@ export default ({msg, consentForm, signatureModal, testdriveStatus}:Props) => {
             <h2>Confirm test drive</h2>
           </Padding>
           <Padding>
-            { signatureModal ?
+            { modals.signature ?
               <Signature
-                showModal={signatureModal}
+                showModal={modals.signature}
                 onChange={msg.setSignature}
               /> : null }
             { consentForm.base64Signature ? <img src={consentForm.base64Signature}/> : null}
@@ -39,6 +40,7 @@ export default ({msg, consentForm, signatureModal, testdriveStatus}:Props) => {
         <Col>
           <Padding>
             <Button
+              square
               onClick={compose(_ => msg.openModal('signature'), preventDefault)}
               block
               primary
@@ -48,7 +50,7 @@ export default ({msg, consentForm, signatureModal, testdriveStatus}:Props) => {
           </Padding>
         </Col>
         <Col>
-          <Button type="submit" block success large disabled={!consentForm.base64Signature || undefined}> Submit</Button>
+          <Button type="submit" square block success large disabled={!consentForm.base64Signature || undefined}> Submit</Button>
         </Col>
       </Layout>
     </form>

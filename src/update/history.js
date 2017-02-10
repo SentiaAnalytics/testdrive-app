@@ -29,6 +29,8 @@ const router = (routes:Dict) => (state:Model, location:Location, msg:Msg) => {
 }
 
 export default {
+  goBack: (state:Model) =>
+    [state, task.historyPop],
   locationUpdate : (state:Model, location:Location, msg:Msg) => {
     if (location.pathname !== '/login' && state.user.status !== 'SUCCESS') {
       return [state, task.historyReplace('/login')]
@@ -50,6 +52,8 @@ export default {
             .fold(msg.httpError, msg.getTestdriveListSuccess)
         ]
       },
+      '/new/:page': (state, location) =>
+        [{...state, location}],
       'default': (state, location, msg) =>
         [{...state, location}]
     })

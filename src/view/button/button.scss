@@ -1,5 +1,17 @@
 @import "../../scss/variables";
 .button {
+  background: transparent;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  height: auto;
+  width:auto;
+  &:focus {
+    outline: none;
+  }
+}
+.button-square {
   background: white;
   border: none;
   border-radius: 1px;

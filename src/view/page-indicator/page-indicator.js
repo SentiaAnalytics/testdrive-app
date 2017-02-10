@@ -14,5 +14,5 @@ const pageIndicator = (page:number) => (i:number) =>
 
 export default (props:Props) =>
   <div className="page-indicator">
-    {map(pageIndicator(props.current))(range(1)(props.of))}
+    {map(pageIndicator(props.current))(range(0)(props.of))}
   </div>

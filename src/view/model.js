@@ -11,33 +11,26 @@ import PageIndicator from './page-indicator'
 
 type Props = {
   msg: Msg,
-  search: string,
+  search: {model: string},
   models: string[]
 }
 
 export default ({msg, models, search}:Props) =>
-  <Layout column white>
-    <Col primary>
-      <Padding>
-        <Layout space-between>
-          <Icon white type="chevron_left"/>
-          <PageIndicator current={5} of={6}/>
-          <Icon type="face" primary/>
-        </Layout>
-      </Padding>
+  <Layout column primary style={{height: '100%'}}>
+    <Col>
       <Padding>
         <TextInput
           white
           label="model"
-          value={search}
+          value={search.model}
           onChange={compose(x => msg.search('model', x), targetValue)}
         />
       </Padding>
     </Col>
-    <Col grow={1} shrink={1}>
+    <Col grow={1} shrink={1} white>
       <Padding>
         <SelectList
-          searchQuery={search}
+          searchQuery={search.model}
           items={map(value => ({label: value, value}))(models)}
           onSelect = {msg.submitCarModel}
         />

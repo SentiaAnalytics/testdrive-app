@@ -15,6 +15,6 @@ export const historyReplace = (url:string) =>
   })
 
 export const historyPop = new Task((reject, resolve) => {
-  history.pop()
+  history.goBack()
   resolve(history.location)
 })

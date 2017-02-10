@@ -11,33 +11,26 @@ import Icon from './icon'
 
 type Props = {
   msg: Msg,
-  search: string,
+  search: {licenseplate: string},
   licenseplates: string[]
 }
 
 export default ({msg, search, licenseplates}:Props) =>
-  <Layout column>
+  <Layout column primary style={{height: '100%'}}>
     <Col primary>
-      <Padding>
-        <Layout space-between>
-          <Icon white type="chevron_left"/>
-          <PageIndicator current={6} of={6}/>
-          <Icon type="face" primary/>
-        </Layout>
-      </Padding>
       <Padding>
         <TextInput
           white
           label="licenseplate"
-          value={search}
+          value={search.licenseplate}
           onChange={compose(x => msg.search('licenseplate', x), targetValue)}
         />
       </Padding>
     </Col>
-    <Col grow="1" shrink="1">
+    <Col grow="1" shrink="1" white>
       <Padding>
         <SelectList
-          searchQuery={search}
+          searchQuery={search.licenseplate}
           items={map(value => ({label: value, value}))(licenseplates)}
           onSelect = {msg.submitCarLicenseplate}
         />

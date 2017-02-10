@@ -13,7 +13,7 @@ export default {
   submitCprForm: (state:Model, cpr:number, msg:Msg) =>
     [
       assocPath(['testdriveRequest','cpr'])(cpr)(state),
-      task.historyPush('/new/driver')
+      task.historyPush('/new/2')
     ],
 
   submitDriverForm: (state:Model, driver:Driver, msg:Msg) => {
@@ -22,7 +22,7 @@ export default {
       {...state, testdriveRequest},
       task.all([
         saveTestDrive(testdriveRequest),
-        task.historyPush('/new/brand')
+        task.historyPush('/new/3')
       ])
     ]
   },
@@ -38,7 +38,7 @@ export default {
       task.all([
         saveTestDrive(testdriveRequest),
         task.setLocalStorage('brands')(brands),
-        task.historyPush('/new/model')
+        task.historyPush('/new/4')
       ])
     ]
   },
@@ -53,7 +53,7 @@ export default {
       task.all([
         saveTestDrive(testdriveRequest),
         task.setLocalStorage('models')(models),
-        task.historyPush('/new/licenseplate')
+        task.historyPush('/new/5')
       ])
     ]
   },
@@ -68,7 +68,7 @@ export default {
       task.all([
         saveTestDrive(testdriveRequest),
         task.setLocalStorage('licenseplates')(licenseplates),
-        task.historyPush('/new/confirm')
+        task.historyPush('/new/6')
       ])
     ]
   }

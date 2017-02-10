@@ -28,7 +28,7 @@ export default {
       resetTestdrive(state),
       task.all([
         task.setLocalStorage('testdrive')(emptyTestdriveRequest),
-        task.historyPush('/new/driverslicense')
+        task.historyPush('/new/0')
       ])
     ],
 
@@ -43,7 +43,7 @@ export default {
     const data = {value: licenseUrl, status: 'SUCCESS'}
     return [
       assocPath(['testdriveRequest', 'licenseUrl'])(data)(state),
-      task.historyPush('/new/cpr')
+      task.historyPush('/new/1')
     ]
   },
 

@@ -36,8 +36,8 @@ export default class Signature extends React.Component {
           </Padding>
           <canvas style={{width:'100%'}} id="signature_pad" ref={(e) => e ? (e.width = e.offsetWidth) : null}/>
           <Layout>
-            <Button block link onClick={e => this.clear(e)}>Clear</Button>
-            <Button block link onClick={e => this.submit(e) }>
+            <Button square block link onClick={e => this.clear(e)}>Clear</Button>
+            <Button square block link onClick={e => this.submit(e) }>
             save
             </Button>
           </Layout>

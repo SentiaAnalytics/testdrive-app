@@ -15,16 +15,7 @@ type Props = {
   testdriveRequest: TestdriveRequest
 }
 export default ({msg, testdriveRequest}:Props) =>
-  <Layout column primary>
-    <Col>
-      <Padding>
-        <Layout space-between>
-          <Icon white type="chevron_left"/>
-            <PageIndicator current={1} of={6}/>
-          <Icon primary type="chevron_right"/>
-        </Layout>
-      </Padding>
-    </Col>
+  <Layout column primary style={{height: '100%'}}>
     <Layout grow={1} shrink={1} column center middle>
         <Loader message="Saving Drivers License" show={testdriveRequest.licenseUrl.status === 'PENDING'}/>
       <Col>

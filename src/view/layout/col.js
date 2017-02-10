@@ -20,7 +20,12 @@ const CLASS_PROPS = [
   'top',
   'middle',
   'bottom',
-  'primary'
+  'white',
+  'primary',
+  'info',
+  'success',
+  'warning',
+  'danger'
 ]
 const className = createClassName('col')(CLASS_PROPS)
 

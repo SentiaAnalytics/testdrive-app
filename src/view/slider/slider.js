@@ -3,16 +3,13 @@ import React from 'react'
 import "./slider.scss"
 
 type Props = {
-  children:any[],
+  children?:any[],
   page:number
 }
 export default ({page, children}:Props) => {
-  const contentStyle = {
-    transform: `translateX(-${page * 100}%)`
-  }
   return (
     <div className="slider">
-      <div className="slider-content" style={contentStyle}>
+      <div className="slider-content" style={{left:`-${page * 100}%`}}>
         {children}
       </div>
     </div>

@@ -22,18 +22,9 @@ export default ({msg, driverForm}:Props) => {
   return (
     <form
       onSubmit = {compose(x => msg.submitDriverForm(driverForm), preventDefault)}
-      style={{display:'flex', flexGrow:1, flexShrink:1}}
+      style={{display:'flex', height:'100%'}}
       >
       <Layout column primary>
-        <Col>
-          <Padding>
-            <Layout space-between>
-              <Icon white type="chevron_left"/>
-                <PageIndicator current={3} of={6}/>
-              <Icon primary type="chevron_right"/>
-            </Layout>
-          </Padding>
-        </Col>
         <Layout grow={1} shrink={1} center scroll>
           <Padding>
             <Col>

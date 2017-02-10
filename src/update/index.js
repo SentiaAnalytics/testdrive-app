@@ -1,7 +1,7 @@
 //@flow
 import type {Action, Model, Dict, ActionHandler} from '../model'
 import {cmd} from '../start-app'
-import {evolve} from '../util'
+import {evolve, assocPath} from '../util'
 import forms from './forms'
 import signature from './signature'
 import testdrive from './testdrive'
@@ -17,6 +17,9 @@ export default {
   ...testdrive,
   ...auth,
   ...toasts,
+
+  search: (state, name, value, msg) =>
+    [assocPath(['search', name])(value)(state)],
 
   init : (state, msg) =>
     [state, task.validateSession.fold(msg.validateSessionFail, msg.validateSessionSuccess)],

@@ -8,21 +8,38 @@ import {Button} from './button'
 import {SelectList} from './list'
 import Icon from './icon'
 import Title from './title'
+import PageIndicator from './page-indicator'
 
 type Props = {
   msg: Msg,
+  search: string,
   brands: string[]
 }
 
-export default ({msg, brands}:Props) => {
-
+export default ({msg, search, brands}:Props) => {
   return (
-    <Layout column style={{background: 'white'}}>
-      <Col grow={1}>
+    <Layout grow={1} column>
+      <Col primary>
         <Padding>
-          <Title white> Car Brand?</Title>
+          <Layout space-between>
+            <Icon white type="chevron_left"/>
+            <PageIndicator current={4} of={6}/>
+            <Icon type="face" primary/>
+          </Layout>
+        </Padding>
+        <Padding>
+          <TextInput
+            white
+            label="brand"
+            value={search}
+            onChange={compose(x => msg.search('brand', x), targetValue)}
+          />
+        </Padding>
+      </Col>
+      <Col grow={1} shrink={1}>
+        <Padding>
           <SelectList
-            title="Brand"
+            searchQuery={search}
             items={map(value => ({label: value, value}))(brands)}
             onSelect = {msg.submitCarBrand}
           />

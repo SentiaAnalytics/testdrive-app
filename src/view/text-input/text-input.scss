@@ -19,10 +19,15 @@
   }
 }
 
-.text-input-white { color: white; }
+.text-input-lg input {
+  font-size: 2.2rem;
+  height: 3.2rem;
+}
+
+.text-input-white input { color: white; }
 
 .text-input label {
-  color: $brand-secondary;
+  color: $brand-success;
   display: block;
   font-size: 0.875rem;
   text-transform: uppercase;

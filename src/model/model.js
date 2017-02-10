@@ -20,6 +20,11 @@ export const emptyLoc = {
 
 export type Model = {
   testdriveStatus: string,
+  search: {
+    brand: string,
+    model: string,
+    licenseplate: string
+  },
   toast: ?Toast,
   modals: { [string]: bool },
   user: Async<User>,
@@ -40,6 +45,11 @@ export const emptyModel:Model = {
   toast: null,
   modals: {
     signature: false
+  },
+  search: {
+    brand: '',
+    model: '',
+    licenseplate: ''
   },
   user: {status: 'NONE'},
   loginForm: emptyCredentials,

@@ -19,6 +19,7 @@ export default ({msg, consentForm, signatureModal, testdriveStatus}:Props) => {
   return (
     <form
       onSubmit={compose(_ => msg.confirmTestdrive(), preventDefault) }
+      style= {{display: 'flex', flexGrow: 1}}
       >
       <Loader message="Submitting Testdrive" show={testdriveStatus === 'PENDING'}/>
       <Layout column style={{background: 'white'}}>

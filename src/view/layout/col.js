@@ -19,7 +19,8 @@ const CLASS_PROPS = [
   'shrink',
   'top',
   'middle',
-  'bottom'
+  'bottom',
+  'primary'
 ]
 const className = createClassName('col')(CLASS_PROPS)
 

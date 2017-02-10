@@ -2,17 +2,26 @@
 import React from 'react'
 import type {Dict} from '../../model'
 import './text-input.scss'
+import {createClassName} from '../../util'
 
 type Props = {
   focusOnLoad?: bool,
   value: string,
   onChange: Function,
-  white?: bool,
   required?:bool,
   label:string,
   type?: string,
-  style?: Dict
+  style?: Dict,
+  lg?: bool,
+  white?: bool
 }
+
+const CLASS_PROPS = [
+  'lg',
+  'white'
+]
+
+const className = createClassName('text-input')(CLASS_PROPS)
 
 export default class TextInput extends React.Component {
   componentDidMount() {
@@ -24,12 +33,11 @@ export default class TextInput extends React.Component {
   render () {
     const {value, white, onChange, label, type='text', style= {}, required} = this.props
     return (
-      <div className="text-input">
+      <div className={className(this.props)}>
         <label>
           {label}
           <input
             ref="input"
-            className={white ? 'text-input-white' : ''}
             type={type}
             value={value}
             onChange={onChange}

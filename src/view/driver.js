@@ -8,6 +8,7 @@ import {RoundButton} from './button'
 import Icon from './icon'
 import Loader from './loader'
 import Title from './title'
+import PageIndicator from './page-indicator'
 
 type Props = {
   driverForm: Driver,
@@ -21,61 +22,74 @@ export default ({msg, driverForm}:Props) => {
   return (
     <form
       onSubmit = {compose(x => msg.submitDriverForm(driverForm), preventDefault)}
+      style={{display:'flex', flexGrow:1, flexShrink:1}}
       >
-      <Layout primary center>
-        <Padding>
-          <Col>
-            <Padding>
-              <Title white> New Driver </Title>
-              <TextInput
-                white
-                required
-                label="Firstname"
-                value={driverForm.firstname}
-                onChange={setField('firstname')} />
-              <TextInput
-                white
-                required
-                label="Lastname"
-                value={driverForm.lastname}
-                onChange={setField('lastname')} />
-
-              <TextInput
-                white
-                label="Address Line 1"
-                value={driverForm.addressLine1}
-                onChange={setField('addressLine1')} />
-
-              <TextInput
-                white
-                label="Adress line 2"
-                value={driverForm.addressLine2}
-                onChange={setField('addressLine2')} />
-
-              <TextInput
-                white
-                label="Postcode"
-                value={driverForm.postcode}
-                onChange={setField('postcode')} />
-
-              <TextInput
-                white
-                label="City"
-                value={driverForm.city}
-                onChange={setField('city')} />
-
-              <TextInput
-                white
-                label="Country"
-                value={driverForm.country}
-                onChange={setField('country')} />
-            </Padding>
-
-            <Layout center>
-              <RoundButton outline type="submit"><Icon white type="arrow_forward"/></RoundButton>
+      <Layout column primary>
+        <Col>
+          <Padding>
+            <Layout space-between>
+              <Icon white type="chevron_left"/>
+                <PageIndicator current={3} of={6}/>
+              <Icon primary type="chevron_right"/>
             </Layout>
-          </Col>
-        </Padding>
+          </Padding>
+        </Col>
+        <Layout grow={1} shrink={1} center scroll>
+          <Padding>
+            <Col>
+              <Padding>
+                <Title white> New Driver </Title>
+                <TextInput
+                  white
+                  required
+                  label="Firstname"
+                  value={driverForm.firstname}
+                  onChange={setField('firstname')} />
+                <TextInput
+                  white
+                  required
+                  label="Lastname"
+                  value={driverForm.lastname}
+                  onChange={setField('lastname')} />
+
+                <TextInput
+                  white
+                  label="Address Line 1"
+                  value={driverForm.addressLine1}
+                  onChange={setField('addressLine1')} />
+
+                <TextInput
+                  white
+                  label="Adress line 2"
+                  value={driverForm.addressLine2}
+                  onChange={setField('addressLine2')} />
+
+                <TextInput
+                  white
+                  label="Postcode"
+                  value={driverForm.postcode}
+                  onChange={setField('postcode')} />
+
+                <TextInput
+                  white
+                  label="City"
+                  value={driverForm.city}
+                  onChange={setField('city')} />
+
+                <TextInput
+                  white
+                  label="Country"
+                  value={driverForm.country}
+                  onChange={setField('country')} />
+                <Layout center>
+                  <Padding>
+                    <RoundButton outline type="submit"><Icon white type="arrow_forward"/></RoundButton>
+                  </Padding>
+                </Layout>
+              </Padding>
+            </Col>
+          </Padding>
+        </Layout>
       </Layout>
     </form>
   )

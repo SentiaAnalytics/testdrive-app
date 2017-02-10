@@ -6,19 +6,38 @@ import {map, compose, targetValue, preventDefault} from '../util'
 import {Layout, Col, Padding} from './layout'
 import {Button} from './button'
 import {SelectList} from './list'
+import Icon from './icon'
+import PageIndicator from './page-indicator'
 
 type Props = {
   msg: Msg,
+  search: string,
   models: string[]
 }
 
-export default ({msg, models}:Props) =>
-  <Layout column style={{background: 'white'}}>
-    <Col grow="1" shrink="1">
+export default ({msg, models, search}:Props) =>
+  <Layout column white>
+    <Col primary>
       <Padding>
-        <h2>Add model</h2>
+        <Layout space-between>
+          <Icon white type="chevron_left"/>
+          <PageIndicator current={5} of={6}/>
+          <Icon type="face" primary/>
+        </Layout>
+      </Padding>
+      <Padding>
+        <TextInput
+          white
+          label="model"
+          value={search}
+          onChange={compose(x => msg.search('model', x), targetValue)}
+        />
+      </Padding>
+    </Col>
+    <Col grow={1} shrink={1}>
+      <Padding>
         <SelectList
-          title="Model"
+          searchQuery={search}
           items={map(value => ({label: value, value}))(models)}
           onSelect = {msg.submitCarModel}
         />

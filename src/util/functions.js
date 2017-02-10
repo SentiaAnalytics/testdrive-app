@@ -23,6 +23,8 @@ export const tail = ([x, ...xs]: any[]) => xs
 
 export const chain = (f:Function) => (x:any) => x.chain(f)
 export const merge = (a:Dict)=> (b:Dict) => Object.assign({}, a, b)
+export const range = (from:number) => (to:number) =>
+  Array.from(Array(to).keys(), x =>x + from)
 
 
 export const indexBy = (f:Function) => (xs:any[]) =>

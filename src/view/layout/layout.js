@@ -17,9 +17,12 @@ type Props = {
   "space-around"?:bool,
   "space-between"?:bool,
   right?: bool,
-  primary?: bool
+  primary?: bool,
+  scroll?: bool
 }
 const CLASS_PROPS = [
+  'grow',
+  'shrink',
   'row',
   'column',
   'top',
@@ -30,7 +33,8 @@ const CLASS_PROPS = [
   'space-around',
   'space-between',
   'right',
-  'primary'
+  'primary',
+  'scroll'
 ]
 const className = createClassName('layout')(CLASS_PROPS)
 

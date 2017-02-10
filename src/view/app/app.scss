@@ -58,9 +58,6 @@ body, html, #root {
   padding:0;
   margin:0;
 }
-form {
-  height: 100%;
-}
 
 /* This file should be included in your app to support vars + split */
 
@@ -86,7 +83,7 @@ h2 {
 
 .app {
   height: 100%;
-  background: $gray-lighter;
+  display: flex;
 }
 
 .app-inner {

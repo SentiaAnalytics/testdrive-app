@@ -1,10 +1,26 @@
 @import "../../scss/variables";
-.layout {display: flex;}
+.layout {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.layout-scroll {
+  overflow-y: auto;
+}
+.layout-grow-1 { flex-grow: 1}
+.layout-grow-2 { flex-grow: 2}
+.layout-grow-3 { flex-grow: 3}
+.layout-grow-4 { flex-grow: 4}
+
+.layout-shrink-1 { flex-shrink: 1}
+.layout-shrink-2 { flex-shrink: 2}
+.layout-shrink-3 { flex-shrink: 3}
+.layout-shrink-4 { flex-shrink: 4}
+
 
 .layout-row { flex-direction: row;}
 .layout-column {
   flex-direction: column;
-  height: 100%;
 }
 
 .layout-top { align-items: flex-start;}
@@ -13,7 +29,7 @@
 
 .layout-left { justify-content: flex-start;}
 .layout-center { justify-content: center;}
-.layout-space-beteween { justify-content: space-between;}
+.layout-space-between { justify-content: space-between;}
 .layout-space-around { justify-content: space-around;}
 .layout-right { justify-content: flex-end;}
 .layout-primary {background-color: $brand-primary; }

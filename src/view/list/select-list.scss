@@ -1,0 +1,28 @@
+@import "../../scss/variables";
+
+.select-list-header-primary .select-list-header {
+  background: $brand-primary;
+  color: white;
+}
+
+.select-list-header-secondary .select-list-header {
+  background: $brand-secondary;
+  color: white;
+}
+
+.select-list-header-info .select-list-header {
+  background: $brand-info;
+  color: white;
+}
+.select-list-header-success .select-list-header {
+  background: $brand-success;
+  color: white;
+}
+.select-list-header-warning .select-list-header {
+  background: $brand-warning;
+  color: white;
+}
+.select-list-header-danger .select-list-header {
+  background: $brand-danger;
+  color: white;
+}

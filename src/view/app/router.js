@@ -23,10 +23,10 @@ export default (msg:Msg, state:Model) => {
   const {
     cprForm,
     driverForm,
-    licenseplateForm,
     consentForm,
     modals,
     user,
+    search,
     testdriveRequest,
     testdriveList,
     testdriveStatus,
@@ -70,15 +70,15 @@ export default (msg:Msg, state:Model) => {
       }/>
 
       <Route pattern="/new/brand" location={location} render={() =>
-        <NewBrand {...{msg, brands}} />
+        <NewBrand {...{msg, brands, search: search.brand}} />
       }/>
 
       <Route pattern="/new/model" location={location} render={() =>
-        <NewModel {...{msg, models}} />
+        <NewModel {...{msg, models, search: search.model}} />
       }/>
 
       <Route pattern="/new/licenseplate" location={location} render={() =>
-        <NewLicenseplate {...{msg, licenseplateForm, licenseplates}} />
+        <NewLicenseplate {...{msg, search: search.licenseplate, licenseplates}} />
       }/>
 
       <Route pattern="/new/confirm" location={location} render={() =>

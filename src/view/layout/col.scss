@@ -1,8 +1,11 @@
+@import "../../scss/variables";
 .col {
   flex-grow:0;
   flex-shrink:0;
   overflow-y: scroll;
 }
+
+.col-primary { background: $brand-primary; }
 
 .col-grow-1 {flex-grow: 1;}
 .col-grow-2 {flex-grow: 2;}

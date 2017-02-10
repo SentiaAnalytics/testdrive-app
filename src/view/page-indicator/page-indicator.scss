@@ -1,0 +1,20 @@
+@import "../../scss/variables";
+
+.page-indicator {
+  display:flex;
+  align-items: center;
+}
+
+.page-indicator-page {
+  margin: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 1000px;
+  background: $gray-light;
+  &.page-indicator-current {
+    width: 10px;
+    height: 10px;
+    margin: 4px;
+    background: $brand-warning;
+  }
+}

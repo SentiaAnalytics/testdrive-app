@@ -1,5 +1,3 @@
-//@flow weak
-
 const tmpCtx = document.createElement('canvas').getContext('2d')
 
 const createImageData = (w,h) =>

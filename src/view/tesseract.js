@@ -6,6 +6,7 @@ import {toCanvas, compress, imageFromFile, createObjectUrl } from '../util/image
 import {applyFilter, threshold2, convolute, sharpen, blur} from '../util/filters'
 import Task from 'data.task'
 import {Layout, Col, Padding} from './layout'
+import Loader from './loader'
 
 const log = key => value => (console.log(key, value), value)
 const tessOptions = {
@@ -35,12 +36,13 @@ export default class Tess extends React.Component {
   state : any
   constructor () {
     super()
-    this.state = {result: {}, imageUrl: null}
+    this.state = {result: {}, imageUrl: null, loading:false, time: 0}
   }
 
   onCapture (files) {
     const filter = compose(threshold2(100))
     const t1 = Date.now()
+    this.setState({loading:true})
     getImageCanvas(2000)(files[0])
       .map(applyFilter(filter))
       .chain(compress(0.7))
@@ -52,15 +54,21 @@ export default class Tess extends React.Component {
       .fork(
         console.error,
         ({result, blob}) => {
-          console.log('total time', Date.now() - t1)
-          this.setState({result, imageUrl: createObjectUrl(blob)})
+          console.log('total time', )
+          this.setState({
+            time: Date.now() - t1,
+            loading: false,
+            result,
+            imageUrl: createObjectUrl(blob)
+          })
         }
       )
   }
 
   render () {
-    const {result, imageUrl} = this.state
+    const {time, loading, result, imageUrl} = this.state
     console.log(result)
+    if (loading) return <Loader message="processing image" show={true}/>
     return (
       <Layout column primary style={{height: '100%'}}>
         <Layout grow={1} shrink={1} column center middle>
@@ -76,6 +84,7 @@ export default class Tess extends React.Component {
               <img src={imageUrl}/>
               </div>
               <h3>{result.text && result.text.match(/[0-3][0-9][0-1][0-9]\d{2}\-\d{4}/)}</h3>
+              <p> {time}ms</p>
               <pre> {result.text}</pre>
             </Padding>
           </Col>

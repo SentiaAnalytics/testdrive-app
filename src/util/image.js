@@ -20,11 +20,16 @@ const readAsArrayBuffer = (file:File) =>
     reader.readAsArrayBuffer(file)
   })
 
-const createImage = (src:string) => new Task((reject, resolve) => {
+export const createObjectUrl = (blob:Blob) =>
+  (window.URL || window.webkitURL).createObjectURL(blob)
+
+export const createImage = (src:string) => new Task((reject, resolve) => {
   const image = new Image()
   image.onload = () => resolve(image)
   image.src = src
 })
+
+export const imageFromFile = compose(chain(createImage), map(x => createObjectUrl(new Blob([x]))), readAsArrayBuffer)
 
 const createCanvas = (width:number, height:number) => {
   const canvas = document.createElement('canvas')
@@ -33,24 +38,23 @@ const createCanvas = (width:number, height:number) => {
   return canvas
 }
 
-const createObjectURL = buffer =>
-  (window.URL || window.webkitURL).createObjectURL(new Blob([buffer]))
-
-const compress = (options:CompressionOptions) => (image:Image) =>
-  new Task((reject, resolve) => {
-  const {resolution: height, compressionRate} = merge(compressionDefaults)(options)
+export const toCanvas = (height: number) => (image:Image) => {
   const width = (image.width/image.height) * height
   const canvas = createCanvas(width, height)
   const ctx = canvas.getContext('2d')
-  console.log(image.width, image.height)
   if (ctx) {
     ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
   }
-  return canvas.toBlob(resolve, 'image/jpeg', compressionRate)
-})
+  return canvas
+}
 
-export const compressImage = (file:File, options:CompressionOptions) =>
-  readAsArrayBuffer(file)
-    .map(createObjectURL)
-    .chain(createImage)
-    .chain(compress(options))
+export const compress = (rate: ?number)=> (canvas:any) =>
+  new Task((_, resolve) =>
+    canvas.toBlob(resolve, 'image/jpeg', rate)
+  )
+
+
+export const compressImage = (file:File, {resolution = 1080, compressionRate = 0.7}:CompressionOptions) =>
+  imageFromFile(file)
+    .map(toCanvas(resolution))
+    .chain(compress(compressionRate))

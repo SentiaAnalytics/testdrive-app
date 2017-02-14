@@ -10,6 +10,9 @@ import Toast from '../toast'
 import {Layout} from '../layout'
 import './app.scss'
 import Test from '../test'
+import Tesseract from '../tesseract'
+import ImageFilter from '../image-filter'
+
 import Route from '../route'
 import NewTestdrive from '../new-testdrive'
 
@@ -35,6 +38,12 @@ export default (msg:Msg, state:Model) => {
 
       <Route pattern="/test" location={location} render={() =>
         <Test />
+      }/>
+      <Route pattern="/tesseract" location={location} render={() =>
+        <Tesseract />
+      }/>
+      <Route pattern="/filter" location={location} render={() =>
+        <ImageFilter />
       }/>
 
       <Route pattern="/testdrives/:testdriveId" location={location} render={() =>

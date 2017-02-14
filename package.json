@@ -72,6 +72,7 @@
     "redux": "^3.6.0",
     "serve": "^2.4.3",
     "signature_pad": "^1.5.3",
+    "tesseract.js": "^1.0.10",
     "uuid": "^3.0.1"
   },
   "scripts": {

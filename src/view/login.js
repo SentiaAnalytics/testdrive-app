@@ -39,7 +39,7 @@ export default ({msg, loginForm, user}:Props) => {
                 onChange={setField('password')}
               />
             </Padding>
-            <Button type="submit" block success>Login</Button>
+            <Button type="submit" square block success>Login</Button>
           </form>
           </Card>
       </Col>

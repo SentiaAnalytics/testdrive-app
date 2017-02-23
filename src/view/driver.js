@@ -1,6 +1,6 @@
 //@flow
 import React from 'react'
-import type {Driver, Msg} from '../model'
+import type {DriverForm, Msg} from '../model'
 import {compose, targetValue, targetFiles,preventDefault, toPairs, any} from '../util'
 import TextInput from './text-input'
 import {Layout, Col, Padding} from './layout'
@@ -11,7 +11,7 @@ import Title from './title'
 import PageIndicator from './page-indicator'
 
 type Props = {
-  driverForm: Driver,
+  driverForm: DriverForm,
   msg: Msg
 }
 
@@ -33,9 +33,9 @@ export default ({msg, driverForm}:Props) => {
                 <TextInput
                   white
                   required
-                  label="Firstname"
-                  value={driverForm.firstname}
-                  onChange={setField('firstname')} />
+                  label="Forenames"
+                  value={driverForm.forenames}
+                  onChange={setField('forenames')} />
                 <TextInput
                   white
                   required
@@ -45,33 +45,51 @@ export default ({msg, driverForm}:Props) => {
 
                 <TextInput
                   white
-                  label="Address Line 1"
-                  value={driverForm.addressLine1}
-                  onChange={setField('addressLine1')} />
+                  required
+                  label="street"
+                  value={driverForm.street}
+                  onChange={setField('street')} />
 
                 <TextInput
                   white
-                  label="Adress line 2"
-                  value={driverForm.addressLine2}
-                  onChange={setField('addressLine2')} />
+                  required
+                  label="House number"
+                  value={driverForm.houseNumber}
+                  onChange={setField('houseNumber')} />
 
                 <TextInput
                   white
+                  label="Floor"
+                  value={driverForm.floor}
+                  onChange={setField('floor')} />
+
+                <TextInput
+                  white
+                  label="Apartment"
+                  value={driverForm.aparment}
+                  onChange={setField('apartment')} />
+
+                <TextInput
+                  white
+                  required
                   label="Postcode"
                   value={driverForm.postcode}
                   onChange={setField('postcode')} />
 
                 <TextInput
                   white
+                  required
                   label="City"
                   value={driverForm.city}
                   onChange={setField('city')} />
 
                 <TextInput
                   white
+                  required
                   label="Country"
                   value={driverForm.country}
                   onChange={setField('country')} />
+
                 <Layout center>
                   <Padding>
                     <RoundButton outline type="submit"><Icon white type="arrow_forward"/></RoundButton>

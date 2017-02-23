@@ -11,7 +11,7 @@ import Loader from './loader'
 const log = key => value => (console.log(key, value), value)
 const tessOptions = {
   lang: 'eng',
-  tessedit_char_whitelist: '-0123456789'
+  // tessedit_char_whitelist: '-0123456789'
 }
 
 const tesseract = (image) =>
@@ -40,7 +40,7 @@ export default class Tess extends React.Component {
   }
 
   onCapture (files) {
-    const filter = compose(threshold2(100))
+    const filter = compose(threshold2(100), blur, threshold2(100))
     const t1 = Date.now()
     this.setState({loading:true})
     getImageCanvas(2000)(files[0])

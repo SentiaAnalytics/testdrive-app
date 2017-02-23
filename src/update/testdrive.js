@@ -16,6 +16,8 @@ const resetTestdrive = (state) => (
   })
 
 export default {
+
+
   getTestdriveListFail: (state:Model, err:string, msg:Msg) =>
     [
       {...state, testdrivesList: {status:'FAIL'}},

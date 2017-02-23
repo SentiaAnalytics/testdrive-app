@@ -17,22 +17,25 @@ export const emptyCprForm: CprForm = {
   cpr: ''
 }
 
-
 export type DriverForm = {
-  firstname: string,
+  forenames: string,
   lastname: string,
-  addressLine1: string,
-  addressLine2: string,
+  street: string,
+  houseNumber: string,
+  floor: string,
+  apartment: string,
   postcode: string,
   city: string,
   country: string
 }
 
 export const emptyDriverForm: DriverForm = {
-  firstname: '',
+  forenames: '',
   lastname: '',
-  addressLine1: '',
-  addressLine2: '',
+  street: '',
+  houseNumber: '',
+  floor: '',
+  apartment: '',
   postcode: '',
   city: '',
   country: '',
@@ -52,10 +55,12 @@ export const emptyContactForm: ContactForm = {
 export type TestdriveRequest = {
   cpr: string,
   licenseUrl: Async<string>,
-  firstname: string,
+  forenames: string,
   lastname: string,
-  addressLine1: string,
-  addressLine2: string,
+  street: string,
+  houseNumber: string,
+  floor: string,
+  apartment: string,
   postcode: string,
   city: string,
   country: string,
@@ -74,10 +79,12 @@ export type Testdrive = {
   date: string,
   cpr: string,
   licenseUrl: Async<string>,
-  firstname: string,
+  forenames: string,
   lastname: string,
-  addressLine1: string,
-  addressLine2: string,
+  street: string,
+  houseNumber: string,
+  floor: string,
+  apartment: string,
   postcode: string,
   city: string,
   country: string,
@@ -88,6 +95,7 @@ export type Testdrive = {
   phone: string,
   base64Signature: string,
 }
+
 export const emptyTestdriveRequest:TestdriveRequest = {
   licenseUrl: {status: 'NONE'},
   ...emptyCprForm,

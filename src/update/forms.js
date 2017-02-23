@@ -13,7 +13,8 @@ export default {
   submitCprForm: (state:Model, cpr:number, msg:Msg) =>
     [
       assocPath(['testdriveRequest','cpr'])(cpr)(state),
-      task.historyPush('/new/2')
+      task.cprLookUp(String(cpr))
+        .fold(msg.cprLookUpFail, msg.cprLookUpSuccess)
     ],
 
   submitDriverForm: (state:Model, driver:Driver, msg:Msg) => {

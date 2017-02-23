@@ -48,6 +48,8 @@
     "tape": "^4.6.3",
     "tape-watch": "^2.2.4",
     "url-loader": "0.5.7",
+    "wdio-mocha-framework": "^0.5.8",
+    "webdriverio": "^4.6.2",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2",
     "webpack-manifest-plugin": "1.1.0"
@@ -81,7 +83,8 @@
     "build": "node scripts/build.js",
     "test": "NODE_ENV=test tape -r ./src/test-setup.js 'src/**/*.test.js' | tap-spec",
     "test:watch": "NODE_ENV=test tape-watch -r ./src/test-setup.js  'src/**/*.test.js' | tap-spec",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "e2e": "wdio wdio.conf.js"
   },
   "jest": {
     "collectCoverageFrom": [

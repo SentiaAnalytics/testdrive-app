@@ -15,7 +15,7 @@ const testdriveListItem = (testdrive:Testdrive) =>
     <Link className="list-item-link" to={`/testdrives/${testdrive.id}`}>
       <div className="list-item-body">
       <h5 className="list-item-title">
-        {testdrive.firstname} {testdrive.lastname}
+        {testdrive.forenames} {testdrive.lastname}
       </h5>
         <span className="list-item-pill"> {testdrive.carBrand} {testdrive.carModel}</span>
       </div>

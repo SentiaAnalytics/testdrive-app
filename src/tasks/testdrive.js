@@ -28,3 +28,6 @@ export const uploadDriversLicense = (file:File) =>
   compressImage(file, {resolution: 1080})
     .map(createForm('license'))
     .chain(http.post('/api/ncg/userid'))
+
+export const cprLookUp = (cpr: string) =>
+  http.get(`/api/pnr/${cpr}`)

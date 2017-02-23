@@ -20,7 +20,7 @@ export default ({location, testdriveList}:Props) => {
     <Layout column>
       <Col>
         <Padding>
-          <h1>{testdrive.firstname} {testdrive.lastname}</h1>
+          <h1>{testdrive.forenames} {testdrive.lastname}</h1>
           <p>{testdrive.carBrand} {testdrive.carModel}</p>
         </Padding>
       </Col>

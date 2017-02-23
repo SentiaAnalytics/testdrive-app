@@ -7,6 +7,7 @@ import signature from './signature'
 import testdrive from './testdrive'
 import toasts from './toasts'
 import auth from './auth'
+import cpr from './cpr'
 import history from './history'
 import * as task from '../tasks'
 
@@ -17,6 +18,7 @@ export default {
   ...testdrive,
   ...auth,
   ...toasts,
+  ...cpr,
 
   search: (state, name, value, msg) =>
     [assocPath(['search', name])(value)(state)],

@@ -14,6 +14,7 @@ type Props = {
   msg: Msg,
   testdriveRequest: TestdriveRequest
 }
+
 export default ({msg, testdriveRequest}:Props) =>
   <Layout column primary style={{height: '100%'}}>
     <Layout grow={1} shrink={1} column center middle>
@@ -25,7 +26,7 @@ export default ({msg, testdriveRequest}:Props) =>
       </Col>
       <Col>
         <Padding>
-          <Link white to="/new/cpr">skip</Link>
+          <Link white to="/new/1">skip</Link>
         </Padding>
       </Col>
     </Layout>

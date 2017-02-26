@@ -19,6 +19,7 @@ import {Button} from './button'
 export default (props:any) => {
   const page = Number(props.location.params.page)
   const pickProps = flip(pick)(props)
+  const models = props.models[props.testdriveRequest.carBrand] || []
   return (
     <Layout column primary>
       <Col>
@@ -35,10 +36,10 @@ export default (props:any) => {
       <Col grow={1} shrink={1}>
         <Slider page={page}>
           <Slide><Driverslicense {...pickProps(['msg', 'testdriveRequest']) } /></Slide>
-          <Slide><Cpr {...pickProps(['msg', 'cprForm'])} /></Slide>
+          <Slide><Cpr {...pickProps(['msg', 'cprForm', 'cprStatus'])} /></Slide>
           <Slide><Driver {...pickProps(['msg', 'driverForm'])} /></Slide>
           <Slide><Brand {...pickProps(['msg', 'brands', 'search'])} /></Slide>
-          <Slide><Model {...pickProps(['msg', 'models', 'search'])} /></Slide>
+          <Slide><Model { ...{...pickProps(['msg', 'search']), models} } /></Slide>
           <Slide><Licenseplate {...pickProps(['msg', 'search', 'licenseplates'])} /></Slide>
           <Slide><Confirm {...pickProps(['msg', 'consentForm', 'testdriveStatus', 'modals'])} /></Slide>
         </Slider>

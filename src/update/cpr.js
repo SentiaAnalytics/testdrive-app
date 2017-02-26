@@ -23,14 +23,20 @@ export default {
     [
       {
         ...state,
+        cprStatus: 'SUCCESS',
         driverForm: fillDriverForm(state.driverForm)(cprDetails)
       },
       task.historyPush('/new/2')
     ],
   cprLookUpFail: (state:Model, err:string, msg:Msg) =>
     [
-      state,
-      task.call(msg.toastDanger, err)
+      { ...state,
+        cprStatus:'FAIL'
+      },
+      task.all([
+        task.call(msg.toastDanger, err),
+        task.historyPush('/new/2')
+      ])
     ]
 
 }

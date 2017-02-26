@@ -1,7 +1,7 @@
 //@flow
 import React from 'react'
 import type {Testdrive, Msg, Async} from '../model'
-import {map} from '../util'
+import {map, compose, sort} from '../util'
 import {Layout, Col} from './layout'
 import {RoundButton} from './button'
 import Padding from './layout/padding'
@@ -27,14 +27,17 @@ type Props = {
   testdriveList: Async<Testdrive[]>
 }
 
-export default ({msg, testdriveList}:Props) =>
+const compareTestdrives = (a, b) => a.date - b.date
 
+const getSortedTestdrives = compose(sort(compareTestdrives), Object.values, x => x || [])
+
+export default ({msg, testdriveList}:Props) =>
   <Layout column>
     <Col grow={1} shrink={1}>
       <Loader message="Loading Testdrives" show={testdriveList.status === 'PENDING'}/>
       <Padding><h1>{testdriveList.value ? 'Drive list' : 'No drives to display'}</h1></Padding>
       <List>
-        {map(testdriveListItem)(Object.values(testdriveList.value || {}))}
+        {map(testdriveListItem)(getSortedTestdrives(testdriveList.value))}
       </List>
         <RoundButton fixed bottom right primary onClick={() => msg.newTestdrive()}><Icon lg type="add"/></RoundButton>
     </Col>

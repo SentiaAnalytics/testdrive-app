@@ -7,13 +7,15 @@ import {Layout, Col, Padding} from './layout'
 import {compose, preventDefault, targetValue} from '../util'
 import Icon from './icon'
 import PageIndicator from './page-indicator'
+import Loader from './loader'
 
 type Props = {
   cprForm: CprForm,
+  cprStatus: string,
   msg: Msg
 }
 
-export default ({msg, cprForm}:Props) => {
+export default ({msg, cprForm, cprStatus}:Props) => {
   const updateField =
     compose(x => msg.setFormField('cprForm', 'cpr', x), targetValue)
   return (
@@ -22,6 +24,7 @@ export default ({msg, cprForm}:Props) => {
       style={{display: 'flex', height:'100%'}}
       >
       <Layout column primary>
+        <Loader message="Fetching Details" show={cprStatus === 'PENDING'}/>
         <Layout grow={1} primary column center middle>
           <Col>
             <Padding>

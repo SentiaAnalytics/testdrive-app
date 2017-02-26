@@ -1,7 +1,6 @@
 //@flow
-import {cmd} from '../start-app'
 import type {Msg, Model, Dict, Driver, Testdrive} from '../model'
-import {contains, assocPath} from '../util'
+import {contains, assocPath, assoc} from '../util'
 import * as task from '../tasks'
 
 const saveTestDrive = (testdrive:Testdrive) => task.setLocalStorage('testdrive')(testdrive)
@@ -12,7 +11,11 @@ export default {
 
   submitCprForm: (state:Model, cpr:number, msg:Msg) =>
     [
-      assocPath(['testdriveRequest','cpr'])(cpr)(state),
+      {
+        ...state,
+        testdriveRequest: assoc('cpr')(cpr)(state.testdriveRequest),
+        cprStatus: 'PENDING'
+      },
       task.cprLookUp(String(cpr))
         .fold(msg.cprLookUpFail, msg.cprLookUpSuccess)
     ],
@@ -44,11 +47,15 @@ export default {
     ]
   },
   submitCarModel: (state:Model, carModel:string, msg:Msg) => {
+    const {carBrand} = state.testdriveRequest
     const testdriveRequest = {
       ...state.testdriveRequest,
       carModel
     }
-    const models = contains(carModel)(state.models) ? state.models :  [...state.models, carModel]
+    const models = !state.models[carBrand] ? { ...state.models, [carBrand]: [carModel] } :
+      contains(carModel)(state.models[carBrand]) ?  state.models :
+      {...state.models, [carBrand]: [...state.models[carBrand], carModel] }
+
     return [
       {...state, testdriveRequest, models},
       task.all([

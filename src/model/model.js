@@ -17,21 +17,29 @@ export const emptyLoc = {
   params: {},
   query: {}
 }
+export type Search = {
+  brand: string,
+  model: string,
+  licenseplate: string
+}
+
+export const emptySearch: Search = {
+  brand: '',
+  model: '',
+  licenseplate: ''
+}
 
 export type Model = {
   testdriveStatus: string,
-  search: {
-    brand: string,
-    model: string,
-    licenseplate: string
-  },
+  cprStatus: string,
+  search: Search,
   toast: ?Toast,
   modals: { [string]: bool },
   user: Async<User>,
   cprForm: CprForm,
   driverForm: DriverForm,
   brands: string[],
-  models: string[],
+  models: {[string]: string[]},
   licenseplates: string[],
   loginForm: Credentials,
   consentForm: ConsentForm,
@@ -42,15 +50,12 @@ export type Model = {
 
 export const emptyModel:Model = {
   testdriveStatus: 'NONE',
+  cprStatus: 'NONE',
   toast: null,
   modals: {
     signature: false
   },
-  search: {
-    brand: '',
-    model: '',
-    licenseplate: ''
-  },
+  search: emptySearch,
   user: {status: 'NONE'},
   loginForm: emptyCredentials,
   cprForm: emptyCprForm,
@@ -59,7 +64,7 @@ export const emptyModel:Model = {
   testdriveRequest: emptyTestdriveRequest,
   testdriveList: { status: 'NONE' },
   brands: [],
-  models: [],
+  models: {},
   licenseplates: [],
   location: emptyLoc
 }

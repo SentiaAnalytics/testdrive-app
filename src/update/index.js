@@ -1,6 +1,5 @@
 //@flow
 import type {Action, Model, Dict, ActionHandler} from '../model'
-import {cmd} from '../start-app'
 import {evolve, assocPath} from '../util'
 import forms from './forms'
 import signature from './signature'

@@ -1,7 +1,6 @@
 //@flow
 import type {Testdrive,  Model, Msg} from '../model'
-import {emptyTestdriveRequest, emptyDriverForm, emptyConsentForm, emptyCprForm} from '../model'
-import {cmd} from '../start-app'
+import {emptyTestdriveRequest, emptyDriverForm, emptySearch, emptyConsentForm, emptyCprForm} from '../model'
 import {assocPath, indexBy} from '../util'
 import * as task from '../tasks'
 
@@ -11,6 +10,7 @@ const resetTestdrive = (state) => (
     testdriveRequest: emptyTestdriveRequest,
     cprForm: emptyCprForm,
     driverForm: emptyDriverForm,
+    search: emptySearch,
     consentForm: emptyConsentForm,
     testdriveStatus: 'NONE'
   })

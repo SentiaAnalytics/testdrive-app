@@ -1,5 +1,4 @@
 //@flow
-import {cmd} from '../start-app'
 import type {Model, ActionHandler} from '../model'
 import {evolve} from '../util'
 

@@ -1,7 +1,6 @@
 //@flow
 
 import type {Model, Credentials, User, Msg} from '../model'
-import {cmd} from '../start-app'
 import {assocPath} from '../util'
 import * as task from '../tasks'
 import history from '../history'

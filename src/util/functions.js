@@ -10,6 +10,8 @@ export const pick = (keys: string[]) => (obj:Dict) =>
 
 export const flip =(f:Function) => (a:any) => (b: any) =>f(b)(a)
 
+export const sort = (f:Function) => (xs: any[]) => xs.sort(f)
+
 export const append = (x:any) => (xs:any[]) => [...xs, x]
 
 export const any = (f:Function) => (xs:any[]) => xs.some(f)

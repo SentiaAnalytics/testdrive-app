@@ -1,25 +1,25 @@
 //@flow
 import React from 'react'
-import type {Msg, ContactForm} from '../model'
-import TextInput from './text-input'
-import {compose, targetValue, preventDefault} from '../util'
-import {Layout, Col, Padding} from './layout'
-import {RoundButton} from './button'
-import Icon from './icon'
-import Title from './title'
+import type {Msg, TestdriveForm} from '../../model'
+import TextInput from '../text-input'
+import {compose, targetValue, preventDefault} from '../../util'
+import {Layout, Col, Padding} from '../layout'
+import {RoundButton} from '../button'
+import Icon from '../icon'
+import Title from '../title'
 
 type Props = {
-  contactForm: ContactForm,
+  testdriveForm: TestdriveForm,
   msg: Msg
 }
 
-export default ({msg, contactForm}:Props) => {
+export default ({msg, testdriveForm}:Props) => {
   const setField = field =>
-    compose(x => msg.setFormField('driverForm', field, x), targetValue)
+    compose(x => msg.setFormField('testdriveForm', ['value', field], x), targetValue)
 
   return (
     <form
-      onSubmit = {compose(x => msg.submitContactForm(contactForm), preventDefault)}
+      onSubmit = {compose(x => msg.goto('/new/4'), preventDefault)}
       style={{display:'flex', height:'100%'}}
       >
       <Layout column primary>
@@ -32,13 +32,13 @@ export default ({msg, contactForm}:Props) => {
                   white
                   required
                   label="Email"
-                  value={contactForm.email}
+                  value={testdriveForm.email}
                   onChange={setField('email')} />
                 <TextInput
                   white
                   required
                   label="Mobile"
-                  value={contactForm.mobile}
+                  value={testdriveForm.mobile}
                   onChange={setField('mobile')} />
 
                 <Layout center>

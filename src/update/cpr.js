@@ -1,10 +1,12 @@
 //@flow
 import type {Msg, Model, DriverForm, CprDetails} from '../model'
+import {assocPath, evolve} from '../util'
 import * as task from '../tasks'
 import {assoc} from '../util'
 
-const fillDriverForm = (driverForm:DriverForm) => (cpr:CprDetails) =>
-  ({
+const fillDriverForm = (cpr:CprDetails) => ( driverForm:DriverForm) => {
+  console.log(cpr, driverForm)
+  return ({
     ...driverForm,
     forenames: cpr.forenames,
     lastname: cpr.lastname,
@@ -17,26 +19,35 @@ const fillDriverForm = (driverForm:DriverForm) => (cpr:CprDetails) =>
     city: cpr.city || cpr.postDistrict,
     country: 'DK',
   })
+}
 
 export default {
-  cprLookUpSuccess: (state:Model, cprDetails: any, msg:Msg) =>
+  submitCprForm: (state:Model, cpr:number, msg:Msg) =>
     [
-      {
-        ...state,
-        cprStatus: 'SUCCESS',
-        driverForm: fillDriverForm(state.driverForm)(cprDetails)
-      },
-      task.historyPush('/new/2')
+        assocPath(['testdriveForm', 'value', 'driver', 'status'])('PENDING')(state),
+        task.all([
+          task.historyPush('/new/2'),
+          task.cprLookUp(String(cpr))
+            .fold(msg.cprLookUpFail, msg.cprLookUpSuccess)
+        ])
     ],
+  cprLookUpSuccess: (state:Model, cprDetails: any, msg:Msg) =>
+    [evolve({
+      testdriveForm: {
+        value: {
+          driver: {
+            status: 'SUCCESS',
+            value: fillDriverForm(cprDetails)
+          }
+        }
+      },
+    })(state)],
   cprLookUpFail: (state:Model, err:string, msg:Msg) =>
     [
-      { ...state,
-        cprStatus:'FAIL'
-      },
+      assocPath(['testdriveForm', 'value', 'driver', 'status'])('FAIL')(state),
       task.all([
         task.call(msg.toastDanger, err),
         task.historyPush('/new/2')
       ])
     ]
-
 }

@@ -3,7 +3,8 @@ import type {Action, Model, Dict, ActionHandler} from '../model'
 import {evolve, assocPath} from '../util'
 import forms from './forms'
 import signature from './signature'
-import testdrive from './testdrive'
+import testdrives from './testdrives'
+import newTestdrive from './new-testdrive'
 import toasts from './toasts'
 import auth from './auth'
 import cpr from './cpr'
@@ -14,7 +15,8 @@ export default {
   ...forms,
   ...history,
   ...signature,
-  ...testdrive,
+  ...testdrives,
+  ...newTestdrive,
   ...auth,
   ...toasts,
   ...cpr,

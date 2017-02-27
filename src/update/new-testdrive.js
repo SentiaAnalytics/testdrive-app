@@ -1,35 +1,36 @@
 //@flow
 import type {Testdrive,  Model, Msg} from '../model'
-import {emptyTestdriveRequest, emptyDriverForm, emptySearch, emptyConsentForm, emptyCprForm} from '../model'
+import {emptyTestdriveForm, emptySearch} from '../model'
 import {assocPath, indexBy} from '../util'
 import * as task from '../tasks'
 
-
 const resetTestdrive = (state) => (
   {...state,
-    testdriveRequest: emptyTestdriveRequest,
-    cprForm: emptyCprForm,
-    driverForm: emptyDriverForm,
+    testdriveForm: {
+      status: 'NONE',
+      value: emptyTestdriveForm
+    },
     search: emptySearch,
-    consentForm: emptyConsentForm,
-    testdriveStatus: 'NONE'
   })
 
 export default {
-
-
-  getTestdriveListFail: (state:Model, err:string, msg:Msg) =>
-    [
-      {...state, testdrivesList: {status:'FAIL'}},
-      task.call(msg.toastDanger, err)
-    ],
-  getTestdriveListSuccess: (state:Model, testdrives:Testdrive[], msg:Msg) =>
-    [ {...state, testdriveList: {status:'SUCCESS', value:indexBy(x => x.id)(testdrives)}} ],
+  setCarBrand: (state:Model, carBrand:string) => [
+    assocPath(['testdriveForm', 'value', 'carBrand'])(carBrand)(state),
+    task.historyPush('/new/5')
+  ],
+  setCarModel: (state:Model, carModel:string) => [
+    assocPath(['testdriveForm', 'value', 'carModel'])(carModel)(state),
+    task.historyPush('/new/6')
+  ],
+  setCarLicenseplate: (state:Model, licenseplate:string) => [
+    assocPath(['testdriveForm', 'value', 'licenseplate'])(licenseplate)(state),
+    task.historyPush('/new/7')
+  ],
   newTestdrive: (state:Model, msg:Msg) =>
     [
       resetTestdrive(state),
       task.all([
-        task.setLocalStorage('testdrive')(emptyTestdriveRequest),
+        task.setLocalStorage('testdrive')(emptyTestdriveForm),
         task.historyPush('/new/0')
       ])
     ],
@@ -76,7 +77,7 @@ export default {
         testdriveStatus: 'SUCCESS'
       },
       task.all([
-        task.setLocalStorage('testdrive')(emptyTestdriveRequest),
+        task.setLocalStorage('testdrive')(emptyTestdriveForm),
         task.historyPush('/')
       ])
     ],
@@ -88,4 +89,5 @@ export default {
       },
       task.call(msg.httpError, err)
     ]
+
 }

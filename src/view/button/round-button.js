@@ -2,9 +2,11 @@
 import React from 'react'
 import './round-button.scss'
 import {createClassName} from '../../util'
+import Link from '../link'
 
 type Props = {
   children?: any[],
+  to?: string,
   type?: string,
   onClick?: Function,
   white?: bool,
@@ -29,10 +31,19 @@ const CLASS_PROPS = [
 const className = createClassName('round-button')(CLASS_PROPS)
 
 export default (props:Props) =>
-  <button
-    type={props.type || 'button'}
-    className={className(props)}
-    onClick={props.onClick || (x => x)}
-  >
-    {props.children}
-  </button>
+  props.to ?
+    <Link
+      className={className(props)}
+      onClick={props.onClick || (x => x)}
+      to={props.to || '#'}
+    >
+      {props.children}
+    </Link>
+    :
+    <button
+      type={props.type || 'button'}
+      className={className(props)}
+      onClick={props.onClick || (x => x)}
+    >
+      {props.children}
+    </button>

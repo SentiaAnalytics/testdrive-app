@@ -29,6 +29,7 @@ const router = (routes:Dict) => (state:Model, location:Location, msg:Msg) => {
 }
 
 export default {
+  goto: (state:Model, url:string) => [state, task.historyPush(url)],
   goBack: (state:Model) =>
     [state, task.historyPop],
   locationUpdate : (state:Model, location:Location, msg:Msg) => {

@@ -6,6 +6,8 @@ import './link.scss'
 
 type Props = {
   children?:any[],
+  onClick?: Function,
+  className?: string,
   to:string,
   white?: bool
 }
@@ -22,6 +24,6 @@ const CLASS_PROPS = [
 ]
 const className = createClassName('link')(CLASS_PROPS)
 export default (props:Props) =>
-  <a className={className(props)} href={props.to} onClick={compose(() => history.push(props.to), preventDefault)}>
+  <a className={props.className || className(props)} href={props.to} onClick={ props.onClick || compose(() => history.push(props.to), preventDefault)}>
     {props.children}
   </a>

@@ -1,17 +1,17 @@
 //@flow
 import React from 'react'
-import type {Msg, LicenseplateForm} from '../model'
-import TextInput  from './text-input'
-import {toUpper, map, compose, targetValue, preventDefault} from '../util'
-import {Layout, Col, Padding} from './layout'
-import {Button} from './button'
-import {SelectList} from './list'
-import PageIndicator from './page-indicator'
-import Icon from './icon'
+import type {Msg, LicenseplateForm} from '../../model'
+import TextInput  from '../text-input'
+import {toUpper, map, compose, targetValue, preventDefault} from '../../util'
+import {Layout, Col, Padding} from '../layout'
+import {Button} from '../button'
+import {SelectList} from '../list'
+import PageIndicator from '../page-indicator'
+import Icon from '../icon'
 
 type Props = {
   msg: Msg,
-  search: {licenseplate: string},
+  search: string,
   licenseplates: string[]
 }
 
@@ -22,7 +22,7 @@ export default ({msg, search, licenseplates}:Props) =>
         <TextInput
           white
           label="licenseplate"
-          value={search.licenseplate}
+          value={search}
           onChange={compose(x => msg.search('licenseplate', x), targetValue)}
         />
       </Padding>
@@ -30,9 +30,9 @@ export default ({msg, search, licenseplates}:Props) =>
     <Col grow="1" shrink="1" white>
       <Padding>
         <SelectList
-          searchQuery={search.licenseplate}
+          searchQuery={search}
           items={map(value => ({label: value, value}))(licenseplates)}
-          onSelect = {msg.submitCarLicenseplate}
+          onSelect = {msg.setCarLicenseplate}
         />
       </Padding>
     </Col>

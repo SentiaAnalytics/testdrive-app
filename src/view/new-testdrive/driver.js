@@ -1,29 +1,32 @@
 //@flow
 import React from 'react'
-import type {DriverForm, Msg} from '../model'
-import {compose, targetValue, targetFiles,preventDefault, toPairs, any} from '../util'
-import TextInput from './text-input'
-import {Layout, Col, Padding} from './layout'
-import {RoundButton} from './button'
-import Icon from './icon'
-import Loader from './loader'
-import Title from './title'
-import PageIndicator from './page-indicator'
+import type {TestdriveForm, Msg} from '../../model'
+import {compose, targetValue, targetFiles,preventDefault, toPairs, any} from '../../util'
+import TextInput from '../text-input'
+import {Layout, Col, Padding} from '../layout'
+import {RoundButton} from '../button'
+import Icon from '../icon'
+import Loader from '../loader'
+import Title from '../title'
+import PageIndicator from '../page-indicator'
 
 type Props = {
-  driverForm: DriverForm,
+  testdriveForm: TestdriveForm,
   msg: Msg
 }
 
-export default ({msg, driverForm}:Props) => {
+export default ({msg, testdriveForm}:Props) => {
+  const {driver} = testdriveForm.value
+  const {value: driverForm, status} = driver
   const setField = field =>
-    compose(x => msg.setFormField('driverForm', field, x), targetValue)
+    compose(x => msg.setFormField('testdriveForm', ['value', 'driver', field], x), targetValue)
 
   return (
     <form
-      onSubmit = {compose(x => msg.submitDriverForm(driverForm), preventDefault)}
+      onSubmit = {compose(x => msg.goto('/new/3'), preventDefault)}
       style={{display:'flex', height:'100%'}}
       >
+      <Loader message="Feching Driver Details" show={status === 'PENDING'}/>
       <Layout column primary>
         <Layout grow={1} shrink={1} center scroll>
           <Padding>

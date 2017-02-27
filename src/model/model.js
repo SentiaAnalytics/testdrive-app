@@ -1,8 +1,8 @@
 //@flow
 import type {Toast} from './toast'
 import type {User, Credentials} from './user'
-import type {TestdriveRequest, Testdrive, DriverForm, ConsentForm, CprForm} from './testdrive'
-import {emptyDriverForm,  emptyConsentForm, emptyTestdriveRequest, emptyCprForm} from './testdrive'
+import type {TestdriveForm, Testdrive} from './testdrive'
+import {emptyTestdriveForm} from './testdrive'
 import {emptyUser, emptyCredentials  } from './user'
 import type {Async, Dict} from './generic'
 
@@ -30,27 +30,20 @@ export const emptySearch: Search = {
 }
 
 export type Model = {
-  testdriveStatus: string,
-  cprStatus: string,
   search: Search,
   toast: ?Toast,
   modals: { [string]: bool },
   user: Async<User>,
-  cprForm: CprForm,
-  driverForm: DriverForm,
   brands: string[],
   models: {[string]: string[]},
   licenseplates: string[],
   loginForm: Credentials,
-  consentForm: ConsentForm,
-  testdriveRequest: TestdriveRequest,
+  testdriveForm: Async<TestdriveForm>,
   testdriveList: Async<{[string] : Testdrive}>,
   location: Loc
 }
 
 export const emptyModel:Model = {
-  testdriveStatus: 'NONE',
-  cprStatus: 'NONE',
   toast: null,
   modals: {
     signature: false
@@ -58,11 +51,10 @@ export const emptyModel:Model = {
   search: emptySearch,
   user: {status: 'NONE'},
   loginForm: emptyCredentials,
-  cprForm: emptyCprForm,
-  driverForm: emptyDriverForm,
-  contactForm: emptyContactForm,
-  consentForm: emptyConsentForm,
-  testdriveRequest: emptyTestdriveRequest,
+  testdriveForm: {
+    status: 'NONE',
+    value: emptyTestdriveForm
+  },
   testdriveList: { status: 'NONE' },
   brands: [],
   models: {},

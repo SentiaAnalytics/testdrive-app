@@ -60,6 +60,7 @@ export const emptyModel:Model = {
   loginForm: emptyCredentials,
   cprForm: emptyCprForm,
   driverForm: emptyDriverForm,
+  contactForm: emptyContactForm,
   consentForm: emptyConsentForm,
   testdriveRequest: emptyTestdriveRequest,
   testdriveList: { status: 'NONE' },

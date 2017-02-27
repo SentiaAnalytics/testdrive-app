@@ -31,3 +31,5 @@ export const uploadDriversLicense = (file:File) =>
 
 export const cprLookUp = (cpr: string) =>
   http.get(`/api/pnr/${cpr}`)
+    .bimap(x => x.response.data.errorDetails, x => x)
+    .bimap(log('cpr_fail'), log('cpr_success'))

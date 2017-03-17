@@ -6,7 +6,7 @@ const handler: ActionHandler = {
   setSignature: (state:Model, base64Signature:string) =>
     [
       evolve({
-        consentForm: { base64Signature: () => base64Signature },
+        testdriveForm: { value: { base64Signature: () => ({status: 'SUCCESS', value: base64Signature }) } },
         modals: { signature: () => false }
       })(state)
     ],

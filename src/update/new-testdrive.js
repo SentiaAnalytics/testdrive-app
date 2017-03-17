@@ -37,15 +37,15 @@ export default {
 
   driversLicenseCaptured: (state:Model, files:File[], msg:Msg) =>
     [
-      assocPath(['testdriveRequest','licenseUrl', 'status'])('PENDING')(state),
+      assocPath(['testdriveForm', 'value','licenseUrl', 'status'])('PENDING')(state),
       task.uploadDriversLicense(files[0])
         .fold(msg.uploadDriversLicenseFail, msg.uploadDriversLicenseSuccess)
     ],
 
   uploadDriversLicenseSuccess: (state:Model, licenseUrl:string) => {
-    const data = {value: licenseUrl, status: 'SUCCESS'}
+    const data = {value: licenseUrl.url, status: 'SUCCESS'}
     return [
-      assocPath(['testdriveRequest', 'licenseUrl'])(data)(state),
+      assocPath(['testdriveForm', 'value', 'licenseUrl'])(data)(state),
       task.historyPush('/new/1')
     ]
   },
@@ -53,19 +53,15 @@ export default {
   uploadDriversLicenseFail: (state:Model, err:any, msg:Msg) => {
     const data = {status: 'FAIL'}
     return [
-      assocPath(['testdriveRequest', 'licenseUrl'])(data)(state),
+      assocPath(['testdriveForm', 'value', 'licenseUrl'])(data)(state),
       task.call(msg.toastDanger, err)
     ]
   },
 
   confirmTestdrive: (state:Model, msg:Msg) => {
-    const testdriveRequest = {
-      ...state.testdriveRequest,
-      consent: state.consentForm
-    }
     return [
-      {...state, testdriveRequest, testdriveStatus: 'PENDING'},
-      task.submitTestdrive(testdriveRequest)
+      assocPath(['testdriveForm', 'value', 'status'])('PENDING')(state),
+      task.submitTestdrive(state.testdriveForm.value)
         .fold(msg.confirmTestdriveFail, msg.confirmTestdriveSuccess)
     ]
   },

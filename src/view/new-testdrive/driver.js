@@ -19,7 +19,7 @@ export default ({msg, testdriveForm}:Props) => {
   const {driver} = testdriveForm.value
   const {value: driverForm, status} = driver
   const setField = field =>
-    compose(x => msg.setFormField('testdriveForm', ['value', 'driver', field], x), targetValue)
+    compose(x => msg.setFormField('testdriveForm', ['value', 'driver', 'value', field], x), targetValue)
 
   return (
     <form

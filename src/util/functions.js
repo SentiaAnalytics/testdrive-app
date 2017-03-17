@@ -5,10 +5,9 @@ import Either from 'data.either'
 import cookie from 'cookie'
 
 
-export const pick = (keys: string[]) => (obj:Dict) =>
-  keys.reduce((o, k) => ({...o, [k]: obj[k]}), {})
 
-export const flip =(f:Function) => (a:any) => (b: any) =>f(b)(a)
+
+export const flip =(f:Function) => (a:any) => (b:any) =>f(b)(a)
 
 export const sort = (f:Function) => (xs: any[]) => xs.sort(f)
 
@@ -20,6 +19,14 @@ export const all = (f:Function) => (xs:any[]) => xs.every(f)
 export const find = (f:Function) => (xs:any[]) => xs.find(f)
 
 export const contains = (y:any) => any(x => x === y)
+
+export const omit = (keys:string[]) => (dict:Dict) =>
+  Object.keys(dict)
+    .filter(x => !contains(x)(keys))
+    .reduce((acc, k) => ({...acc, [k]: dict[k]}), {})
+
+export const pick = (keys: string[]) => (obj:Dict) =>
+  keys.reduce((o, k) => ({...o, [k]: obj[k]}), {})
 
 export const split = (separator:any) => (s:string) => s.split(separator)
 

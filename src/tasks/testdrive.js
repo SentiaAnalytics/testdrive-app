@@ -2,21 +2,21 @@
 import Task from 'data.task'
 import type {Testdrive} from '../model'
 import * as http from '../http'
-import {evolve, compressImage} from '../util'
+import {evolve, compressImage, omit} from '../util'
 
 const log = key => value => (console.log(key, value), value)
 
 export const getTestdriveList = http.get('/api/testdrives')
 
 const testdrivePayload = (testdrive:Testdrive) =>
-  log('testdrive')(
-    evolve({
-      driver: {licenceUrl: x => x.value}
-    })(testdrive)
-  )
+  evolve({
+    licenseUrl: x => x.value,
+    base64Signature: x => x.value
+  })(Object.assign(omit(['driver'])(testdrive), testdrive.driver.value))
 
-export const submitTestdrive = (testdrive:Testdrive) =>
-  http.post('/api/testdrives')(testdrivePayload(testdrive))
+export const submitTestdrive = (testdriveForm:Testdrive) =>
+  http.post('/api/testdrives')(log('testdriveRequest')(testdrivePayload(log('testdriveForm')(testdriveForm))))
+
 
 const createForm = (key:string) => (data:any) => {
   const form = new FormData()

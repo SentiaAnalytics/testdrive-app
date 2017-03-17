@@ -33,7 +33,7 @@ export default ({msg, testdriveForm, signatureModal}:Props) => {
                 showModal={signatureModal}
                 onChange={msg.setSignature}
               /> : null }
-            { formData.base64Signature ? <img src={formData.base64Signature}/> : null}
+            { formData.base64Signature.status === 'SUCCESS' ? <img src={formData.base64Signature.value}/> : null}
           </Padding>
         </Col>
         <Col>

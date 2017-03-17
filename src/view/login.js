@@ -16,7 +16,7 @@ type Props = {
 
 export default ({msg, loginForm, user}:Props) => {
   const setField = field =>
-    compose(x =>  msg.setFormField('loginForm', field, x), targetValue)
+    compose(x =>  msg.setFormField('loginForm', [field], x), targetValue)
   return (
     <Layout column center middle>
       <Col style={{width: '80%', maxWidth: '660px'}}>

@@ -1,7 +1,6 @@
 [ignore]
-
+.*/node_modules/fbjs/lib/partitionObjectByKey.js
 [include]
-src/**/*.js
 
 [libs]
 

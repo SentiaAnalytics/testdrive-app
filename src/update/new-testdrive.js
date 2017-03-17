@@ -42,7 +42,7 @@ export default {
         .fold(msg.uploadDriversLicenseFail, msg.uploadDriversLicenseSuccess)
     ],
 
-  uploadDriversLicenseSuccess: (state:Model, licenseUrl:string) => {
+  uploadDriversLicenseSuccess: (state:Model, licenseUrl:any) => {
     const data = {value: licenseUrl.url, status: 'SUCCESS'}
     return [
       assocPath(['testdriveForm', 'value', 'licenseUrl'])(data)(state),
